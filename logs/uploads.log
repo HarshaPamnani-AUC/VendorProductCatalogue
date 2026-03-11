@@ -1,0 +1,4701 @@
+[2026-01-21T16:16:29.991Z] Upload request received
+{
+  "vendorId": 1,
+  "fileName": "toemcust (7) 1.xls",
+  "fileContentLength": 249213
+}
+[2026-01-21T16:16:30.026Z] Column mapping found
+{
+  "MappingId": 1,
+  "VendorId": 1,
+  "ProductCodeColumn": "__EMPTY_1",
+  "ProductNameColumn": "ET PERFUMES INC.",
+  "DescriptionColumn": "ET PERFUMES INC.",
+  "BrandColumn": "__EMPTY",
+  "CategoryColumn": "__EMPTY",
+  "PriceColumn": "__EMPTY_2",
+  "StockQuantityColumn": "__EMPTY_3",
+  "UPCColumn": "__EMPTY",
+  "SkipHeaderRows": 20,
+  "IsActive": true,
+  "CreatedAt": "2026-01-21T12:17:18.240Z",
+  "UpdatedAt": "2026-01-21T12:17:18.240Z"
+}
+[2026-01-21T16:16:30.034Z] Creating file upload record
+{
+  "fileName": "toemcust (7) 1.xls",
+  "fileSize": 186880
+}
+[2026-01-21T16:16:30.098Z] File upload record created
+{
+  "fileId": 15
+}
+[2026-01-21T16:16:30.109Z] Starting Excel parsing
+{
+  "fileId": 15,
+  "vendorId": 1,
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-01-21T16:16:30.203Z] Excel file loaded. Total rows: 678
+[2026-01-21T16:16:30.213Z] After skipping 20 header rows, processing 658 rows
+[2026-01-21T16:16:30.223Z] Dynamic header detection: Skipped additional 3 rows, now processing 655 rows
+[2026-01-21T16:16:36.381Z] Row 488 skipped - Invalid data
+{
+  "rowIndex": 488,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-01-21T16:16:36.388Z] Row 489 skipped - Invalid data
+{
+  "rowIndex": 489,
+  "productCode": "",
+  "productName": "BODY MISTS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-01-21T16:16:36.394Z] Row 490 skipped - Invalid data
+{
+  "rowIndex": 490,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-01-21T16:16:36.546Z] Row 505 skipped - Invalid data
+{
+  "rowIndex": 505,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-01-21T16:16:36.555Z] Row 506 skipped - Invalid data
+{
+  "rowIndex": 506,
+  "productCode": "",
+  "productName": "BRAND NAME GIFT SETS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-01-21T16:16:36.563Z] Row 507 skipped - Invalid data
+{
+  "rowIndex": 507,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-01-21T16:16:37.145Z] Row 556 skipped - Invalid data
+{
+  "rowIndex": 556,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-01-21T16:16:37.153Z] Row 557 skipped - Invalid data
+{
+  "rowIndex": 557,
+  "productCode": "",
+  "productName": "DENTED DAMAGED BOX OR UNBOXED",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-01-21T16:16:37.159Z] Row 558 skipped - Invalid data
+{
+  "rowIndex": 558,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-01-21T16:16:37.527Z] Row 586 skipped - Invalid data
+{
+  "rowIndex": 586,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-01-21T16:16:38.341Z] Parsing completed
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "totalRows": 655,
+  "sampleRows": [
+    {
+      "rowIndex": 0,
+      "rawRow": {
+        "__EMPTY": "ANT BBSW2",
+        "ET PERFUMES INC.": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061982105",
+        "__EMPTY_2": "$12.00",
+        "__EMPTY_3": "582",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061982105",
+        "productName": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "price": 12,
+        "originalPrice": "$12.00",
+        "cleanPrice": "12.00",
+        "stockQuantity": 582,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 1,
+      "rawRow": {
+        "__EMPTY": "ANT BGS010",
+        "ET PERFUMES INC.": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061081006",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061081006",
+        "productName": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 2,
+      "rawRow": {
+        "__EMPTY": "ANT BHST0",
+        "ET PERFUMES INC.": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "__EMPTY_1": "8411061080719",
+        "__EMPTY_2": "$9.75",
+        "__EMPTY_3": "982",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061080719",
+        "productName": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "price": 9.75,
+        "originalPrice": "$9.75",
+        "cleanPrice": "9.75",
+        "stockQuantity": 982,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 3,
+      "rawRow": {
+        "__EMPTY": "ANT BK000",
+        "ET PERFUMES INC.": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061082935",
+        "__EMPTY_2": "$9.25",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061082935",
+        "productName": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 9.25,
+        "originalPrice": "$9.25",
+        "cleanPrice": "9.25",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 4,
+      "rawRow": {
+        "__EMPTY": "ANT BPOS00",
+        "ET PERFUMES INC.": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061913024",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "287",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061913024",
+        "productName": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 287,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    }
+  ],
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-01-21T16:16:38.364Z] Upload completed successfully
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "errors": []
+}
+[2026-01-21T16:18:00.195Z] Upload request received
+{
+  "vendorId": 1,
+  "fileName": "toemcust (7) 1.xls",
+  "fileContentLength": 249213
+}
+[2026-01-21T16:18:00.222Z] Column mapping found
+{
+  "MappingId": 1,
+  "VendorId": 1,
+  "ProductCodeColumn": "__EMPTY_1",
+  "ProductNameColumn": "ET PERFUMES INC.",
+  "DescriptionColumn": "ET PERFUMES INC.",
+  "BrandColumn": "__EMPTY",
+  "CategoryColumn": "__EMPTY",
+  "PriceColumn": "__EMPTY_2",
+  "StockQuantityColumn": "__EMPTY_3",
+  "UPCColumn": "__EMPTY",
+  "SkipHeaderRows": 20,
+  "IsActive": true,
+  "CreatedAt": "2026-01-21T12:17:18.240Z",
+  "UpdatedAt": "2026-01-21T12:17:18.240Z"
+}
+[2026-01-21T16:18:00.232Z] Creating file upload record
+{
+  "fileName": "toemcust (7) 1.xls",
+  "fileSize": 186880
+}
+[2026-01-21T16:18:00.278Z] File upload record created
+{
+  "fileId": 16
+}
+[2026-01-21T16:18:00.287Z] Starting Excel parsing
+{
+  "fileId": 16,
+  "vendorId": 1,
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-01-21T16:18:00.345Z] Excel file loaded. Total rows: 678
+[2026-01-21T16:18:00.351Z] After skipping 20 header rows, processing 658 rows
+[2026-01-21T16:18:00.356Z] Dynamic header detection: Skipped additional 3 rows, now processing 655 rows
+[2026-01-21T16:18:12.624Z] Row 488 skipped - Invalid data
+{
+  "rowIndex": 488,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-01-21T16:18:12.635Z] Row 489 skipped - Invalid data
+{
+  "rowIndex": 489,
+  "productCode": "",
+  "productName": "BODY MISTS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-01-21T16:18:12.644Z] Row 490 skipped - Invalid data
+{
+  "rowIndex": 490,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-01-21T16:18:12.911Z] Row 505 skipped - Invalid data
+{
+  "rowIndex": 505,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-01-21T16:18:12.922Z] Row 506 skipped - Invalid data
+{
+  "rowIndex": 506,
+  "productCode": "",
+  "productName": "BRAND NAME GIFT SETS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-01-21T16:18:12.929Z] Row 507 skipped - Invalid data
+{
+  "rowIndex": 507,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-01-21T16:18:13.694Z] Row 556 skipped - Invalid data
+{
+  "rowIndex": 556,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-01-21T16:18:13.700Z] Row 557 skipped - Invalid data
+{
+  "rowIndex": 557,
+  "productCode": "",
+  "productName": "DENTED DAMAGED BOX OR UNBOXED",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-01-21T16:18:13.707Z] Row 558 skipped - Invalid data
+{
+  "rowIndex": 558,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-01-21T16:18:14.167Z] Row 586 skipped - Invalid data
+{
+  "rowIndex": 586,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-01-21T16:18:15.050Z] Parsing completed
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "totalRows": 655,
+  "sampleRows": [
+    {
+      "rowIndex": 0,
+      "rawRow": {
+        "__EMPTY": "ANT BBSW2",
+        "ET PERFUMES INC.": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061982105",
+        "__EMPTY_2": "$12.00",
+        "__EMPTY_3": "582",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061982105",
+        "productName": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "price": 12,
+        "originalPrice": "$12.00",
+        "cleanPrice": "12.00",
+        "stockQuantity": 582,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 1,
+      "rawRow": {
+        "__EMPTY": "ANT BGS010",
+        "ET PERFUMES INC.": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061081006",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061081006",
+        "productName": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 2,
+      "rawRow": {
+        "__EMPTY": "ANT BHST0",
+        "ET PERFUMES INC.": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "__EMPTY_1": "8411061080719",
+        "__EMPTY_2": "$9.75",
+        "__EMPTY_3": "982",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061080719",
+        "productName": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "price": 9.75,
+        "originalPrice": "$9.75",
+        "cleanPrice": "9.75",
+        "stockQuantity": 982,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 3,
+      "rawRow": {
+        "__EMPTY": "ANT BK000",
+        "ET PERFUMES INC.": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061082935",
+        "__EMPTY_2": "$9.25",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061082935",
+        "productName": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 9.25,
+        "originalPrice": "$9.25",
+        "cleanPrice": "9.25",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 4,
+      "rawRow": {
+        "__EMPTY": "ANT BPOS00",
+        "ET PERFUMES INC.": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061913024",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "287",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061913024",
+        "productName": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 287,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    }
+  ],
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-01-21T16:18:15.064Z] Upload completed successfully
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "errors": []
+}
+[2026-01-21T16:21:31.145Z] Upload request received
+{
+  "vendorId": 2,
+  "fileName": "Pricelist 19-01-2026.xlsx",
+  "fileContentLength": 1084258
+}
+[2026-01-21T16:21:31.250Z] Column mapping found
+{
+  "MappingId": 2,
+  "VendorId": 2,
+  "ProductCodeColumn": "__EMPTY_1",
+  "ProductNameColumn": "__EMPTY_5",
+  "DescriptionColumn": "__EMPTY_5",
+  "BrandColumn": "__EMPTY_4",
+  "CategoryColumn": "__EMPTY_3",
+  "PriceColumn": "Date offered:",
+  "StockQuantityColumn": "__EMPTY_7",
+  "UPCColumn": "__EMPTY",
+  "SkipHeaderRows": 9,
+  "IsActive": true,
+  "CreatedAt": "2026-01-21T12:31:34.480Z",
+  "UpdatedAt": "2026-01-21T12:31:34.480Z"
+}
+[2026-01-21T16:21:31.263Z] Creating file upload record
+{
+  "fileName": "Pricelist 19-01-2026.xlsx",
+  "fileSize": 813135
+}
+[2026-01-21T16:21:31.312Z] File upload record created
+{
+  "fileId": 17
+}
+[2026-01-21T16:21:31.324Z] Starting Excel parsing
+{
+  "fileId": 17,
+  "vendorId": 2,
+  "columnMapping": {
+    "MappingId": 2,
+    "VendorId": 2,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "__EMPTY_5",
+    "DescriptionColumn": "__EMPTY_5",
+    "BrandColumn": "__EMPTY_4",
+    "CategoryColumn": "__EMPTY_3",
+    "PriceColumn": "Date offered:",
+    "StockQuantityColumn": "__EMPTY_7",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 9,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:31:34.480Z",
+    "UpdatedAt": "2026-01-21T12:31:34.480Z"
+  }
+}
+[2026-01-21T16:21:32.603Z] Excel file loaded. Total rows: 7490
+[2026-01-21T16:21:32.617Z] After skipping 9 header rows, processing 7481 rows
+[2026-01-21T16:22:09.939Z] Upload request received
+{
+  "vendorId": 2,
+  "fileName": "Pricelist 19-01-2026.xlsx",
+  "fileContentLength": 1084258
+}
+[2026-01-21T16:22:10.017Z] Column mapping found
+{
+  "MappingId": 2,
+  "VendorId": 2,
+  "ProductCodeColumn": "__EMPTY_1",
+  "ProductNameColumn": "__EMPTY_5",
+  "DescriptionColumn": "__EMPTY_5",
+  "BrandColumn": "__EMPTY_4",
+  "CategoryColumn": "__EMPTY_3",
+  "PriceColumn": "Date offered:",
+  "StockQuantityColumn": "__EMPTY_7",
+  "UPCColumn": "__EMPTY",
+  "SkipHeaderRows": 9,
+  "IsActive": true,
+  "CreatedAt": "2026-01-21T12:31:34.480Z",
+  "UpdatedAt": "2026-01-21T12:31:34.480Z"
+}
+[2026-01-21T16:22:10.033Z] Creating file upload record
+{
+  "fileName": "Pricelist 19-01-2026.xlsx",
+  "fileSize": 813135
+}
+[2026-01-21T16:22:10.064Z] File upload record created
+{
+  "fileId": 18
+}
+[2026-01-21T16:22:10.078Z] Starting Excel parsing
+{
+  "fileId": 18,
+  "vendorId": 2,
+  "columnMapping": {
+    "MappingId": 2,
+    "VendorId": 2,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "__EMPTY_5",
+    "DescriptionColumn": "__EMPTY_5",
+    "BrandColumn": "__EMPTY_4",
+    "CategoryColumn": "__EMPTY_3",
+    "PriceColumn": "Date offered:",
+    "StockQuantityColumn": "__EMPTY_7",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 9,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:31:34.480Z",
+    "UpdatedAt": "2026-01-21T12:31:34.480Z"
+  }
+}
+[2026-01-21T16:22:11.237Z] Excel file loaded. Total rows: 7490
+[2026-01-21T16:22:11.250Z] After skipping 9 header rows, processing 7481 rows
+[2026-01-21T16:22:26.434Z] Upload request received
+{
+  "vendorId": 2,
+  "fileName": "Pricelist 19-01-2026.xlsx",
+  "fileContentLength": 1084258
+}
+[2026-01-21T16:22:26.464Z] Column mapping found
+{
+  "MappingId": 2,
+  "VendorId": 2,
+  "ProductCodeColumn": "__EMPTY_1",
+  "ProductNameColumn": "__EMPTY_5",
+  "DescriptionColumn": "__EMPTY_5",
+  "BrandColumn": "__EMPTY_4",
+  "CategoryColumn": "__EMPTY_3",
+  "PriceColumn": "Date offered:",
+  "StockQuantityColumn": "__EMPTY_7",
+  "UPCColumn": "__EMPTY",
+  "SkipHeaderRows": 9,
+  "IsActive": true,
+  "CreatedAt": "2026-01-21T12:31:34.480Z",
+  "UpdatedAt": "2026-01-21T12:31:34.480Z"
+}
+[2026-01-21T16:22:26.476Z] Creating file upload record
+{
+  "fileName": "Pricelist 19-01-2026.xlsx",
+  "fileSize": 813135
+}
+[2026-01-21T16:22:26.501Z] File upload record created
+{
+  "fileId": 19
+}
+[2026-01-21T16:22:26.511Z] Starting Excel parsing
+{
+  "fileId": 19,
+  "vendorId": 2,
+  "columnMapping": {
+    "MappingId": 2,
+    "VendorId": 2,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "__EMPTY_5",
+    "DescriptionColumn": "__EMPTY_5",
+    "BrandColumn": "__EMPTY_4",
+    "CategoryColumn": "__EMPTY_3",
+    "PriceColumn": "Date offered:",
+    "StockQuantityColumn": "__EMPTY_7",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 9,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:31:34.480Z",
+    "UpdatedAt": "2026-01-21T12:31:34.480Z"
+  }
+}
+[2026-01-21T16:22:27.697Z] Excel file loaded. Total rows: 7490
+[2026-01-21T16:22:27.707Z] After skipping 9 header rows, processing 7481 rows
+[2026-01-21T16:23:33.721Z] Row 7480 skipped - Invalid data
+{
+  "rowIndex": 7480,
+  "productCode": "Offer: Subject Unsold",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-01-21T16:23:33.735Z] Parsing completed
+{
+  "successCount": 7480,
+  "failureCount": 1,
+  "totalRows": 7481,
+  "sampleRows": [
+    {
+      "rowIndex": 0,
+      "rawRow": {
+        "__EMPTY": "8411061081006",
+        "__EMPTY_1": "R-3A-404-02",
+        "__EMPTY_2": "G0017540650",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas Her Golden Secret Edt Spray 80 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": 159,
+        "__EMPTY_8": "",
+        "Date offered:": 9.95,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "R-3A-404-02",
+        "productName": "A. Banderas Her Golden Secret Edt Spray 80 ml",
+        "price": 9.95,
+        "originalPrice": 9.95,
+        "cleanPrice": "9.95",
+        "stockQuantity": 159,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    },
+    {
+      "rowIndex": 1,
+      "rawRow": {
+        "__EMPTY": "8411061082935",
+        "__EMPTY_1": "R-4W-404-02",
+        "__EMPTY_2": "G0014550386",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas King Of Seduction Edt Spray 100 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": 168,
+        "__EMPTY_8": "",
+        "Date offered:": 10.95,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "R-4W-404-02",
+        "productName": "A. Banderas King Of Seduction Edt Spray 100 ml",
+        "price": 10.95,
+        "originalPrice": 10.95,
+        "cleanPrice": "10.95",
+        "stockQuantity": 168,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    },
+    {
+      "rowIndex": 2,
+      "rawRow": {
+        "__EMPTY": "8411061080764",
+        "__EMPTY_1": "Q-NM-404-01",
+        "__EMPTY_2": "G0005046140",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas The Golden Secret Edt Spray 100 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": 148,
+        "__EMPTY_8": "",
+        "Date offered:": 10.95,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "Q-NM-404-01",
+        "productName": "A. Banderas The Golden Secret Edt Spray 100 ml",
+        "price": 10.95,
+        "originalPrice": 10.95,
+        "cleanPrice": "10.95",
+        "stockQuantity": 148,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    },
+    {
+      "rowIndex": 3,
+      "rawRow": {
+        "__EMPTY": "8411061081037",
+        "__EMPTY_1": "Q-NM-404-02",
+        "__EMPTY_2": "G0033487526",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas The Golden Secret Edt Spray 200 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": 85,
+        "Date offered:": 16.5,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "Q-NM-404-02",
+        "productName": "A. Banderas The Golden Secret Edt Spray 200 ml",
+        "price": 16.5,
+        "originalPrice": 16.5,
+        "cleanPrice": "16.5",
+        "stockQuantity": 0,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    },
+    {
+      "rowIndex": 4,
+      "rawRow": {
+        "__EMPTY": "8411061080641",
+        "__EMPTY_1": "Q-TI-404-01",
+        "__EMPTY_2": "G0006263881",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas The Secret Edt Spray 100 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": 102,
+        "__EMPTY_8": "",
+        "Date offered:": 10.95,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "Q-TI-404-01",
+        "productName": "A. Banderas The Secret Edt Spray 100 ml",
+        "price": 10.95,
+        "originalPrice": 10.95,
+        "cleanPrice": "10.95",
+        "stockQuantity": 102,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    }
+  ],
+  "columnMapping": {
+    "MappingId": 2,
+    "VendorId": 2,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "__EMPTY_5",
+    "DescriptionColumn": "__EMPTY_5",
+    "BrandColumn": "__EMPTY_4",
+    "CategoryColumn": "__EMPTY_3",
+    "PriceColumn": "Date offered:",
+    "StockQuantityColumn": "__EMPTY_7",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 9,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:31:34.480Z",
+    "UpdatedAt": "2026-01-21T12:31:34.480Z"
+  }
+}
+[2026-01-21T16:23:33.766Z] Upload completed successfully
+{
+  "successCount": 7480,
+  "failureCount": 1,
+  "errors": []
+}
+[2026-01-21T16:24:11.496Z] Row 7480 skipped - Invalid data
+{
+  "rowIndex": 7480,
+  "productCode": "Offer: Subject Unsold",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-01-21T16:24:11.507Z] Parsing completed
+{
+  "successCount": 7480,
+  "failureCount": 1,
+  "totalRows": 7481,
+  "sampleRows": [
+    {
+      "rowIndex": 0,
+      "rawRow": {
+        "__EMPTY": "8411061081006",
+        "__EMPTY_1": "R-3A-404-02",
+        "__EMPTY_2": "G0017540650",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas Her Golden Secret Edt Spray 80 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": 159,
+        "__EMPTY_8": "",
+        "Date offered:": 9.95,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "R-3A-404-02",
+        "productName": "A. Banderas Her Golden Secret Edt Spray 80 ml",
+        "price": 9.95,
+        "originalPrice": 9.95,
+        "cleanPrice": "9.95",
+        "stockQuantity": 159,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    },
+    {
+      "rowIndex": 1,
+      "rawRow": {
+        "__EMPTY": "8411061082935",
+        "__EMPTY_1": "R-4W-404-02",
+        "__EMPTY_2": "G0014550386",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas King Of Seduction Edt Spray 100 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": 168,
+        "__EMPTY_8": "",
+        "Date offered:": 10.95,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "R-4W-404-02",
+        "productName": "A. Banderas King Of Seduction Edt Spray 100 ml",
+        "price": 10.95,
+        "originalPrice": 10.95,
+        "cleanPrice": "10.95",
+        "stockQuantity": 168,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    },
+    {
+      "rowIndex": 2,
+      "rawRow": {
+        "__EMPTY": "8411061080764",
+        "__EMPTY_1": "Q-NM-404-01",
+        "__EMPTY_2": "G0005046140",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas The Golden Secret Edt Spray 100 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": 148,
+        "__EMPTY_8": "",
+        "Date offered:": 10.95,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "Q-NM-404-01",
+        "productName": "A. Banderas The Golden Secret Edt Spray 100 ml",
+        "price": 10.95,
+        "originalPrice": 10.95,
+        "cleanPrice": "10.95",
+        "stockQuantity": 148,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    },
+    {
+      "rowIndex": 3,
+      "rawRow": {
+        "__EMPTY": "8411061081037",
+        "__EMPTY_1": "Q-NM-404-02",
+        "__EMPTY_2": "G0033487526",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas The Golden Secret Edt Spray 200 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": 85,
+        "Date offered:": 16.5,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "Q-NM-404-02",
+        "productName": "A. Banderas The Golden Secret Edt Spray 200 ml",
+        "price": 16.5,
+        "originalPrice": 16.5,
+        "cleanPrice": "16.5",
+        "stockQuantity": 0,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    },
+    {
+      "rowIndex": 4,
+      "rawRow": {
+        "__EMPTY": "8411061080641",
+        "__EMPTY_1": "Q-TI-404-01",
+        "__EMPTY_2": "G0006263881",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas The Secret Edt Spray 100 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": 102,
+        "__EMPTY_8": "",
+        "Date offered:": 10.95,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "Q-TI-404-01",
+        "productName": "A. Banderas The Secret Edt Spray 100 ml",
+        "price": 10.95,
+        "originalPrice": 10.95,
+        "cleanPrice": "10.95",
+        "stockQuantity": 102,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    }
+  ],
+  "columnMapping": {
+    "MappingId": 2,
+    "VendorId": 2,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "__EMPTY_5",
+    "DescriptionColumn": "__EMPTY_5",
+    "BrandColumn": "__EMPTY_4",
+    "CategoryColumn": "__EMPTY_3",
+    "PriceColumn": "Date offered:",
+    "StockQuantityColumn": "__EMPTY_7",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 9,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:31:34.480Z",
+    "UpdatedAt": "2026-01-21T12:31:34.480Z"
+  }
+}
+[2026-01-21T16:24:11.535Z] Upload completed successfully
+{
+  "successCount": 7480,
+  "failureCount": 1,
+  "errors": []
+}
+[2026-01-21T16:24:26.993Z] Row 7480 skipped - Invalid data
+{
+  "rowIndex": 7480,
+  "productCode": "Offer: Subject Unsold",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-01-21T16:24:27.005Z] Parsing completed
+{
+  "successCount": 7480,
+  "failureCount": 1,
+  "totalRows": 7481,
+  "sampleRows": [
+    {
+      "rowIndex": 0,
+      "rawRow": {
+        "__EMPTY": "8411061081006",
+        "__EMPTY_1": "R-3A-404-02",
+        "__EMPTY_2": "G0017540650",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas Her Golden Secret Edt Spray 80 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": 159,
+        "__EMPTY_8": "",
+        "Date offered:": 9.95,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "R-3A-404-02",
+        "productName": "A. Banderas Her Golden Secret Edt Spray 80 ml",
+        "price": 9.95,
+        "originalPrice": 9.95,
+        "cleanPrice": "9.95",
+        "stockQuantity": 159,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    },
+    {
+      "rowIndex": 1,
+      "rawRow": {
+        "__EMPTY": "8411061082935",
+        "__EMPTY_1": "R-4W-404-02",
+        "__EMPTY_2": "G0014550386",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas King Of Seduction Edt Spray 100 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": 168,
+        "__EMPTY_8": "",
+        "Date offered:": 10.95,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "R-4W-404-02",
+        "productName": "A. Banderas King Of Seduction Edt Spray 100 ml",
+        "price": 10.95,
+        "originalPrice": 10.95,
+        "cleanPrice": "10.95",
+        "stockQuantity": 168,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    },
+    {
+      "rowIndex": 2,
+      "rawRow": {
+        "__EMPTY": "8411061080764",
+        "__EMPTY_1": "Q-NM-404-01",
+        "__EMPTY_2": "G0005046140",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas The Golden Secret Edt Spray 100 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": 148,
+        "__EMPTY_8": "",
+        "Date offered:": 10.95,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "Q-NM-404-01",
+        "productName": "A. Banderas The Golden Secret Edt Spray 100 ml",
+        "price": 10.95,
+        "originalPrice": 10.95,
+        "cleanPrice": "10.95",
+        "stockQuantity": 148,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    },
+    {
+      "rowIndex": 3,
+      "rawRow": {
+        "__EMPTY": "8411061081037",
+        "__EMPTY_1": "Q-NM-404-02",
+        "__EMPTY_2": "G0033487526",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas The Golden Secret Edt Spray 200 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": 85,
+        "Date offered:": 16.5,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "Q-NM-404-02",
+        "productName": "A. Banderas The Golden Secret Edt Spray 200 ml",
+        "price": 16.5,
+        "originalPrice": 16.5,
+        "cleanPrice": "16.5",
+        "stockQuantity": 0,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    },
+    {
+      "rowIndex": 4,
+      "rawRow": {
+        "__EMPTY": "8411061080641",
+        "__EMPTY_1": "Q-TI-404-01",
+        "__EMPTY_2": "G0006263881",
+        "__EMPTY_3": "Perfume",
+        "__EMPTY_4": "Antonio Banderas",
+        "__EMPTY_5": "A. Banderas The Secret Edt Spray 100 ml",
+        "__EMPTY_6": "",
+        "__EMPTY_7": 102,
+        "__EMPTY_8": "",
+        "Date offered:": 10.95,
+        "19-01-2026": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": "",
+        "__EMPTY_13": "",
+        "__EMPTY_14": "",
+        "__EMPTY_15": "",
+        "__EMPTY_16": "",
+        "__EMPTY_17": "",
+        "__EMPTY_18": "",
+        "__EMPTY_19": "",
+        "__EMPTY_20": "",
+        "__EMPTY_21": ""
+      },
+      "mappedData": {
+        "productCode": "Q-TI-404-01",
+        "productName": "A. Banderas The Secret Edt Spray 100 ml",
+        "price": 10.95,
+        "originalPrice": 10.95,
+        "cleanPrice": "10.95",
+        "stockQuantity": 102,
+        "availableColumns": [
+          "__EMPTY",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "Date offered:",
+          "19-01-2026",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12",
+          "__EMPTY_13",
+          "__EMPTY_14",
+          "__EMPTY_15",
+          "__EMPTY_16",
+          "__EMPTY_17",
+          "__EMPTY_18",
+          "__EMPTY_19",
+          "__EMPTY_20",
+          "__EMPTY_21"
+        ]
+      }
+    }
+  ],
+  "columnMapping": {
+    "MappingId": 2,
+    "VendorId": 2,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "__EMPTY_5",
+    "DescriptionColumn": "__EMPTY_5",
+    "BrandColumn": "__EMPTY_4",
+    "CategoryColumn": "__EMPTY_3",
+    "PriceColumn": "Date offered:",
+    "StockQuantityColumn": "__EMPTY_7",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 9,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:31:34.480Z",
+    "UpdatedAt": "2026-01-21T12:31:34.480Z"
+  }
+}
+[2026-01-21T16:24:27.027Z] Upload completed successfully
+{
+  "successCount": 7480,
+  "failureCount": 1,
+  "errors": []
+}
+[2026-02-06T09:33:01.520Z] Upload request received
+{
+  "vendorId": 1,
+  "fileName": "test toemcust (7) 1.xls",
+  "fileContentLength": 299045
+}
+[2026-02-06T09:33:01.566Z] Column mapping found
+{
+  "MappingId": 1,
+  "VendorId": 1,
+  "ProductCodeColumn": "__EMPTY_1",
+  "ProductNameColumn": "ET PERFUMES INC.",
+  "DescriptionColumn": "ET PERFUMES INC.",
+  "BrandColumn": "__EMPTY",
+  "CategoryColumn": "__EMPTY",
+  "PriceColumn": "__EMPTY_2",
+  "StockQuantityColumn": "__EMPTY_3",
+  "UPCColumn": "__EMPTY",
+  "SkipHeaderRows": 20,
+  "IsActive": true,
+  "CreatedAt": "2026-01-21T12:17:18.240Z",
+  "UpdatedAt": "2026-01-21T12:17:18.240Z"
+}
+[2026-02-06T09:33:01.579Z] Creating file upload record
+{
+  "fileName": "test toemcust (7) 1.xls",
+  "fileSize": 224256
+}
+[2026-02-06T09:33:01.616Z] File upload record created
+{
+  "fileId": 20
+}
+[2026-02-06T09:33:01.629Z] Starting Excel parsing
+{
+  "fileId": 20,
+  "vendorId": 1,
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-06T09:33:01.720Z] Excel file loaded. Total rows: 678
+[2026-02-06T09:33:01.732Z] After skipping 20 header rows, processing 658 rows
+[2026-02-06T09:33:01.741Z] Dynamic header detection: Skipped additional 3 rows, now processing 655 rows
+[2026-02-06T09:33:05.598Z] Row 488 skipped - Invalid data
+{
+  "rowIndex": 488,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-06T09:33:05.609Z] Row 489 skipped - Invalid data
+{
+  "rowIndex": 489,
+  "productCode": "",
+  "productName": "BODY MISTS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T09:33:05.616Z] Row 490 skipped - Invalid data
+{
+  "rowIndex": 490,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T09:33:05.767Z] Row 505 skipped - Invalid data
+{
+  "rowIndex": 505,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-06T09:33:05.776Z] Row 506 skipped - Invalid data
+{
+  "rowIndex": 506,
+  "productCode": "",
+  "productName": "BRAND NAME GIFT SETS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T09:33:05.782Z] Row 507 skipped - Invalid data
+{
+  "rowIndex": 507,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T09:33:06.332Z] Row 556 skipped - Invalid data
+{
+  "rowIndex": 556,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-06T09:33:06.343Z] Row 557 skipped - Invalid data
+{
+  "rowIndex": 557,
+  "productCode": "",
+  "productName": "DENTED DAMAGED BOX OR UNBOXED",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T09:33:06.351Z] Row 558 skipped - Invalid data
+{
+  "rowIndex": 558,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T09:33:06.798Z] Row 586 skipped - Invalid data
+{
+  "rowIndex": 586,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-06T09:33:07.339Z] Parsing completed
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "totalRows": 655,
+  "sampleRows": [
+    {
+      "rowIndex": 0,
+      "rawRow": {
+        "__EMPTY": "ANT BBSW2",
+        "ET PERFUMES INC.": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061982105",
+        "__EMPTY_2": "$12.00",
+        "__EMPTY_3": "582",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061982105",
+        "productName": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "price": 12,
+        "originalPrice": "$12.00",
+        "cleanPrice": "12.00",
+        "stockQuantity": 582,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 1,
+      "rawRow": {
+        "__EMPTY": "ANT BGS010",
+        "ET PERFUMES INC.": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061081006",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061081006",
+        "productName": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 2,
+      "rawRow": {
+        "__EMPTY": "ANT BHST0",
+        "ET PERFUMES INC.": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "__EMPTY_1": "8411061080719",
+        "__EMPTY_2": "$9.75",
+        "__EMPTY_3": "982",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061080719",
+        "productName": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "price": 9.75,
+        "originalPrice": "$9.75",
+        "cleanPrice": "9.75",
+        "stockQuantity": 982,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 3,
+      "rawRow": {
+        "__EMPTY": "ANT BK000",
+        "ET PERFUMES INC.": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061082935",
+        "__EMPTY_2": "$9.25",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061082935",
+        "productName": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 9.25,
+        "originalPrice": "$9.25",
+        "cleanPrice": "9.25",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 4,
+      "rawRow": {
+        "__EMPTY": "ANT BPOS00",
+        "ET PERFUMES INC.": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061913024",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "287",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061913024",
+        "productName": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 287,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    }
+  ],
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-06T09:33:07.362Z] Upload completed successfully
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "errors": []
+}
+[2026-02-06T09:53:05.215Z] Upload request received
+{
+  "vendorId": 1,
+  "fileName": "test toemcust (7) 1.xls",
+  "fileContentLength": 299045
+}
+[2026-02-06T09:53:05.255Z] Column mapping found
+{
+  "MappingId": 1,
+  "VendorId": 1,
+  "ProductCodeColumn": "__EMPTY_1",
+  "ProductNameColumn": "ET PERFUMES INC.",
+  "DescriptionColumn": "ET PERFUMES INC.",
+  "BrandColumn": "__EMPTY",
+  "CategoryColumn": "__EMPTY",
+  "PriceColumn": "__EMPTY_2",
+  "StockQuantityColumn": "__EMPTY_3",
+  "UPCColumn": "__EMPTY",
+  "SkipHeaderRows": 20,
+  "IsActive": true,
+  "CreatedAt": "2026-01-21T12:17:18.240Z",
+  "UpdatedAt": "2026-01-21T12:17:18.240Z"
+}
+[2026-02-06T09:53:05.267Z] Creating file upload record
+{
+  "fileName": "test toemcust (7) 1.xls",
+  "fileSize": 224256
+}
+[2026-02-06T09:53:05.287Z] File upload record created
+{
+  "fileId": 21
+}
+[2026-02-06T09:53:05.293Z] Starting Excel parsing
+{
+  "fileId": 21,
+  "vendorId": 1,
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-06T09:53:05.362Z] Excel file loaded. Total rows: 678
+[2026-02-06T09:53:05.374Z] After skipping 20 header rows, processing 658 rows
+[2026-02-06T09:53:05.384Z] Dynamic header detection: Skipped additional 3 rows, now processing 655 rows
+[2026-02-06T09:53:09.538Z] Row 488 skipped - Invalid data
+{
+  "rowIndex": 488,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-06T09:53:09.548Z] Row 489 skipped - Invalid data
+{
+  "rowIndex": 489,
+  "productCode": "",
+  "productName": "BODY MISTS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T09:53:09.560Z] Row 490 skipped - Invalid data
+{
+  "rowIndex": 490,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T09:53:09.722Z] Row 505 skipped - Invalid data
+{
+  "rowIndex": 505,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-06T09:53:09.730Z] Row 506 skipped - Invalid data
+{
+  "rowIndex": 506,
+  "productCode": "",
+  "productName": "BRAND NAME GIFT SETS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T09:53:09.738Z] Row 507 skipped - Invalid data
+{
+  "rowIndex": 507,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T09:53:10.313Z] Row 556 skipped - Invalid data
+{
+  "rowIndex": 556,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-06T09:53:10.320Z] Row 557 skipped - Invalid data
+{
+  "rowIndex": 557,
+  "productCode": "",
+  "productName": "DENTED DAMAGED BOX OR UNBOXED",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T09:53:10.326Z] Row 558 skipped - Invalid data
+{
+  "rowIndex": 558,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T09:53:10.721Z] Row 586 skipped - Invalid data
+{
+  "rowIndex": 586,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-06T09:53:11.250Z] Parsing completed
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "totalRows": 655,
+  "sampleRows": [
+    {
+      "rowIndex": 0,
+      "rawRow": {
+        "__EMPTY": "ANT BBSW2",
+        "ET PERFUMES INC.": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061982105",
+        "__EMPTY_2": "$12.00",
+        "__EMPTY_3": "582",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061982105",
+        "productName": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "price": 12,
+        "originalPrice": "$12.00",
+        "cleanPrice": "12.00",
+        "stockQuantity": 582,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 1,
+      "rawRow": {
+        "__EMPTY": "ANT BGS010",
+        "ET PERFUMES INC.": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061081006",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061081006",
+        "productName": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 2,
+      "rawRow": {
+        "__EMPTY": "ANT BHST0",
+        "ET PERFUMES INC.": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "__EMPTY_1": "8411061080719",
+        "__EMPTY_2": "$9.75",
+        "__EMPTY_3": "982",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061080719",
+        "productName": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "price": 9.75,
+        "originalPrice": "$9.75",
+        "cleanPrice": "9.75",
+        "stockQuantity": 982,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 3,
+      "rawRow": {
+        "__EMPTY": "ANT BK000",
+        "ET PERFUMES INC.": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061082935",
+        "__EMPTY_2": "$9.25",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061082935",
+        "productName": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 9.25,
+        "originalPrice": "$9.25",
+        "cleanPrice": "9.25",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 4,
+      "rawRow": {
+        "__EMPTY": "ANT BPOS00",
+        "ET PERFUMES INC.": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061913024",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "287",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061913024",
+        "productName": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 287,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    }
+  ],
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-06T09:53:11.264Z] Upload completed successfully
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "errors": []
+}
+[2026-02-06T10:08:36.872Z] Upload request received
+{
+  "vendorId": 1,
+  "fileName": "test-auth.csv",
+  "fileContentLength": 97
+}
+[2026-02-06T10:08:36.917Z] Column mapping found
+{
+  "MappingId": 1,
+  "VendorId": 1,
+  "ProductCodeColumn": "__EMPTY_1",
+  "ProductNameColumn": "ET PERFUMES INC.",
+  "DescriptionColumn": "ET PERFUMES INC.",
+  "BrandColumn": "__EMPTY",
+  "CategoryColumn": "__EMPTY",
+  "PriceColumn": "__EMPTY_2",
+  "StockQuantityColumn": "__EMPTY_3",
+  "UPCColumn": "__EMPTY",
+  "SkipHeaderRows": 20,
+  "IsActive": true,
+  "CreatedAt": "2026-01-21T12:17:18.240Z",
+  "UpdatedAt": "2026-01-21T12:17:18.240Z"
+}
+[2026-02-06T10:08:36.929Z] Creating file upload record
+{
+  "fileName": "test-auth.csv",
+  "fileSize": 56
+}
+[2026-02-06T10:08:36.956Z] File upload record created
+{
+  "fileId": 22
+}
+[2026-02-06T10:08:36.967Z] Starting Excel parsing
+{
+  "fileId": 22,
+  "vendorId": 1,
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-06T10:08:36.984Z] Excel file loaded. Total rows: 1
+[2026-02-06T10:08:36.993Z] After skipping 20 header rows, processing 0 rows
+[2026-02-06T10:08:37.004Z] Parsing completed
+{
+  "successCount": 0,
+  "failureCount": 0,
+  "totalRows": 0,
+  "sampleRows": [],
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-06T10:08:37.031Z] Upload completed successfully
+{
+  "successCount": 0,
+  "failureCount": 0,
+  "errors": []
+}
+[2026-02-06T10:10:38.212Z] Upload request received
+{
+  "vendorId": 1,
+  "fileName": "test toemcust (7) 1.xls",
+  "fileContentLength": 299045
+}
+[2026-02-06T10:10:38.236Z] Column mapping found
+{
+  "MappingId": 1,
+  "VendorId": 1,
+  "ProductCodeColumn": "__EMPTY_1",
+  "ProductNameColumn": "ET PERFUMES INC.",
+  "DescriptionColumn": "ET PERFUMES INC.",
+  "BrandColumn": "__EMPTY",
+  "CategoryColumn": "__EMPTY",
+  "PriceColumn": "__EMPTY_2",
+  "StockQuantityColumn": "__EMPTY_3",
+  "UPCColumn": "__EMPTY",
+  "SkipHeaderRows": 20,
+  "IsActive": true,
+  "CreatedAt": "2026-01-21T12:17:18.240Z",
+  "UpdatedAt": "2026-01-21T12:17:18.240Z"
+}
+[2026-02-06T10:10:38.244Z] Creating file upload record
+{
+  "fileName": "test toemcust (7) 1.xls",
+  "fileSize": 224256
+}
+[2026-02-06T10:10:38.259Z] File upload record created
+{
+  "fileId": 23
+}
+[2026-02-06T10:10:38.269Z] Starting Excel parsing
+{
+  "fileId": 23,
+  "vendorId": 1,
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-06T10:10:38.322Z] Excel file loaded. Total rows: 678
+[2026-02-06T10:10:38.330Z] After skipping 20 header rows, processing 658 rows
+[2026-02-06T10:10:38.337Z] Dynamic header detection: Skipped additional 3 rows, now processing 655 rows
+[2026-02-06T10:10:43.217Z] Row 488 skipped - Invalid data
+{
+  "rowIndex": 488,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-06T10:10:43.229Z] Row 489 skipped - Invalid data
+{
+  "rowIndex": 489,
+  "productCode": "",
+  "productName": "BODY MISTS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T10:10:43.240Z] Row 490 skipped - Invalid data
+{
+  "rowIndex": 490,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T10:10:43.445Z] Row 505 skipped - Invalid data
+{
+  "rowIndex": 505,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-06T10:10:43.458Z] Row 506 skipped - Invalid data
+{
+  "rowIndex": 506,
+  "productCode": "",
+  "productName": "BRAND NAME GIFT SETS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T10:10:43.468Z] Row 507 skipped - Invalid data
+{
+  "rowIndex": 507,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T10:10:44.103Z] Row 556 skipped - Invalid data
+{
+  "rowIndex": 556,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-06T10:10:44.116Z] Row 557 skipped - Invalid data
+{
+  "rowIndex": 557,
+  "productCode": "",
+  "productName": "DENTED DAMAGED BOX OR UNBOXED",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T10:10:44.126Z] Row 558 skipped - Invalid data
+{
+  "rowIndex": 558,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-06T10:10:44.530Z] Row 586 skipped - Invalid data
+{
+  "rowIndex": 586,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-06T10:10:45.128Z] Parsing completed
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "totalRows": 655,
+  "sampleRows": [
+    {
+      "rowIndex": 0,
+      "rawRow": {
+        "__EMPTY": "ANT BBSW2",
+        "ET PERFUMES INC.": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061982105",
+        "__EMPTY_2": "$12.00",
+        "__EMPTY_3": "582",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061982105",
+        "productName": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "price": 12,
+        "originalPrice": "$12.00",
+        "cleanPrice": "12.00",
+        "stockQuantity": 582,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 1,
+      "rawRow": {
+        "__EMPTY": "ANT BGS010",
+        "ET PERFUMES INC.": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061081006",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061081006",
+        "productName": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 2,
+      "rawRow": {
+        "__EMPTY": "ANT BHST0",
+        "ET PERFUMES INC.": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "__EMPTY_1": "8411061080719",
+        "__EMPTY_2": "$9.75",
+        "__EMPTY_3": "982",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061080719",
+        "productName": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "price": 9.75,
+        "originalPrice": "$9.75",
+        "cleanPrice": "9.75",
+        "stockQuantity": 982,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 3,
+      "rawRow": {
+        "__EMPTY": "ANT BK000",
+        "ET PERFUMES INC.": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061082935",
+        "__EMPTY_2": "$9.25",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061082935",
+        "productName": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 9.25,
+        "originalPrice": "$9.25",
+        "cleanPrice": "9.25",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 4,
+      "rawRow": {
+        "__EMPTY": "ANT BPOS00",
+        "ET PERFUMES INC.": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061913024",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "287",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061913024",
+        "productName": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 287,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    }
+  ],
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-06T10:10:45.149Z] Upload completed successfully
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "errors": []
+}
+[2026-02-13T08:54:17.375Z] Upload request received
+{
+  "vendorId": 1,
+  "fileName": "test toemcust (7) 1.xls",
+  "fileContentLength": 299045
+}
+[2026-02-13T08:54:17.422Z] Column mapping found
+{
+  "MappingId": 1,
+  "VendorId": 1,
+  "ProductCodeColumn": "__EMPTY_1",
+  "ProductNameColumn": "ET PERFUMES INC.",
+  "DescriptionColumn": "ET PERFUMES INC.",
+  "BrandColumn": "__EMPTY",
+  "CategoryColumn": "__EMPTY",
+  "PriceColumn": "__EMPTY_2",
+  "StockQuantityColumn": "__EMPTY_3",
+  "UPCColumn": "__EMPTY",
+  "SkipHeaderRows": 20,
+  "IsActive": true,
+  "CreatedAt": "2026-01-21T12:17:18.240Z",
+  "UpdatedAt": "2026-01-21T12:17:18.240Z"
+}
+[2026-02-13T08:54:17.430Z] Creating file upload record
+{
+  "fileName": "test toemcust (7) 1.xls",
+  "fileSize": 224256
+}
+[2026-02-13T08:54:17.455Z] File upload record created
+{
+  "fileId": 24
+}
+[2026-02-13T08:54:17.465Z] Starting Excel parsing
+{
+  "fileId": 24,
+  "vendorId": 1,
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-13T08:54:17.583Z] Excel file loaded. Total rows: 678
+[2026-02-13T08:54:17.590Z] After skipping 20 header rows, processing 658 rows
+[2026-02-13T08:54:17.596Z] Dynamic header detection: Skipped additional 3 rows, now processing 655 rows
+[2026-02-13T08:54:21.235Z] Row 488 skipped - Invalid data
+{
+  "rowIndex": 488,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-13T08:54:21.247Z] Row 489 skipped - Invalid data
+{
+  "rowIndex": 489,
+  "productCode": "",
+  "productName": "BODY MISTS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-13T08:54:21.255Z] Row 490 skipped - Invalid data
+{
+  "rowIndex": 490,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-13T08:54:21.397Z] Row 505 skipped - Invalid data
+{
+  "rowIndex": 505,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-13T08:54:21.403Z] Row 506 skipped - Invalid data
+{
+  "rowIndex": 506,
+  "productCode": "",
+  "productName": "BRAND NAME GIFT SETS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-13T08:54:21.414Z] Row 507 skipped - Invalid data
+{
+  "rowIndex": 507,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-13T08:54:21.996Z] Row 556 skipped - Invalid data
+{
+  "rowIndex": 556,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-13T08:54:22.007Z] Row 557 skipped - Invalid data
+{
+  "rowIndex": 557,
+  "productCode": "",
+  "productName": "DENTED DAMAGED BOX OR UNBOXED",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-13T08:54:22.018Z] Row 558 skipped - Invalid data
+{
+  "rowIndex": 558,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-13T08:54:22.420Z] Row 586 skipped - Invalid data
+{
+  "rowIndex": 586,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-13T08:54:22.881Z] Parsing completed
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "totalRows": 655,
+  "sampleRows": [
+    {
+      "rowIndex": 0,
+      "rawRow": {
+        "__EMPTY": "ANT BBSW2",
+        "ET PERFUMES INC.": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061982105",
+        "__EMPTY_2": "$12.00",
+        "__EMPTY_3": "582",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061982105",
+        "productName": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "price": 12,
+        "originalPrice": "$12.00",
+        "cleanPrice": "12.00",
+        "stockQuantity": 582,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 1,
+      "rawRow": {
+        "__EMPTY": "ANT BGS010",
+        "ET PERFUMES INC.": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061081006",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061081006",
+        "productName": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 2,
+      "rawRow": {
+        "__EMPTY": "ANT BHST0",
+        "ET PERFUMES INC.": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "__EMPTY_1": "8411061080719",
+        "__EMPTY_2": "$9.75",
+        "__EMPTY_3": "982",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061080719",
+        "productName": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "price": 9.75,
+        "originalPrice": "$9.75",
+        "cleanPrice": "9.75",
+        "stockQuantity": 982,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 3,
+      "rawRow": {
+        "__EMPTY": "ANT BK000",
+        "ET PERFUMES INC.": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061082935",
+        "__EMPTY_2": "$9.25",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061082935",
+        "productName": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 9.25,
+        "originalPrice": "$9.25",
+        "cleanPrice": "9.25",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 4,
+      "rawRow": {
+        "__EMPTY": "ANT BPOS00",
+        "ET PERFUMES INC.": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061913024",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "287",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061913024",
+        "productName": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 287,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    }
+  ],
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-13T08:54:22.895Z] Upload completed successfully
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "errors": []
+}
+[2026-02-13T08:54:22.924Z] Database verification
+{
+  "reportedSuccessCount": 632,
+  "actualInsertedCount": 631,
+  "verificationPassed": false
+}
+[2026-02-13T08:55:36.597Z] Upload request received
+{
+  "vendorId": 1,
+  "fileName": "test toemcust (7) 1.xls",
+  "fileContentLength": 299045
+}
+[2026-02-13T08:55:36.614Z] Column mapping found
+{
+  "MappingId": 1,
+  "VendorId": 1,
+  "ProductCodeColumn": "__EMPTY_1",
+  "ProductNameColumn": "ET PERFUMES INC.",
+  "DescriptionColumn": "ET PERFUMES INC.",
+  "BrandColumn": "__EMPTY",
+  "CategoryColumn": "__EMPTY",
+  "PriceColumn": "__EMPTY_2",
+  "StockQuantityColumn": "__EMPTY_3",
+  "UPCColumn": "__EMPTY",
+  "SkipHeaderRows": 20,
+  "IsActive": true,
+  "CreatedAt": "2026-01-21T12:17:18.240Z",
+  "UpdatedAt": "2026-01-21T12:17:18.240Z"
+}
+[2026-02-13T08:55:36.621Z] Creating file upload record
+{
+  "fileName": "test toemcust (7) 1.xls",
+  "fileSize": 224256
+}
+[2026-02-13T08:55:36.639Z] File upload record created
+{
+  "fileId": 25
+}
+[2026-02-13T08:55:36.646Z] Starting Excel parsing
+{
+  "fileId": 25,
+  "vendorId": 1,
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-13T08:55:36.698Z] Excel file loaded. Total rows: 678
+[2026-02-13T08:55:36.703Z] After skipping 20 header rows, processing 658 rows
+[2026-02-13T08:55:36.712Z] Dynamic header detection: Skipped additional 3 rows, now processing 655 rows
+[2026-02-13T08:55:40.116Z] Row 488 skipped - Invalid data
+{
+  "rowIndex": 488,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-13T08:55:40.128Z] Row 489 skipped - Invalid data
+{
+  "rowIndex": 489,
+  "productCode": "",
+  "productName": "BODY MISTS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-13T08:55:40.136Z] Row 490 skipped - Invalid data
+{
+  "rowIndex": 490,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-13T08:55:40.286Z] Row 505 skipped - Invalid data
+{
+  "rowIndex": 505,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-13T08:55:40.293Z] Row 506 skipped - Invalid data
+{
+  "rowIndex": 506,
+  "productCode": "",
+  "productName": "BRAND NAME GIFT SETS",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-13T08:55:40.303Z] Row 507 skipped - Invalid data
+{
+  "rowIndex": 507,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-13T08:55:40.690Z] Row 556 skipped - Invalid data
+{
+  "rowIndex": 556,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-13T08:55:40.699Z] Row 557 skipped - Invalid data
+{
+  "rowIndex": 557,
+  "productCode": "",
+  "productName": "DENTED DAMAGED BOX OR UNBOXED",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-13T08:55:40.707Z] Row 558 skipped - Invalid data
+{
+  "rowIndex": 558,
+  "productCode": "UPC",
+  "productName": "ITEM DESCRIPTION",
+  "price": 0,
+  "originalPrice": "PRICE",
+  "cleanPrice": "PRICE",
+  "isContactInfo": false,
+  "hasValidData": false
+}
+[2026-02-13T08:55:40.952Z] Row 586 skipped - Invalid data
+{
+  "rowIndex": 586,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-13T08:55:41.373Z] Parsing completed
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "totalRows": 655,
+  "sampleRows": [
+    {
+      "rowIndex": 0,
+      "rawRow": {
+        "__EMPTY": "ANT BBSW2",
+        "ET PERFUMES INC.": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061982105",
+        "__EMPTY_2": "$12.00",
+        "__EMPTY_3": "582",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061982105",
+        "productName": "A.BANDERAS BLUE SEDUCTION 2.7 WOMAN EDT SP  ",
+        "price": 12,
+        "originalPrice": "$12.00",
+        "cleanPrice": "12.00",
+        "stockQuantity": 582,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 1,
+      "rawRow": {
+        "__EMPTY": "ANT BGS010",
+        "ET PERFUMES INC.": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "__EMPTY_1": "8411061081006",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061081006",
+        "productName": "A.BANDERAS HER GOLDEN SECRET 2.7 WOMAN EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 2,
+      "rawRow": {
+        "__EMPTY": "ANT BHST0",
+        "ET PERFUMES INC.": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "__EMPTY_1": "8411061080719",
+        "__EMPTY_2": "$9.75",
+        "__EMPTY_3": "982",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061080719",
+        "productName": "A.BANDERAS HER SECRET TEMPTATION WOMAN 2.7 EDT SP  ",
+        "price": 9.75,
+        "originalPrice": "$9.75",
+        "cleanPrice": "9.75",
+        "stockQuantity": 982,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 3,
+      "rawRow": {
+        "__EMPTY": "ANT BK000",
+        "ET PERFUMES INC.": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061082935",
+        "__EMPTY_2": "$9.25",
+        "__EMPTY_3": "999+",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061082935",
+        "productName": "A.BANDERAS KING OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 9.25,
+        "originalPrice": "$9.25",
+        "cleanPrice": "9.25",
+        "stockQuantity": 999,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    },
+    {
+      "rowIndex": 4,
+      "rawRow": {
+        "__EMPTY": "ANT BPOS00",
+        "ET PERFUMES INC.": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "__EMPTY_1": "8411061913024",
+        "__EMPTY_2": "$8.75",
+        "__EMPTY_3": "287",
+        "__EMPTY_4": "",
+        "__EMPTY_5": "",
+        "__EMPTY_6": "",
+        "__EMPTY_7": "",
+        "__EMPTY_8": "",
+        "__EMPTY_9": "",
+        "__EMPTY_10": "",
+        "__EMPTY_11": "",
+        "__EMPTY_12": ""
+      },
+      "mappedData": {
+        "productCode": "8411061913024",
+        "productName": "A.BANDERAS POWER OF SEDUCTION MEN 3.4 EDT SP  ",
+        "price": 8.75,
+        "originalPrice": "$8.75",
+        "cleanPrice": "8.75",
+        "stockQuantity": 287,
+        "availableColumns": [
+          "__EMPTY",
+          "ET PERFUMES INC.",
+          "__EMPTY_1",
+          "__EMPTY_2",
+          "__EMPTY_3",
+          "__EMPTY_4",
+          "__EMPTY_5",
+          "__EMPTY_6",
+          "__EMPTY_7",
+          "__EMPTY_8",
+          "__EMPTY_9",
+          "__EMPTY_10",
+          "__EMPTY_11",
+          "__EMPTY_12"
+        ]
+      }
+    }
+  ],
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-13T08:55:41.386Z] Upload completed successfully
+{
+  "successCount": 632,
+  "failureCount": 23,
+  "errors": []
+}
+[2026-02-13T08:55:41.403Z] Database verification
+{
+  "reportedSuccessCount": 632,
+  "actualInsertedCount": 631,
+  "verificationPassed": false
+}
+[2026-02-23T09:50:53.545Z] Upload request received
+{
+  "vendorId": 1,
+  "fileName": "ET_Perfum_Final_Format_21022026.xlsx",
+  "fileContentLength": 56322
+}
+[2026-02-23T09:50:53.598Z] Column mapping found
+{
+  "MappingId": 1,
+  "VendorId": 1,
+  "ProductCodeColumn": "__EMPTY_1",
+  "ProductNameColumn": "ET PERFUMES INC.",
+  "DescriptionColumn": "ET PERFUMES INC.",
+  "BrandColumn": "__EMPTY",
+  "CategoryColumn": "__EMPTY",
+  "PriceColumn": "__EMPTY_2",
+  "StockQuantityColumn": "__EMPTY_3",
+  "UPCColumn": "__EMPTY",
+  "SkipHeaderRows": 20,
+  "IsActive": true,
+  "CreatedAt": "2026-01-21T12:17:18.240Z",
+  "UpdatedAt": "2026-01-21T12:17:18.240Z"
+}
+[2026-02-23T09:50:53.609Z] Creating file upload record
+{
+  "fileName": "ET_Perfum_Final_Format_21022026.xlsx",
+  "fileSize": 42183
+}
+[2026-02-23T09:50:53.641Z] File upload record created
+{
+  "fileId": 26
+}
+[2026-02-23T09:50:53.657Z] Starting Excel parsing
+{
+  "fileId": 26,
+  "vendorId": 1,
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-23T09:50:53.794Z] Excel file loaded. Total rows: 502
+[2026-02-23T09:50:53.804Z] After skipping 20 header rows, processing 482 rows
+[2026-02-23T09:50:53.817Z] Row 0 skipped - Invalid data
+{
+  "rowIndex": 0,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-23T09:50:53.826Z] Row 1 skipped - Invalid data
+{
+  "rowIndex": 1,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-23T09:50:53.839Z] Row 2 skipped - Invalid data
+{
+  "rowIndex": 2,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-23T09:50:53.850Z] Row 3 skipped - Invalid data
+{
+  "rowIndex": 3,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-23T09:50:53.861Z] Row 4 skipped - Invalid data
+{
+  "rowIndex": 4,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-23T09:50:53.871Z] Row 5 skipped - Invalid data
+{
+  "rowIndex": 5,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-23T09:50:53.879Z] Row 6 skipped - Invalid data
+{
+  "rowIndex": 6,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-23T09:50:53.886Z] Row 7 skipped - Invalid data
+{
+  "rowIndex": 7,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-23T09:50:53.894Z] Row 8 skipped - Invalid data
+{
+  "rowIndex": 8,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-23T09:50:53.901Z] Row 9 skipped - Invalid data
+{
+  "rowIndex": 9,
+  "productCode": "",
+  "productName": "",
+  "price": 0,
+  "originalPrice": "",
+  "cleanPrice": "",
+  "isContactInfo": "",
+  "hasValidData": false
+}
+[2026-02-23T09:50:53.912Z] Parsing completed
+{
+  "successCount": 0,
+  "failureCount": 482,
+  "totalRows": 482,
+  "sampleRows": [
+    {
+      "rowIndex": 0,
+      "rawRow": {
+        "DATE": "01-18-26",
+        "EAN/UPC": "3614273955546",
+        "NAME": "ACQUA DI GIO MEN 3.3 EDT RECHARGEAB LE REFILLABLE SP  ",
+        "ITEM CODE": "ACQ DGM33",
+        "QTY": "999+",
+        "PRICE": "$53.50"
+      },
+      "mappedData": {
+        "productCode": "",
+        "productName": "",
+        "price": 0,
+        "originalPrice": "",
+        "cleanPrice": "",
+        "stockQuantity": 0,
+        "availableColumns": [
+          "DATE",
+          "EAN/UPC",
+          "NAME",
+          "ITEM CODE",
+          "QTY",
+          "PRICE"
+        ]
+      }
+    },
+    {
+      "rowIndex": 1,
+      "rawRow": {
+        "DATE": "01-18-26",
+        "EAN/UPC": "3360372058878",
+        "NAME": "ACQUA DI GIO MEN 3.3 EDT SP   ",
+        "ITEM CODE": "ACQ DGM34",
+        "QTY": "192",
+        "PRICE": "$55.00"
+      },
+      "mappedData": {
+        "productCode": "",
+        "productName": "",
+        "price": 0,
+        "originalPrice": "",
+        "cleanPrice": "",
+        "stockQuantity": 0,
+        "availableColumns": [
+          "DATE",
+          "EAN/UPC",
+          "NAME",
+          "ITEM CODE",
+          "QTY",
+          "PRICE"
+        ]
+      }
+    },
+    {
+      "rowIndex": 2,
+      "rawRow": {
+        "DATE": "01-18-26",
+        "EAN/UPC": "3360372078500",
+        "NAME": "ACQUA DI GIO MEN 6.7 EDT SP   ",
+        "ITEM CODE": "ACQ DGM67EDT",
+        "QTY": "554",
+        "PRICE": "$84.00"
+      },
+      "mappedData": {
+        "productCode": "",
+        "productName": "",
+        "price": 0,
+        "originalPrice": "",
+        "cleanPrice": "",
+        "stockQuantity": 0,
+        "availableColumns": [
+          "DATE",
+          "EAN/UPC",
+          "NAME",
+          "ITEM CODE",
+          "QTY",
+          "PRICE"
+        ]
+      }
+    },
+    {
+      "rowIndex": 3,
+      "rawRow": {
+        "DATE": "01-18-26",
+        "EAN/UPC": "3614273953672",
+        "NAME": "ACQUA DI GIO PROFONDO PARFUM MEN 6.8 SP  ",
+        "ITEM CODE": "ACQ DGPPARF68",
+        "QTY": "89",
+        "PRICE": "$115.00"
+      },
+      "mappedData": {
+        "productCode": "",
+        "productName": "",
+        "price": 0,
+        "originalPrice": "",
+        "cleanPrice": "",
+        "stockQuantity": 0,
+        "availableColumns": [
+          "DATE",
+          "EAN/UPC",
+          "NAME",
+          "ITEM CODE",
+          "QTY",
+          "PRICE"
+        ]
+      }
+    },
+    {
+      "rowIndex": 4,
+      "rawRow": {
+        "DATE": "01-18-26",
+        "EAN/UPC": "3616303321932",
+        "NAME": "ADIDAS ICE DIVE 3.4 SP MEN   ",
+        "ITEM CODE": "ADI ID00",
+        "QTY": "288",
+        "PRICE": "$4.50"
+      },
+      "mappedData": {
+        "productCode": "",
+        "productName": "",
+        "price": 0,
+        "originalPrice": "",
+        "cleanPrice": "",
+        "stockQuantity": 0,
+        "availableColumns": [
+          "DATE",
+          "EAN/UPC",
+          "NAME",
+          "ITEM CODE",
+          "QTY",
+          "PRICE"
+        ]
+      }
+    }
+  ],
+  "columnMapping": {
+    "MappingId": 1,
+    "VendorId": 1,
+    "ProductCodeColumn": "__EMPTY_1",
+    "ProductNameColumn": "ET PERFUMES INC.",
+    "DescriptionColumn": "ET PERFUMES INC.",
+    "BrandColumn": "__EMPTY",
+    "CategoryColumn": "__EMPTY",
+    "PriceColumn": "__EMPTY_2",
+    "StockQuantityColumn": "__EMPTY_3",
+    "UPCColumn": "__EMPTY",
+    "SkipHeaderRows": 20,
+    "IsActive": true,
+    "CreatedAt": "2026-01-21T12:17:18.240Z",
+    "UpdatedAt": "2026-01-21T12:17:18.240Z"
+  }
+}
+[2026-02-23T09:50:53.944Z] Upload completed successfully
+{
+  "successCount": 0,
+  "failureCount": 482,
+  "errors": []
+}
+[2026-02-23T09:50:53.964Z] Database verification
+{
+  "reportedSuccessCount": 0,
+  "actualInsertedCount": 0,
+  "verificationPassed": true
+}
+[2026-02-25T15:23:32.684Z] Upload request received
+{
+  "vendorId": "6",
+  "fileName": "UploadFormat (7).xlsx",
+  "fileContentLength": 11930
+}
+[2026-02-25T15:23:32.730Z] Vendor column mapping not configured
+{
+  "vendorId": "6"
+}
+[2026-02-25T15:38:58.117Z] Upload request received
+{
+  "vendorId": "9",
+  "fileName": "UploadFormat (7).xlsx",
+  "fileContentLength": 11930
+}
+[2026-02-25T15:38:58.157Z] Vendor column mapping not configured, will use standardized template logic
+[2026-02-25T15:38:58.164Z] Creating file upload record
+{
+  "fileName": "UploadFormat (7).xlsx",
+  "fileSize": 8889
+}
+[2026-02-25T15:38:58.250Z] File upload record created
+{
+  "fileId": 27
+}
+[2026-02-25T15:38:58.260Z] Starting Excel parsing
+{
+  "fileId": 27,
+  "vendorId": "9",
+  "columnMapping": null
+}
+[2026-02-25T15:38:58.300Z] Excel file loaded. Total rows: 3
+[2026-02-25T15:38:58.312Z] Template format detected: Standardized
+[2026-02-25T15:38:58.321Z] First row columns: Date,EAN/UPC,Name,Item_Code,Qty,Price
+[2026-02-25T15:38:58.331Z] Template detection check: Date=true, EAN/UPC=true, Name=true, Item_Code=true, Qty=true, Price=true
+[2026-02-25T15:38:58.341Z] Using standardized template, processing 2 rows
+[2026-02-25T15:38:58.403Z] Parsing completed
+{
+  "successCount": 2,
+  "failureCount": 0,
+  "totalRows": 2,
+  "sampleRows": [
+    {
+      "rowIndex": 0,
+      "rawRow": {
+        "Date": "01-18-26",
+        "EAN/UPC": "8426017066846",
+        "Name": "LOEWE 7 MEN 3.4 EDT SP",
+        "Item_Code": "LOE 7MEN34",
+        "Qty": "72",
+        "Price": "$55.50"
+      },
+      "mappedData": {
+        "productCode": "LOE 7MEN34",
+        "productName": "LOEWE 7 MEN 3.4 EDT SP",
+        "price": 55.5,
+        "originalPrice": "$55.50",
+        "cleanPrice": "55.50",
+        "stockQuantity": "72",
+        "availableColumns": [
+          "Date",
+          "EAN/UPC",
+          "Name",
+          "Item_Code",
+          "Qty",
+          "Price"
+        ]
+      }
+    },
+    {
+      "rowIndex": 1,
+      "rawRow": {
+        "Date": "01-18-26",
+        "EAN/UPC": "3760269849549",
+        "Name": "LOLITA LEMPICKA HOMME 3.3 EDT SP",
+        "Item_Code": "LOL",
+        "Qty": "162",
+        "Price": "$21.00"
+      },
+      "mappedData": {
+        "productCode": "LOL",
+        "productName": "LOLITA LEMPICKA HOMME 3.3 EDT SP",
+        "price": 21,
+        "originalPrice": "$21.00",
+        "cleanPrice": "21.00",
+        "stockQuantity": "162",
+        "availableColumns": [
+          "Date",
+          "EAN/UPC",
+          "Name",
+          "Item_Code",
+          "Qty",
+          "Price"
+        ]
+      }
+    }
+  ],
+  "columnMapping": null,
+  "isStandardTemplate": true
+}
+[2026-02-25T15:38:58.465Z] Database verification
+{
+  "reportedSuccessCount": 2,
+  "actualInsertedCount": 2,
+  "verificationPassed": true,
+  "isStandardTemplate": true,
+  "verificationTable": "Upload_Tbl_Products"
+}
+[2026-02-25T15:38:58.493Z] Upload completed successfully
+{
+  "successCount": 2,
+  "failureCount": 0,
+  "errors": []
+}
+[2026-02-26T08:58:02.071Z] Upload request received
+{
+  "vendorId": "1",
+  "fileName": "ET_Perfum_Final_Format_21022026.xlsx",
+  "fileContentLength": 56322
+}
+[2026-02-26T08:58:02.092Z] Upload error
+{
+  "error": "Invalid object name 'dbo.VendorColumnMappings'.",
+  "stack": "RequestError: Invalid object name 'dbo.VendorColumnMappings'.\n    at handleError (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\mssql\\lib\\tedious\\request.js:384:15)\n    at Connection.emit (node:events:508:28)\n    at Connection.emit (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\tedious\\lib\\connection.js:1013:18)\n    at RequestTokenHandler.onErrorMessage (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\tedious\\lib\\token\\handler.js:285:21)\n    at Readable.<anonymous> (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\tedious\\lib\\token\\token-stream-parser.js:19:33)\n    at Readable.emit (node:events:508:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushObjectMode (node:internal/streams/readable:536:3)\n    at Readable.push (node:internal/streams/readable:391:5)\n    at nextAsync (node:internal/streams/from:194:22)"
+}
+[2026-02-26T09:01:17.478Z] Upload request received
+{
+  "vendorId": "2",
+  "fileName": "UploadFormat (12).xlsx",
+  "fileContentLength": 11930
+}
+[2026-02-26T09:01:17.551Z] Upload error
+{
+  "error": "Invalid object name 'dbo.VendorColumnMappings'.",
+  "stack": "RequestError: Invalid object name 'dbo.VendorColumnMappings'.\n    at handleError (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\mssql\\lib\\tedious\\request.js:384:15)\n    at Connection.emit (node:events:508:28)\n    at Connection.emit (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\tedious\\lib\\connection.js:1013:18)\n    at RequestTokenHandler.onErrorMessage (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\tedious\\lib\\token\\handler.js:285:21)\n    at Readable.<anonymous> (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\tedious\\lib\\token\\token-stream-parser.js:19:33)\n    at Readable.emit (node:events:508:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushObjectMode (node:internal/streams/readable:536:3)\n    at Readable.push (node:internal/streams/readable:391:5)\n    at nextAsync (node:internal/streams/from:194:22)"
+}
+[2026-02-26T09:05:59.122Z] Upload request received
+{
+  "vendorId": "12",
+  "fileName": "UploadFormat (11).xlsx",
+  "fileContentLength": 11930
+}
+[2026-02-26T09:05:59.140Z] Upload error
+{
+  "error": "Invalid object name 'dbo.VendorColumnMappings'.",
+  "stack": "RequestError: Invalid object name 'dbo.VendorColumnMappings'.\n    at handleError (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\mssql\\lib\\tedious\\request.js:384:15)\n    at Connection.emit (node:events:508:28)\n    at Connection.emit (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\tedious\\lib\\connection.js:1013:18)\n    at RequestTokenHandler.onErrorMessage (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\tedious\\lib\\token\\handler.js:285:21)\n    at Readable.<anonymous> (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\tedious\\lib\\token\\token-stream-parser.js:19:33)\n    at Readable.emit (node:events:508:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushObjectMode (node:internal/streams/readable:536:3)\n    at Readable.push (node:internal/streams/readable:391:5)\n    at nextAsync (node:internal/streams/from:194:22)"
+}
+[2026-02-26T09:14:47.075Z] Upload request received
+{
+  "vendorId": "4",
+  "fileName": "UploadFormat (12).xlsx",
+  "fileContentLength": 11930
+}
+[2026-02-26T09:14:47.119Z] Upload error
+{
+  "error": "Invalid object name 'dbo.VendorColumnMappings'.",
+  "stack": "RequestError: Invalid object name 'dbo.VendorColumnMappings'.\n    at handleError (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\mssql\\lib\\tedious\\request.js:384:15)\n    at Connection.emit (node:events:508:28)\n    at Connection.emit (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\tedious\\lib\\connection.js:1013:18)\n    at RequestTokenHandler.onErrorMessage (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\tedious\\lib\\token\\handler.js:285:21)\n    at Readable.<anonymous> (C:\\2026\\Application\\vendor-price-list-app\\node_modules\\tedious\\lib\\token\\token-stream-parser.js:19:33)\n    at Readable.emit (node:events:508:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushObjectMode (node:internal/streams/readable:536:3)\n    at Readable.push (node:internal/streams/readable:391:5)\n    at nextAsync (node:internal/streams/from:194:22)"
+}
