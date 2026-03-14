@@ -104,19 +104,14 @@ router.get('/latest/items', verifyToken, async (req, res) => {
       .input('limit', sql.Int, limit)
       .query(`
         SELECT TOP (@limit)
-          p.ProductId,
-          p.ProductCode,
-          p.ProductName,
-          p.Description,
-          p.Brand,
-          p.Category,
-          p.Price,
-          p.StockQuantity,
-          v.VendorName
-        FROM [dbo].[Products] p
-        INNER JOIN [dbo].[Vendors] v ON p.VendorId = v.VendorId
-        WHERE p.IsActive = 1 AND v.IsActive = 1
-        ORDER BY p.CreatedAt DESC
+          [Item_Code] as ProductCode,
+          [Name] as ProductName,
+          [EAN/UPC] as UPC,
+          [Price],
+          [Qty] as StockQuantity,
+          [Vendor] as VendorName
+        FROM [dbo].[Tbl_Products]
+        ORDER BY [Item_Code]
       `);
 
     res.json(result.recordset);

@@ -1,20 +1,23 @@
 import sql from "mssql";
 
-const config = {
-  user: "sa",
-  password: "1234",
-  server: "AUC-Laptop-032\MSSQLSERVER2026",
-  database: "ProductCatalog",
+const config: sql.config = {
+  user: process.env.DB_USER || "sa",
+  password: process.env.DB_PASSWORD || "1234",
+  server: process.env.DB_SERVER || "172.30.36.124",
+  database: process.env.DB_NAME || "ProductCatalog",
   options: {
-    encrypt: false,
-    trustServerCertificate: true,
+    encrypt: process.env.DB_ENCRYPT === "true",
+    trustServerCertificate: process.env.DB_TRUST_CERT !== "false",
   },
 };
 
-export const poolPromise = new sql.ConnectionPool(config)
+export const poolPromise: Promise<sql.ConnectionPool> = new sql.ConnectionPool(config)
   .connect()
-  .then(pool => {
+  .then((pool) => {
     console.log("Connected to SQL Server");
     return pool;
   })
-  .catch(err => console.log("Database Connection Failed!", err));
+  .catch((err) => {
+    console.error("Database Connection Failed!", err);
+    throw err;
+  });
