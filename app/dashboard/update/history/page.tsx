@@ -26,7 +26,7 @@ interface Product {
   vendors: Vendor[];
 }
 
-export default function SearchPage() {
+export default function ProductHistoryPage() {
   const [navCode, setNavCode] = useState('');
   const [upcCode, setUpcCode] = useState('');
   const [productName, setProductName] = useState('');
@@ -62,7 +62,7 @@ export default function SearchPage() {
         params.append('productName', productName.trim());
       }
 
-      const response = await fetch(`/api/products/search?${params}`);
+      const response = await fetch(`/api/products/history?${params}`);
       const data = await response.json();
       if (Array.isArray(data)) {
       setSearchResults(data as Product[]);
@@ -81,35 +81,41 @@ export default function SearchPage() {
     }
   };
 
-  const headers = ['Product Code', 'Product Name', 'Date', 'UPC', 'Vendor', 'Price', 'Stock Quantity'];
+  const handleDownload = () => {
+    if (searchResults.length === 0) {
+      alert('No search results to download');
+      return;
+    }
 
-const excelData = [
-  headers,
-  ...searchResults.map(product => [
-    product.productCode || '',
-    product.productName || '',
-    product.productDate || '',
-    `="${product.upc}"`, // ✅ Force Excel to display full number
-    product.vendorName || '',
-    product.price || 0,
-    product.stockQuantity || 0
-  ])
-];
+    // Create Excel data
+    const headers = ['Product Code', 'Product Name', 'Date', 'UPC', 'Vendor', 'Price', 'Stock Quantity'];
+    const excelData = [
+      headers,
+      ...searchResults.map(product => [
+        product.productCode || '',
+        product.productName || '',
+        product.productDate || '',
+        `="${product.upc}"`, // Force Excel to display full number
+        product.vendorName || '',
+        product.price || 0,
+        product.stockQuantity || 0
+      ])
+    ];
 
-// Convert to CSV
-const csvContent = excelData.map(row => row.join(',')).join('\n');
+    // Convert to CSV format
+    const csvContent = excelData.map(row => row.join(',')).join('\n');
 
-// Download CSV
-const blob = new Blob(['\ufeff' + csvContent], { type: 'application/vnd.ms-excel;charset=utf-8;' });
-const link = document.createElement('a');
-const url = URL.createObjectURL(blob);
-link.setAttribute('href', url);
-link.setAttribute('download', `search_results_${new Date().toISOString().split('T')[0]}.csv`);
-link.style.visibility = 'hidden';
-document.body.appendChild(link);
-link.click();
-document.body.removeChild(link);
-URL.revokeObjectURL(url);
+    // Create and download file with proper Excel MIME type
+    const blob = new Blob(['\ufeff' + csvContent], { type: 'application/vnd.ms-excel;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `product_history_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -117,8 +123,8 @@ URL.revokeObjectURL(url);
       {/* Header */}
       <div className="mb-8 flex justify-between items-center">
         <div>
-          <h1 className="text-4xl font-bold text-foreground mb-2">Search Products</h1>
-          <p className="text-muted-foreground">Find products and compare prices across vendors</p>
+          <h1 className="text-4xl font-bold text-foreground mb-2">Product History</h1>
+          <p className="text-muted-foreground">Search and view historical product data from storage</p>
         </div>
         {/* Download Button - Top Right */}
         {searchResults.length > 0 && (
@@ -150,13 +156,13 @@ URL.revokeObjectURL(url);
 
           <div>
             <label className="block text-sm font-medium text-foreground mb-2">
-              UPC / EAN Code
+              UPC Code
             </label>
             <input
               type="text"
               value={upcCode}
               onChange={(e) => setUpcCode(e.target.value)}
-              placeholder="Enter UPC/EAN code..."
+              placeholder="Enter UPC code..."
               className="w-full px-4 py-3 rounded-lg border border-border bg-input text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
@@ -185,9 +191,9 @@ URL.revokeObjectURL(url);
               onChange={(e) => setSortBy(e.target.value)}
               className="w-full px-4 py-3 rounded-lg border border-border bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             >
-              <option value="price">Price (Low to High)</option>
-              <option value="vendor">Vendor Name</option>
-              <option value="name">Product Name</option>
+              <option value="price">Price</option>
+              <option value="name">Name</option>
+              <option value="vendor">Vendor</option>
             </select>
           </div>
         </div>
@@ -197,7 +203,7 @@ URL.revokeObjectURL(url);
           disabled={loading || (!navCode.trim() && !upcCode.trim() && !productName.trim())}
           className="w-full py-3 px-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg transition-colors disabled:opacity-50"
         >
-          {loading ? 'Searching...' : 'Search Products'}
+          {loading ? 'Searching...' : 'Search Product History'}
         </button>
       </form>
 
@@ -209,7 +215,7 @@ URL.revokeObjectURL(url);
               <svg className="w-16 h-16 text-muted mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <p className="text-foreground font-semibold mb-2">No products found</p>
+              <p className="text-foreground font-semibold mb-2">No products found in history</p>
               <p className="text-muted-foreground">Try adjusting your search criteria</p>
             </div>
           ) : (
