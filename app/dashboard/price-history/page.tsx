@@ -57,10 +57,23 @@ function buildAllVendorsData(vendors: VendorHistory[]) {
   });
 }
 
+// Calculate a sensible Y domain ignoring extreme outliers
+function calcDomain(vendors: VendorHistory[]): [number, number] {
+  const allPrices = vendors.flatMap(v => v.priceHistory.map(p => p.price)).filter(p => p > 0);
+  if (!allPrices.length) return [0, 100];
+  allPrices.sort((a, b) => a - b);
+  // Use 5th–95th percentile to exclude outliers from the scale
+  const p5 = allPrices[Math.floor(allPrices.length * 0.05)];
+  const p95 = allPrices[Math.floor(allPrices.length * 0.95)];
+  const pad = (p95 - p5) * 0.15 || 2;
+  return [Math.max(0, Math.floor(p5 - pad)), Math.ceil(p95 + pad)];
+}
+
 function ProductCard({ product }: { product: ProductData }) {
   const [selectedVendor, setSelectedVendor] = useState('');
 
   const allData = buildAllVendorsData(product.vendors);
+  const yDomain = calcDomain(product.vendors);
 
   const selVendor = product.vendors.find(v => v.vendorCode === selectedVendor) ?? null;
   const selColor = COLORS[product.vendors.findIndex(v => v.vendorCode === selectedVendor) % COLORS.length];
@@ -93,7 +106,7 @@ function ProductCard({ product }: { product: ProductData }) {
               interval="preserveStartEnd" />
             <YAxis tickFormatter={v => `$${v}`}
               tick={{ fill: '#999', fontSize: 11 }} axisLine={{ stroke: '#555' }} tickLine={{ stroke: '#555' }}
-              width={60} domain={['auto', 'auto']} />
+              width={60} domain={yDomain} />
             <Tooltip content={<Tip />} />
             <Legend wrapperStyle={{ fontSize: 11, paddingTop: 8 }}
               formatter={(val, e: any) => <span style={{ color: e.color, fontWeight: 600 }}>{val}</span>} />
