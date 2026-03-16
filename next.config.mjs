@@ -6,9 +6,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Ensure assets are always requested from root, not relative to current page
+  assetPrefix: '',
   async rewrites() {
     return [
-      // Only proxy Express-specific routes — NOT Next.js API routes like price-history
       {
         source: '/api/auth/:path*',
         destination: 'http://localhost:5000/api/auth/:path*',
