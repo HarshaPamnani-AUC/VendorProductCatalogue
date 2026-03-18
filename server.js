@@ -10,10 +10,6 @@ dotenv.config({ path: '.env.local' });
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: ['http://localhost:3000', 'http://172.30.36.124:3000', 'http://0.0.0.0:3000'],
-  credentials: true
-}));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cookieParser());
@@ -101,8 +97,7 @@ const PORT = process.env.PORT || 5000;
 // Initialize and start server
 initializeDatabase().then(() => {
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`Network access: http://your-local-ip:${PORT}`);
+    console.log(`Server running on http://0.0.0.0:${PORT}`);
   });
 }).catch(err => {
   console.error('Failed to start server:', err);

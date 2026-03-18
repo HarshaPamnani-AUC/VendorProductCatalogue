@@ -143,6 +143,7 @@ export default function DashboardLayout({
             </svg>
             <span>Update Products</span>
           </Link>
+
         </nav>
 
         {/* User Profile */}
