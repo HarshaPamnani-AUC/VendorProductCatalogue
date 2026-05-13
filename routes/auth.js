@@ -109,8 +109,22 @@ router.post('/login', async (req, res) => {
     const user = userResult.recordset[0];
     console.log('Found user:', user.UserId, user.Email);
 
-    // Verify password - plain text comparison only
-    const isPasswordValid = password === user.PasswordHash;
+    // Verify password - support both plain text and bcrypt
+    let isPasswordValid = false;
+    
+    // First try plain text comparison (for existing plain text passwords)
+    if (password === user.PasswordHash) {
+      isPasswordValid = true;
+    } else {
+      // Try bcrypt comparison (for hashed passwords)
+      try {
+        isPasswordValid = await bcrypt.compare(password, user.PasswordHash);
+      } catch (err) {
+        // If bcrypt fails, fall back to plain text comparison
+        isPasswordValid = password === user.PasswordHash;
+      }
+    }
+    
     console.log('Password comparison:', isPasswordValid ? '✅ Valid' : '❌ Invalid');
 
     if (!isPasswordValid) {
@@ -189,19 +203,36 @@ router.post('/forgot-password', async (req, res) => {
       .query(`INSERT INTO [dbo].[PasswordResetTokens] (UserId, Token, ExpiresAt)
               VALUES (@userId, @token, @expiresAt)`);
 
-    // Send email with reset link
-    const { sendPasswordResetEmail } = require('../lib/emailService');
-    const emailResult = await sendPasswordResetEmail(email, resetToken);
-    
-    console.log('NODE_ENV:', process.env.NODE_ENV);
-    console.log('Email result success:', emailResult.success);
-    
-    if (emailResult.success) {
-      console.log(`Password reset email sent to ${email}: ${emailResult.messageId}`);
+    // Development mode: Show token directly instead of sending email
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('=== DEVELOPMENT MODE - PASSWORD RESET TOKEN ===');
+      console.log('Email:', email);
+      console.log('Reset Token:', resetToken);
+      console.log('Reset URL:', `http://localhost:3000/forgot-password?token=${resetToken}`);
+      console.log('===============================================');
       
-      const responseData = {
-        message: 'Reset link sent to email'
-      };
+      return res.json({ 
+        message: 'Reset token generated (development mode)',
+        resetToken: resetToken,
+        resetUrl: `http://localhost:3000/forgot-password?token=${resetToken}`,
+        developmentMode: true
+      });
+    }
+
+    // Production mode: Send email with reset link
+    try {
+      const { sendPasswordResetEmail } = require('../lib/emailService');
+      const emailResult = await sendPasswordResetEmail(email, resetToken);
+      
+      console.log('NODE_ENV:', process.env.NODE_ENV);
+      console.log('Email result success:', emailResult.success);
+      
+      if (emailResult.success) {
+        console.log(`Password reset email sent to ${email}: ${emailResult.messageId}`);
+        
+        const responseData = {
+          message: 'Reset link sent to email'
+        };
       
       // Only include resetToken in development
       if (process.env.NODE_ENV !== 'production') {
@@ -217,6 +248,23 @@ router.post('/forgot-password', async (req, res) => {
       res.status(500).json({ 
         error: 'Failed to send reset email',
         details: emailResult.error 
+      });
+    }
+    } catch (emailError) {
+      console.error('Email service error:', emailError);
+      // Fallback to development mode if email fails
+      console.log('=== EMAIL SERVICE FAILED - FALLBACK TO DEV MODE ===');
+      console.log('Email:', email);
+      console.log('Reset Token:', resetToken);
+      console.log('Reset URL:', `http://localhost:3000/forgot-password?token=${resetToken}`);
+      console.log('====================================================');
+      
+      return res.json({ 
+        message: 'Reset token generated (email service unavailable)',
+        resetToken: resetToken,
+        resetUrl: `http://localhost:3000/forgot-password?token=${resetToken}`,
+        developmentMode: true,
+        emailFallback: true
       });
     }
   } catch (err) {

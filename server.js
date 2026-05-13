@@ -71,6 +71,8 @@ const tableStructureRoutes = require('./routes/table-structure');
 const uploadProductsRoutes = require('./routes/upload-products');
 const fixTableRoutes = require('./routes/fix-table');
 const moveDataRoutes = require('./routes/move-data');
+const productHistoryRoutes = require('./routes/productHistory');
+const productSearchRoutes = require('./routes/productSearch');
 
 // Make pool available to routes
 app.use((req, res, next) => {
@@ -82,6 +84,8 @@ app.use((req, res, next) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/vendors', vendorRoutes);
 app.use('/api/uploads', uploadRoutes);
+app.use('/api/products/history', productHistoryRoutes);
+app.use('/api/products/search', productSearchRoutes);
 app.use('/api/products', productsRoutes);
 app.use('/api/table-structure', tableStructureRoutes);
 app.use('/api/upload-products', uploadProductsRoutes);

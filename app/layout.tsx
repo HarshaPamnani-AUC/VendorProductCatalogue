@@ -20,6 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script src="/block-refresh.js" defer></script>
+      </head>
       <body className={`font-sans antialiased`}>
         {children}
         <Analytics />

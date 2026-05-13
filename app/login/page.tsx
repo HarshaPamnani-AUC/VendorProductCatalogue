@@ -23,10 +23,21 @@ function LoginContent() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
-  // Debug: Log when component mounts
+  // Check for existing session on component mount
   useEffect(() => {
     console.log('LoginPage component mounted');
+    
+    // Check if user is already logged in
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    
+    if (token && user) {
+      console.log('User already logged in, redirecting to dashboard');
+      router.push('/dashboard');
+      return;
+    }
     
     // Check for success message from password reset
     const message = searchParams.get('message');
@@ -34,6 +45,13 @@ function LoginContent() {
       setSuccess(message);
       // Clear the message from URL after displaying
       router.replace('/login', { scroll: false });
+    }
+    
+    // Load saved credentials if "Remember Me" was used
+    const savedEmail = localStorage.getItem('rememberEmail');
+    if (savedEmail) {
+      setEmail(savedEmail);
+      setRememberMe(true);
     }
   }, [searchParams, router]);
 
@@ -72,6 +90,15 @@ function LoginContent() {
       const data = await response.json();
       console.log('Login successful:', { hasToken: !!data.token, hasUser: !!data.user });
       
+      // Handle "Remember Me" functionality
+      if (rememberMe) {
+        localStorage.setItem('rememberEmail', email);
+        console.log('Email saved for Remember Me:', email);
+      } else {
+        localStorage.removeItem('rememberEmail');
+        console.log('Email removed from Remember Me');
+      }
+      
       // Store token and user data
       if (data.token) {
         localStorage.setItem('token', data.token);
@@ -88,7 +115,8 @@ function LoginContent() {
       console.log('Redirecting to dashboard...');
       console.log('Current localStorage before redirect:', {
         token: localStorage.getItem('token') ? 'exists' : 'missing',
-        user: localStorage.getItem('user') ? 'exists' : 'missing'
+        user: localStorage.getItem('user') ? 'exists' : 'missing',
+        rememberEmail: localStorage.getItem('rememberEmail') ? 'exists' : 'missing'
       });
       
       // Navigate immediately, don't wait for dashboard data
@@ -279,9 +307,14 @@ function LoginContent() {
               </div>
 
               <div className="flex items-center justify-between">
-                <label className="flex items-center">
-                  <input type="checkbox" className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" />
-                  <span className="ml-2 text-sm text-gray-600">Remember me</span>
+                <label className="flex items-center cursor-pointer">
+                  <input 
+                    type="checkbox" 
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" 
+                  />
+                  <span className="ml-2 text-sm text-gray-600 select-none">Remember me </span>
                 </label>
                 <Link href="/forgot-password" className="text-sm text-blue-600 font-medium hover:text-blue-700 transition-colors">
                   Forgot password?
@@ -309,7 +342,7 @@ function LoginContent() {
                 <p className="text-sm text-gray-600">
                   Don't have access?{' '}
                   <Link href="/register" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
-                    Contact Sales
+                    Create Account
                   </Link>
                 </p>
               </div>

@@ -65,6 +65,7 @@ export default function DashboardLayout({
   };
 
   if (loading) {
+    console.log('🔄 Dashboard loading...');
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
@@ -78,6 +79,9 @@ export default function DashboardLayout({
       </div>
     );
   }
+
+  console.log('👤 User data:', user);
+  console.log('🎛️ Sidebar open:', sidebarOpen);
 
   return (
     <div className="flex h-screen bg-background">
@@ -121,7 +125,7 @@ export default function DashboardLayout({
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <span>Search Products</span>
+            <span>Price Intelligence</span>
           </Link>
 
           <Link
@@ -135,13 +139,13 @@ export default function DashboardLayout({
           </Link>
 
           <Link
-            href="/dashboard/update"
+            href="/dashboard/update/history"
             className="flex items-center gap-3 px-4 py-3 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span>Update Products</span>
+            <span>Product Insights</span>
           </Link>
 
           <Link
@@ -158,9 +162,14 @@ export default function DashboardLayout({
         {/* User Profile */}
         <div className="p-4 border-t border-sidebar-border">
           <div className="p-4 rounded-lg bg-sidebar-primary/10 mb-3">
-            <p className="text-sm text-sidebar-foreground font-semibold">{user?.email}</p>
+            <p className="text-sm text-sidebar-foreground font-semibold">
+              {user?.email || 'No email'}
+            </p>
             <p className="text-xs text-sidebar-accent-foreground opacity-70">
-              {user?.FirstName || user?.Email?.split('@')[0]}
+              {user?.FirstName && user?.LastName 
+                ? `${user.FirstName} ${user.LastName}` 
+                : user?.FirstName || user?.Email?.split('@')[0] || 'No name'
+              }
             </p>
           </div>
           <button
