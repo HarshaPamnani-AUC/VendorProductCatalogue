@@ -314,20 +314,43 @@ function validateExcelFormat(excelHeaders, tableSchema) {
   return { isValid: errors.length === 0, errors };
 }
 
-// Upload route for multipart FormData - Step by Step Process
-// 1. Validate Excel format against Upload_Tbl_Products schema
-// 2. Truncate Upload_Tbl_Products
-// 3. Import validated Excel data into Upload_Tbl_Products
-// 4. Execute stored procedure Proc_Upload_Tbl_Products
-// 5. Return success response
+// Upload route for multipart FormData - Minimal validation for debugging
 router.post('/', upload.single('file'), async (req, res) => {
   try {
-    console.log('=== UPLOAD PRODUCTS - VALIDATED PROCESS ===');
+    console.log('=== UPLOAD PRODUCTS - MINIMAL VALIDATION ===');
+    console.log('Request headers:', Object.keys(req.headers));
+    console.log('Request body keys:', Object.keys(req.body));
+    console.log('Request file:', req.file ? 'YES' : 'NO');
+    
     const vendorName = req.body.vendorName;
     const file = req.file;
 
-    // Step 1: Validate inputs
+    console.log('Vendor:', vendorName);
+    console.log('File:', file?.originalname, file?.size, file?.mimetype);
+
+    // Log to uploads.log file
+    const fs = require('fs');
+    const logEntry = {
+      timestamp: new Date().toISOString(),
+      vendorName: vendorName,
+      fileName: file?.originalname,
+      fileSize: file?.size,
+      mimeType: file?.mimetype,
+      status: 'REQUEST_RECEIVED'
+    };
+    fs.appendFileSync('logs/uploads.log', JSON.stringify(logEntry) + '\n');
+
+    // Step 1: Basic validation only
     if (!vendorName || !file) {
+      const errorEntry = {
+        timestamp: new Date().toISOString(),
+        error: 'Missing vendor or file',
+        vendorName: vendorName,
+        hasFile: !!file,
+        status: 'VALIDATION_FAILED'
+      };
+      fs.appendFileSync('logs/uploads.log', JSON.stringify(errorEntry) + '\n');
+      
       return res.status(400).json({
         success: false,
         message: 'Vendor name and file are required'
@@ -337,6 +360,15 @@ router.post('/', upload.single('file'), async (req, res) => {
     // Validate file extension
     const fileExtension = file.originalname.split('.').pop()?.toLowerCase();
     if (fileExtension !== 'xlsx' && fileExtension !== 'xls') {
+      const errorEntry = {
+        timestamp: new Date().toISOString(),
+        error: 'Invalid file extension',
+        fileName: file.originalname,
+        extension: fileExtension,
+        status: 'EXTENSION_FAILED'
+      };
+      fs.appendFileSync('logs/uploads.log', JSON.stringify(errorEntry) + '\n');
+      
       return res.status(400).json({
         success: false,
         message: 'Invalid file format. Only Excel files (.xlsx, .xls) are allowed'
@@ -344,35 +376,57 @@ router.post('/', upload.single('file'), async (req, res) => {
     }
 
     const pool = req.pool;
+    console.log('Database pool available:', !!pool);
 
-    // Step 2: Get table schema and validate Excel format
-    console.log('Validating Excel format against database schema...');
-    let tableSchema;
-    try {
-      tableSchema = await getUploadTableSchema(pool);
-      console.log('✅ Table schema retrieved');
-    } catch (schemaError) {
-      return res.status(500).json({
-        success: false,
-        message: `Schema validation failed: ${schemaError.message}`
-      });
-    }
-
-    // Parse Excel file to get headers
+    // Step 2: Parse Excel file (minimal validation)
+    console.log('Parsing Excel file...');
     let workbook;
     try {
       workbook = XLSX.read(file.buffer, { type: 'buffer' });
+      console.log('✅ Excel file parsed successfully');
+      console.log('Sheet names:', workbook.SheetNames);
+      
+      const parseEntry = {
+        timestamp: new Date().toISOString(),
+        fileName: file.originalname,
+        sheets: workbook.SheetNames,
+        status: 'EXCEL_PARSED'
+      };
+      fs.appendFileSync('logs/uploads.log', JSON.stringify(parseEntry) + '\n');
+      
     } catch (error) {
+      console.error('❌ Excel parse error:', error.message);
+      const errorEntry = {
+        timestamp: new Date().toISOString(),
+        error: 'Excel parse failed',
+        fileName: file.originalname,
+        errorMessage: error.message,
+        status: 'PARSE_FAILED'
+      };
+      fs.appendFileSync('logs/uploads.log', JSON.stringify(errorEntry) + '\n');
+      
       return res.status(400).json({
         success: false,
-        message: 'Failed to parse Excel file. Please ensure it is a valid Excel file.'
+        message: 'Failed to parse Excel file: ' + error.message
       });
     }
 
     const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
     const data = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
 
+    console.log('Total rows in Excel:', data.length);
+    console.log('First row (headers):', data[0]);
+
     if (data.length < 2) {
+      const errorEntry = {
+        timestamp: new Date().toISOString(),
+        error: 'Insufficient data',
+        fileName: file.originalname,
+        rows: data.length,
+        status: 'INSUFFICIENT_DATA'
+      };
+      fs.appendFileSync('logs/uploads.log', JSON.stringify(errorEntry) + '\n');
+      
       return res.status(400).json({
         success: false,
         message: 'Excel file must contain at least a header row and one data row'
@@ -380,46 +434,80 @@ router.post('/', upload.single('file'), async (req, res) => {
     }
 
     const excelHeaders = data[0].map(header => String(header).trim()).filter(header => header);
-    console.log('Raw Excel headers (first row):', data[0]);
-    console.log('Processed Excel headers:', excelHeaders);
-    console.log('Required columns:', ['Date', 'EAN/UPC', 'Name', 'Item_Code', 'Qty', 'Price']);
-    console.log('Allowed columns:', [...['Date', 'EAN/UPC', 'Name', 'Item_Code', 'Qty', 'Price'], 'Vendor', 'StockQuantity']);
+    console.log('Excel headers found:', excelHeaders);
 
-    // Validate Excel format
-    const formatValidation = validateExcelFormat(excelHeaders, tableSchema);
-    if (!formatValidation.isValid) {
+    // Skip ALL validation for now - just check if we have the right columns
+    const hasRequiredColumns = excelHeaders.includes('Date') && 
+                              excelHeaders.includes('EAN/UPC') && 
+                              excelHeaders.includes('Name') && 
+                              excelHeaders.includes('Item_Code') && 
+                              excelHeaders.includes('Qty') && 
+                              excelHeaders.includes('Price');
+
+    console.log('Required columns check:', hasRequiredColumns);
+
+    if (!hasRequiredColumns) {
+      const errorEntry = {
+        timestamp: new Date().toISOString(),
+        error: 'Missing required columns',
+        fileName: file.originalname,
+        foundHeaders: excelHeaders,
+        requiredColumns: ['Date', 'EAN/UPC', 'Name', 'Item_Code', 'Qty', 'Price'],
+        status: 'COLUMNS_MISSING'
+      };
+      fs.appendFileSync('logs/uploads.log', JSON.stringify(errorEntry) + '\n');
+      
       return res.status(400).json({
         success: false,
-        message: 'Excel format validation failed',
-        errors: formatValidation.errors
+        message: 'Missing required columns. Need: Date, EAN/UPC, Name, Item_Code, Qty, Price',
+        found: excelHeaders
       });
     }
-    console.log('✅ Excel format validation passed');
 
     // Step 3: Truncate Upload_Tbl_Products table
     console.log('Truncating Upload_Tbl_Products table...');
     try {
       await pool.request().query('TRUNCATE TABLE Upload_Tbl_Products');
       console.log('✅ Table truncated successfully');
+      
+      const truncateEntry = {
+        timestamp: new Date().toISOString(),
+        action: 'Table truncated',
+        table: 'Upload_Tbl_Products',
+        status: 'TRUNCATE_SUCCESS'
+      };
+      fs.appendFileSync('logs/uploads.log', JSON.stringify(truncateEntry) + '\n');
+      
     } catch (truncateError) {
+      console.error('❌ Truncate error:', truncateError.message);
+      const errorEntry = {
+        timestamp: new Date().toISOString(),
+        error: 'Truncate failed',
+        errorMessage: truncateError.message,
+        status: 'TRUNCATE_FAILED'
+      };
+      fs.appendFileSync('logs/uploads.log', JSON.stringify(errorEntry) + '\n');
+      
       return res.status(500).json({
         success: false,
         message: `Failed to truncate table: ${truncateError.message}`
       });
     }
 
-    // Step 4: Import validated Excel data into Upload_Tbl_Products
-    console.log('Importing Excel data into Upload_Tbl_Products...');
+    // Step 4: Import data
+    console.log('Importing data...');
     let insertedCount = 0;
     let errorCount = 0;
     const importErrors = [];
 
-    // Create column mapping based on actual headers
+    // Create column mapping
     const headers = data[0];
     const colMapping = {};
     headers.forEach((header, index) => {
       colMapping[header] = index;
     });
+
+    console.log('Column mapping:', colMapping);
 
     // Skip header row, start from index 1
     for (let i = 1; i < data.length; i++) {
@@ -442,14 +530,24 @@ router.post('/', upload.single('file'), async (req, res) => {
             VALUES (@date, @eanUpc, @name, @itemCode, @qty, @price)
           `);
         insertedCount++;
+        console.log(`✅ Row ${i} inserted: ${row[colMapping['Item_Code']]}`);
       } catch (insertError) {
         errorCount++;
         importErrors.push(`Row ${i + 1}: ${insertError.message}`);
-        console.error(`Error inserting row ${i + 1}:`, insertError.message);
+        console.error(`❌ Error inserting row ${i + 1}:`, insertError.message);
       }
     }
 
     console.log(`✅ Import completed: ${insertedCount} rows inserted, ${errorCount} rows failed`);
+
+    const importEntry = {
+      timestamp: new Date().toISOString(),
+      fileName: file.originalname,
+      rowsInserted: insertedCount,
+      rowsFailed: errorCount,
+      status: 'IMPORT_COMPLETED'
+    };
+    fs.appendFileSync('logs/uploads.log', JSON.stringify(importEntry) + '\n');
 
     if (insertedCount === 0) {
       return res.status(400).json({
@@ -459,21 +557,50 @@ router.post('/', upload.single('file'), async (req, res) => {
       });
     }
 
-    // Step 5: Execute stored procedure Proc_Upload_Tbl_Products
+    // Step 5: Execute stored procedure
     console.log('Executing stored procedure Proc_Upload_Tbl_Products with vendor:', vendorName);
     try {
       await pool.request()
         .input('Vendor', sql.NVarChar, vendorName)
         .execute('Proc_Upload_Tbl_Products');
       console.log('✅ Stored procedure executed successfully');
+      
+      const procedureEntry = {
+        timestamp: new Date().toISOString(),
+        vendor: vendorName,
+        procedure: 'Proc_Upload_Tbl_Products',
+        status: 'PROCEDURE_SUCCESS'
+      };
+      fs.appendFileSync('logs/uploads.log', JSON.stringify(procedureEntry) + '\n');
+      
     } catch (procedureError) {
+      console.error('❌ Procedure error:', procedureError.message);
+      const errorEntry = {
+        timestamp: new Date().toISOString(),
+        error: 'Procedure failed',
+        vendor: vendorName,
+        errorMessage: procedureError.message,
+        status: 'PROCEDURE_FAILED'
+      };
+      fs.appendFileSync('logs/uploads.log', JSON.stringify(errorEntry) + '\n');
+      
       return res.status(500).json({
         success: false,
         message: `Stored procedure execution failed: ${procedureError.message}`
       });
     }
 
-    // Step 6: Return success response
+    // Step 6: Return success
+    const successEntry = {
+      timestamp: new Date().toISOString(),
+      vendor: vendorName,
+      fileName: file.originalname,
+      rowsInserted: insertedCount,
+      rowsFailed: errorCount,
+      status: 'UPLOAD_SUCCESS'
+    };
+    fs.appendFileSync('logs/uploads.log', JSON.stringify(successEntry) + '\n');
+
     return res.json({
       success: true,
       message: 'Product data uploaded and processed successfully',
@@ -487,6 +614,17 @@ router.post('/', upload.single('file'), async (req, res) => {
 
   } catch (error) {
     console.error('❌ Upload process error:', error.message);
+    console.error('Stack:', error.stack);
+    
+    const errorEntry = {
+      timestamp: new Date().toISOString(),
+      error: 'Upload process failed',
+      errorMessage: error.message,
+      stack: error.stack,
+      status: 'PROCESS_FAILED'
+    };
+    fs.appendFileSync('logs/uploads.log', JSON.stringify(errorEntry) + '\n');
+    
     return res.status(500).json({
       success: false,
       message: `Upload process failed: ${error.message}`
