@@ -32,7 +32,22 @@ router.get('/', async (req, res) => {
 
     const request = pool.request();
 
-    
+    let whereClause = '';
+
+    if (navCode && navCode.trim()) {
+      whereClause += ' AND [Item_Code] LIKE @navCode';
+      request.input('navCode', sql.NVarChar, `%${navCode.trim()}%`);
+    }
+
+    if (upcCode && upcCode.trim()) {
+      whereClause += ' AND [EAN/UPC] LIKE @upcCode';
+      request.input('upcCode', sql.NVarChar, `%${upcCode.trim()}%`);
+    }
+
+    if (productName && productName.trim()) {
+      whereClause += ' AND [Name] LIKE @productName';
+      request.input('productName', sql.NVarChar, `%${productName.trim()}%`);
+    }
 
     // Build the final query with the WHERE clause
     let finalSqlQuery = `
