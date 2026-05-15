@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Database, FileSpreadsheet, Package, Users, TrendingUp, Plus, Clock, CheckCircle, AlertCircle, Search, Filter, MoreVertical, Activity, DollarSign, BarChart3 } from 'lucide-react';
+import { Database, FileSpreadsheet, Package, Users, TrendingUp, Plus, Clock, CheckCircle, AlertCircle, Search, Filter, MoreVertical, Activity, DollarSign, BarChart3, LogOut } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 interface UploadStats {
   totalFiles: number;
@@ -33,6 +34,22 @@ interface TopVendor {
   LastUpload: string;
 }
 
+interface Product {
+  productCode: string;
+  productName: string;
+  productDate: string;
+  description: string;
+  brand: string;
+  category: string;
+  upc: string;
+  price: number;
+  stockQuantity: number;
+  vendorName: string;
+  lowestPrice: number;
+  highestPrice: number;
+  vendors: any[];
+}
+
 export default function DashboardPage() {
   const router = useRouter();
   const [stats, setStats] = useState<UploadStats>({
@@ -47,6 +64,12 @@ export default function DashboardPage() {
   const [topVendors, setTopVendors] = useState<TopVendor[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  
+  // EAN/UPC Search states
+  const [eanUpcSearch, setEanUpcSearch] = useState('');
+  const [eanUpcResults, setEanUpcResults] = useState<Product[]>([]);
+  const [eanUpcLoading, setEanUpcLoading] = useState(false);
+  const [eanUpcSearched, setEanUpcSearched] = useState(true); // Start with true to show chart by default
 
   useEffect(() => {
     fetchDashboardData();
@@ -84,12 +107,14 @@ export default function DashboardPage() {
       try {
         const [vendorsResponse, productsResponse] = await Promise.all([
           fetch('/api/vendors', {
-            headers: { 'Authorization': `Bearer ${token}` },
-            signal: controller.signal,
+            headers: { 
+              'Authorization': `Bearer ${token}`
+            }
           }),
           fetch('/api/products/latest/items', {
-            headers: { 'Authorization': `Bearer ${token}` },
-            signal: controller.signal,
+            headers: { 
+              'Authorization': `Bearer ${token}`
+            }
           }),
         ]);
 
@@ -130,6 +155,134 @@ export default function DashboardPage() {
       setLoading(false);
     }
   };
+
+  // EAN/UPC search handler
+  const handleEanUpcSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!eanUpcSearch.trim()) {
+      console.log('No EAN/UPC search parameter provided');
+      return;
+    }
+
+    console.log('Starting EAN/UPC search with:', eanUpcSearch);
+    setEanUpcLoading(true);
+    setEanUpcSearched(true);
+
+    try {
+      const params = new URLSearchParams();
+      params.append('upcCode', eanUpcSearch.trim());
+
+      const url = `/api/products/search?${params.toString()}`;
+      console.log('Fetching EAN/UPC from URL:', url);
+
+      const response = await fetch(url);
+      const data = await response.json();
+      
+      if (Array.isArray(data)) {
+        // Sort results by price (lowest to highest)
+        const sortedData = data.sort((a, b) => {
+          const priceA = typeof a.price === 'string' ? parseFloat(a.price.replace(/[^0-9.-]/g, '')) || 0 : a.price || 0;
+          const priceB = typeof b.price === 'string' ? parseFloat(b.price.replace(/[^0-9.-]/g, '')) || 0 : b.price || 0;
+          return priceA - priceB;
+        });
+        setEanUpcResults(sortedData);
+      } else {
+        console.error('EAN/UPC API returned non-array data:', data);
+        setEanUpcResults([]);
+      }
+    } catch (error) {
+      console.error('EAN/UPC search error:', error);
+      setEanUpcResults([]);
+    } finally {
+      setEanUpcLoading(false);
+    }
+  };
+
+  // Fetch lowest price items by default on component mount
+  const fetchLowestPriceItems = async () => {
+    try {
+      const url = '/api/products/search?limit=10'; // Get top 10 items for best performance
+      console.log('Fetching lowest price items from URL:', url);
+
+      const response = await fetch(url);
+      const data = await response.json();
+      
+      if (Array.isArray(data)) {
+        // Group by product and find the lowest price item for each product
+        const productGroups: { [product: string]: any[] } = {};
+        
+        data.forEach(item => {
+          const productKey = `${item.productCode}_${item.productName}`; // Use product code + name as unique key
+          if (!productGroups[productKey]) {
+            productGroups[productKey] = [];
+          }
+          productGroups[productKey].push(item);
+        });
+
+        // Find the lowest price item for each product
+        const lowestPriceItems: any[] = [];
+        Object.keys(productGroups).forEach(productKey => {
+          const productItems = productGroups[productKey];
+          const lowestItem = productItems.reduce((lowest, current) => {
+            const priceLowest = typeof lowest.price === 'string' ? parseFloat(lowest.price.replace(/[^0-9.-]/g, '')) || 0 : lowest.price || 0;
+            const priceCurrent = typeof current.price === 'string' ? parseFloat(current.price.replace(/[^0-9.-]/g, '')) || 0 : current.price || 0;
+            return priceCurrent < priceLowest ? current : lowest;
+          });
+          lowestPriceItems.push(lowestItem);
+        });
+
+        // Sort all lowest price items by price (lowest to highest)
+        const sortedData = lowestPriceItems.sort((a, b) => {
+          const priceA = typeof a.price === 'string' ? parseFloat(a.price.replace(/[^0-9.-]/g, '')) || 0 : a.price || 0;
+          const priceB = typeof b.price === 'string' ? parseFloat(b.price.replace(/[^0-9.-]/g, '')) || 0 : b.price || 0;
+          return priceA - priceB;
+        });
+
+        setEanUpcResults(sortedData);
+        setEanUpcSearched(true); // Show results by default
+      } else {
+        console.error('Lowest price API returned non-array data:', data);
+        setEanUpcResults([]);
+      }
+    } catch (error) {
+      console.error('Lowest price fetch error:', error);
+      setEanUpcResults([]);
+    }
+  };
+
+  // Fetch lowest price items on component mount
+  useEffect(() => {
+    fetchLowestPriceItems();
+  }, []);
+
+  const handleEanUpcClear = () => {
+    setEanUpcSearch('');
+    setEanUpcSearched(true); // Keep showing results
+    fetchLowestPriceItems(); // Reset to default lowest price items
+    
+    console.log('EAN/UPC search results cleared - showing lowest price items');
+  };
+
+  // Calculate EAN/UPC vendor quantity totals for chart
+  const getEanUpcVendorQuantityTotals = () => {
+    const vendorQuantities: { [vendor: string]: number } = {};
+    
+    eanUpcResults.forEach(product => {
+      const vendor = product.vendorName || 'Unknown';
+      const quantity = product.stockQuantity || 0;
+      vendorQuantities[vendor] = (vendorQuantities[vendor] || 0) + quantity;
+    });
+
+    return Object.entries(vendorQuantities)
+      .map(([vendor, quantity]) => ({ vendor, quantity }))
+      .sort((a, b) => b.quantity - a.quantity); // Sort by quantity descending
+  };
+
+  const eanUpcVendorQuantityTotals = getEanUpcVendorQuantityTotals();
+
+  // Chart colors
+  const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16'];
 
   const StatCard = ({ icon, title, value, subtitle, color = 'blue' }: any) => {
     const colorClasses: Record<string, string> = {
@@ -234,6 +387,41 @@ export default function DashboardPage() {
     );
   }
 
+  // Logout function
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      
+      // Call logout API
+      const response = await fetch('/api/auth/logout', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (response.ok) {
+        // Clear local storage
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('rememberEmail'); // Clear remembered email
+        
+        // Redirect to login
+        router.push('/login');
+      } else {
+        console.error('Logout failed');
+      }
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Still clear local storage on error
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('rememberEmail'); // Clear remembered email
+      router.push('/login');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -260,6 +448,13 @@ export default function DashboardPage() {
             >
               <Plus className="w-4 h-4" />
               Add Vendor
+            </button>
+            <button 
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+            >
+              <LogOut className="w-4 h-4" />
+              Logout
             </button>
           </div>
         </div>
@@ -456,23 +651,132 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Activity Chart Placeholder */}
+        {/* EAN/UPC Search Section */}
         <div className="mt-8 bg-white rounded-xl border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-gray-900">Upload Activity</h2>
-            <div className="flex items-center gap-2">
-              <button className="px-3 py-1 text-sm bg-blue-100 text-blue-700 rounded-lg font-medium">Week</button>
-              <button className="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded-lg font-medium">Month</button>
-              <button className="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded-lg font-medium">Year</button>
-            </div>
+            <h2 className="text-xl font-bold text-gray-900">EAN/UPC Code Search</h2>
+            <p className="text-sm text-gray-600">Find products by EAN/UPC code - Lowest to Highest Price</p>
           </div>
-          <div className="h-64 bg-gray-50 rounded-xl flex items-center justify-center">
-            <div className="text-center">
-              <Activity className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">Activity chart will be displayed here</p>
-              <p className="text-gray-400 text-sm mt-2">Integration with charting library needed</p>
+
+          {/* EAN/UPC Search Form */}
+          <form onSubmit={handleEanUpcSearch} className="mb-6">
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <input
+                  type="text"
+                  value={eanUpcSearch}
+                  onChange={(e) => setEanUpcSearch(e.target.value)}
+                  placeholder="Enter EAN/UPC code to find lowest to highest price..."
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={eanUpcLoading || !eanUpcSearch.trim()}
+                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {eanUpcLoading ? 'Searching...' : 'Search'}
+              </button>
+              <button
+                type="button"
+                onClick={handleEanUpcClear}
+                className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+              >
+                Clear
+              </button>
             </div>
-          </div>
+          </form>
+
+          {/* EAN/UPC Results - Always Visible */}
+          <div>
+            {eanUpcResults.length === 0 && !eanUpcLoading ? (
+              <div className="text-center py-12">
+                <Search className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+                <p className="text-gray-500 font-medium">Loading products...</p>
+                <p className="text-gray-400 text-sm mt-1">Fetching lowest price items</p>
+              </div>
+            ) : eanUpcLoading ? (
+              <div className="text-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                <p className="text-gray-500 font-medium">Loading...</p>
+              </div>
+            ) : (
+                <>
+                  {/* Results Header */}
+                  <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg mb-6">
+                    <h3 className="text-lg font-semibold text-blue-800">
+                      {eanUpcSearch ? `EAN/UPC Search Results: ${eanUpcSearch}` : 'Top 1 Lowest Price Items - Product Wise'}
+                    </h3>
+                    <p className="text-sm text-blue-600">
+                      {eanUpcSearch 
+                        ? `Found ${eanUpcResults.length} products - Sorted by price (lowest to highest)`
+                        : `Showing ${eanUpcResults.length} lowest price items (1 per product) - Search EAN/UPC for specific results`
+                      }
+                    </p>
+                  </div>
+
+                  {/* Large Bar Chart Only */}
+                  <div className="bg-white p-6 border border-gray-200 rounded-lg mb-6">
+                    <h3 className="text-xl font-semibold text-gray-800 mb-6 text-center">Quantity by Vendor</h3>
+                    <ResponsiveContainer width="100%" height={400}>
+                      <BarChart data={eanUpcVendorQuantityTotals}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis 
+                          dataKey="vendor" 
+                          angle={-45}
+                          textAnchor="end"
+                          height={100}
+                          tick={{ fontSize: 14 }}
+                        />
+                        <YAxis tick={{ fontSize: 14 }} />
+                        <Tooltip 
+                          contentStyle={{ 
+                            backgroundColor: '#1f2937', 
+                            border: '1px solid #374151',
+                            borderRadius: '8px',
+                            fontSize: '14px'
+                          }}
+                          labelStyle={{ color: '#f3f4f6' }}
+                        />
+                        <Legend wrapperStyle={{ fontSize: '14px' }} />
+                        <Bar 
+                          dataKey="quantity" 
+                          fill="#3b82f6" 
+                          name="Total Quantity"
+                          radius={[8, 8, 0, 0]}
+                        />
+                      </BarChart>
+                    </ResponsiveContainer>
+                  </div>
+
+                  {/* Summary Stats */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                      <p className="text-sm text-blue-600 font-medium">Total Vendors</p>
+                      <p className="text-2xl font-bold text-blue-800">{eanUpcVendorQuantityTotals.length}</p>
+                    </div>
+                    <div className="bg-green-50 p-4 rounded-lg border border-green-200">
+                      <p className="text-sm text-green-600 font-medium">Total Quantity</p>
+                      <p className="text-2xl font-bold text-green-800">
+                        {eanUpcVendorQuantityTotals.reduce((sum, vendor) => sum + vendor.quantity, 0)}
+                      </p>
+                    </div>
+                    <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                      <p className="text-sm text-purple-600 font-medium">Top Vendor</p>
+                      <p className="text-lg font-bold text-purple-800">
+                        {eanUpcVendorQuantityTotals[0]?.vendor || 'N/A'}
+                      </p>
+                    </div>
+                    <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                      <p className="text-sm text-orange-600 font-medium">Max Quantity</p>
+                      <p className="text-2xl font-bold text-orange-800">
+                        {eanUpcVendorQuantityTotals[0]?.quantity || 0}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
         </div>
       </div>
     </div>

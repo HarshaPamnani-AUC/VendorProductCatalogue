@@ -36,8 +36,16 @@ export default function ForgotPasswordPage() {
         return;
       }
 
-      setResetToken(data.resetToken);
+      setResetToken(data.resetToken || '');
       setSuccess(true);
+      
+      // If in development mode, show the reset token
+      if (data.developmentMode || data.emailFallback) {
+        console.log('=== DEVELOPMENT MODE - RESET INFO ===');
+        console.log('Reset Token:', data.resetToken);
+        console.log('Reset URL:', data.resetUrl);
+        console.log('==================================');
+      }
     } catch (err) {
       setError('An error occurred. Please try again.');
     } finally {

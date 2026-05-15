@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { toast } from "sonner";
 
 type TabId = 'upload' | 'form' | 'history';
 type TableName = 'LLP_Orders' | 'VW360_Orders' | 'BSLLC_Orders';
@@ -10,6 +11,8 @@ const TABLES: TableName[]     = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders'];
 const SHEET_TYPES: SheetType[] = ['PENDING ORDERS', 'DONE ORDERS', 'NOT BUY'];
 
 const COLUMNS = [
+  { key: 'checkbox',            label: '' },
+  { key: 'actions',             label: '' },
   { key: 'company',             label: 'Company' },
   { key: 'order_demand_id',     label: 'Order/Demand ID' },
   { key: 'supplier',            label: 'Supplier' },
@@ -328,7 +331,163 @@ function HistoryTab() {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading]     = useState(false);
   const [error, setError]         = useState('');
+  const [updating, setUpdating]   = useState<number | null>(null);
+  const [selected, setSelected]   = useState<Set<string>>(new Set());
+  const [deleting, setDeleting]   = useState(false);
+  const [editValues, setEditValues] = useState<Record<string, any>>({});
   const pageSize = 50;
+
+  const companyToTable: Record<string, string> = {
+    LLP: 'LLP_Orders', VW360: 'VW360_Orders', BSLLC: 'BSLLC_Orders',
+  };
+
+  const rowKey = (row: any) => `${row.company}-${row.id}`;
+
+  const toggleSelect = (row: any) => {
+    setSelected(prev => {
+      const next = new Set(prev);
+      const k = rowKey(row);
+      next.has(k) ? next.delete(k) : next.add(k);
+      return next;
+    });
+  };
+
+  const toggleSelectAll = () => {
+    if (selected.size === data.length) {
+      setSelected(new Set());
+    } else {
+      setSelected(new Set(data.map(rowKey)));
+    }
+  };
+
+  const deleteSelected = async () => {
+    if (selected.size === 0) return;
+    if (!confirm(`Delete ${selected.size} selected row(s)? This cannot be undone.`)) return;
+    setDeleting(true);
+    try {
+      const rows = data
+        .filter(r => selected.has(rowKey(r)))
+        .map(r => ({ id: r.id, table: companyToTable[r.company] }));
+      const res  = await fetch('/api/orders', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rows }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error);
+      setData(prev => prev.filter(r => !selected.has(rowKey(r))));
+      setSelected(new Set());
+      setTotal(prev => prev - json.deleted);
+    } catch (e: any) {
+      alert('Delete failed: ' + e.message);
+    } finally {
+      setDeleting(false);
+    }
+  };
+
+  const markAs = async (row: any, newType: 'DONE ORDERS' | 'NOT BUY') => {
+    if (row.sheet_type === newType) return;
+    setUpdating(row.id);
+    try {
+      const res = await fetch('/api/orders', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: row.id,
+          table: companyToTable[row.company],
+          sheet_type: newType,
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error);
+      
+      toast.success(`Order moved to ${newType.replace(' ORDERS', '').toLowerCase()}`);
+
+      // Update row in local state immediately
+      setData(prev => {
+        if (sheetType && sheetType !== newType) {
+          setTotal(t => t - 1);
+          return prev.filter(r => !(r.id === row.id && r.company === row.company));
+        }
+        return prev.map(r =>
+          r.id === row.id && r.company === row.company
+            ? { ...r, sheet_type: newType }
+            : r
+        );
+      });
+    } catch (e: any) {
+      alert('Failed to update: ' + e.message);
+    } finally {
+      setUpdating(null);
+    }
+  };
+
+  const handleEditChange = (row: any, field: string, value: any) => {
+    const key = rowKey(row);
+    setEditValues(prev => ({
+      ...prev,
+      [key]: {
+        ...(prev[key] || {
+          invoice_so_proforma: row.invoice_so_proforma || '',
+          invoice_date: row.invoice_date ? new Date(row.invoice_date).toISOString().split('T')[0] : '',
+          invoice_qty: row.invoice_qty || '',
+          inv_price: row.inv_price || '',
+        }),
+        [field]: value
+      }
+    }));
+  };
+
+  const saveOrder = async (row: any) => {
+    const key = rowKey(row);
+    const values = editValues[key];
+    if (!values) {
+      // If no changes, just mark as done if requested
+      markAs(row, 'DONE ORDERS');
+      return;
+    }
+
+    setUpdating(row.id);
+    try {
+      const res = await fetch('/api/orders', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: row.id,
+          table: companyToTable[row.company],
+          sheet_type: 'DONE ORDERS',
+          ...values
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error);
+      
+      toast.success("Order details saved and moved to done");
+
+      // Update local state
+      setData(prev => {
+        const newType = 'DONE ORDERS';
+        if (sheetType && sheetType !== newType) {
+          setTotal(t => t - 1);
+          return prev.filter(r => rowKey(r) !== key);
+        }
+        return prev.map(r =>
+          rowKey(r) === key
+            ? { ...r, ...values, sheet_type: newType }
+            : r
+        );
+      });
+      setEditValues(prev => {
+        const next = { ...prev };
+        delete next[key];
+        return next;
+      });
+    } catch (e: any) {
+      alert('Failed to save: ' + e.message);
+    } finally {
+      setUpdating(null);
+    }
+  };
 
   const fetchData = useCallback(async (p = 1) => {
     setLoading(true); setError('');
@@ -431,9 +590,20 @@ function HistoryTab() {
         </button>
       </div>
 
-      {/* Stats */}
+      {/* Stats + delete */}
       <div className="flex items-center justify-between text-sm text-muted-foreground px-1">
-        <span>{total.toLocaleString()} total rows · page {page} of {totalPages}</span>
+        <div className="flex items-center gap-3">
+          <span>{total.toLocaleString()} total rows · page {page} of {totalPages}</span>
+          {selected.size > 0 && (
+            <button onClick={deleteSelected} disabled={deleting}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg text-xs font-semibold transition-colors disabled:opacity-50">
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              {deleting ? 'Deleting…' : `Delete ${selected.size} selected`}
+            </button>
+          )}
+        </div>
         <div className="flex gap-2">
           <button onClick={() => fetchData(page - 1)} disabled={page <= 1 || loading}
             className="px-3 py-1.5 rounded-lg border border-border hover:bg-muted disabled:opacity-40 transition-colors text-xs">
@@ -452,12 +622,19 @@ function HistoryTab() {
 
       {/* Table */}
       <div className="bg-card border border-border rounded-xl overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="bg-muted/60 border-b border-border">
-                {COLUMNS.map(c => (
-                  <th key={c.key} className="text-left px-3 py-2.5 text-muted-foreground font-semibold whitespace-nowrap">
+        <div className="overflow-auto max-h-[calc(100vh-220px)]">
+          <table className="w-full text-xs relative">
+            <thead className="sticky top-0 z-10 bg-muted shadow-sm">
+              <tr>
+                {/* Select all checkbox */}
+                <th className="px-3 py-2.5 w-8 border-b border-r border-border">
+                  <input type="checkbox"
+                    checked={data.length > 0 && selected.size === data.length}
+                    onChange={toggleSelectAll}
+                    className="rounded border-border cursor-pointer" />
+                </th>
+                {COLUMNS.filter(c => c.key !== 'checkbox').map((c, idx) => (
+                  <th key={c.key} className={`text-left px-3 py-2.5 text-muted-foreground font-semibold whitespace-nowrap border-b border-border ${idx < COLUMNS.length - 2 ? 'border-r' : ''}`}>
                     {c.label}
                   </th>
                 ))}
@@ -469,36 +646,143 @@ function HistoryTab() {
               ) : data.length === 0 ? (
                 <tr><td colSpan={COLUMNS.length} className="text-center py-12 text-muted-foreground">No records found</td></tr>
               ) : data.map((row, i) => (
-                <tr key={`${row.company}-${row.id ?? i}`} className="border-t border-border/50 hover:bg-muted/30 transition-colors">
-                  <td className="px-3 py-2">
+                <tr key={`${row.company}-${row.id ?? i}`}
+                  className={`border-t border-border/50 hover:bg-muted/30 transition-colors ${selected.has(rowKey(row)) ? 'bg-primary/5' : ''}`}>
+                  {/* Checkbox */}
+                  <td className="px-3 py-2 w-8 border-r border-border">
+                    <input type="checkbox"
+                      checked={selected.has(rowKey(row))}
+                      onChange={() => toggleSelect(row)}
+                      className="rounded border-border cursor-pointer" />
+                  </td>
+                  {/* Action buttons */}
+                  <td className="px-3 py-2 whitespace-nowrap border-r border-border">
+                    <div className="flex items-center gap-1">
+                      {/* Mark as Done or Save */}
+                      {row.sheet_type === 'PENDING ORDERS' ? (
+                        <button
+                          onClick={() => saveOrder(row)}
+                          disabled={updating === row.id}
+                          title="Save & Move to Done"
+                          className="p-1.5 rounded-lg text-green-600 bg-green-50 hover:bg-green-100 transition-colors disabled:opacity-40"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => markAs(row, 'DONE ORDERS')}
+                          disabled={updating === row.id || row.sheet_type === 'DONE ORDERS'}
+                          title="Mark as Done"
+                          className={`p-1.5 rounded-lg transition-colors ${
+                            row.sheet_type === 'DONE ORDERS'
+                              ? 'text-green-500 bg-green-50 cursor-default'
+                              : 'text-muted-foreground hover:text-green-600 hover:bg-green-50'
+                          } disabled:opacity-40`}
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </button>
+                      )}
+                      {/* Mark as Not Buy */}
+                      <button
+                        onClick={() => markAs(row, 'NOT BUY')}
+                        disabled={updating === row.id || row.sheet_type === 'NOT BUY'}
+                        title="Mark as Not Buy"
+                        className={`p-1.5 rounded-lg transition-colors ${
+                          row.sheet_type === 'NOT BUY'
+                            ? 'text-red-500 bg-red-50 cursor-default'
+                            : 'text-muted-foreground hover:text-red-600 hover:bg-red-50'
+                        } disabled:opacity-40`}
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                      {updating === row.id && (
+                        <svg className="w-3 h-3 animate-spin text-muted-foreground" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                        </svg>
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-3 py-2 border-r border-border">
                     <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${companyBadge(row.company)}`}>
                       {row.company}
                     </span>
                   </td>
-                  <td className="px-3 py-2 text-foreground">{row.order_demand_id || '—'}</td>
-                  <td className="px-3 py-2 text-foreground">{row.supplier || '—'}</td>
-                  <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">{fmtDate(row.order_date)}</td>
-                  <td className="px-3 py-2 text-foreground">{row.invoice_so_proforma || '—'}</td>
-                  <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">{fmtDate(row.invoice_date)}</td>
-                  <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">{fmtDate(row.delivery_date)}</td>
-                  <td className="px-3 py-2 text-muted-foreground whitespace-nowrap">{fmtDate(row.port_info_date)}</td>
-                  <td className="px-3 py-2">
+                  <td className="px-3 py-2 text-foreground border-r border-border">{row.order_demand_id || '—'}</td>
+                  <td className="px-3 py-2 text-foreground border-r border-border">{row.supplier || '—'}</td>
+                  <td className="px-3 py-2 text-muted-foreground whitespace-nowrap border-r border-border">{fmtDate(row.order_date)}</td>
+                  <td className="px-3 py-2 text-foreground border-r border-border">
+                    {row.sheet_type === 'PENDING ORDERS' ? (
+                      <input
+                        type="text"
+                        value={editValues[rowKey(row)]?.invoice_so_proforma ?? row.invoice_so_proforma ?? ''}
+                        onChange={e => handleEditChange(row, 'invoice_so_proforma', e.target.value)}
+                        className="w-full bg-background border border-border rounded px-1 py-0.5 text-xs focus:ring-1 focus:ring-primary outline-none"
+                      />
+                    ) : (
+                      row.invoice_so_proforma || '—'
+                    )}
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground whitespace-nowrap border-r border-border">
+                    {row.sheet_type === 'PENDING ORDERS' ? (
+                      <input
+                        type="date"
+                        value={editValues[rowKey(row)]?.invoice_date ?? (row.invoice_date ? new Date(row.invoice_date).toISOString().split('T')[0] : '')}
+                        onChange={e => handleEditChange(row, 'invoice_date', e.target.value)}
+                        className="bg-background border border-border rounded px-1 py-0.5 text-xs focus:ring-1 focus:ring-primary outline-none"
+                      />
+                    ) : (
+                      fmtDate(row.invoice_date)
+                    )}
+                  </td>
+                  <td className="px-3 py-2 text-muted-foreground whitespace-nowrap border-r border-border">{fmtDate(row.delivery_date)}</td>
+                  <td className="px-3 py-2 text-muted-foreground whitespace-nowrap border-r border-border">{fmtDate(row.port_info_date)}</td>
+                  <td className="px-3 py-2 border-r border-border">
                     {row.status
                       ? <span className="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 font-medium text-xs">{row.status}</span>
                       : '—'}
                   </td>
-                  <td className="px-3 py-2 text-foreground">{row.so || '—'}</td>
-                  <td className="px-3 py-2 text-foreground">{row.nav || '—'}</td>
-                  <td className="px-3 py-2 font-mono text-foreground">{row.upc_ean || '—'}</td>
-                  <td className="px-3 py-2 text-foreground">{row.brand || '—'}</td>
-                  <td className="px-3 py-2 text-foreground max-w-[180px] truncate" title={row.nav_name}>{row.nav_name || '—'}</td>
-                  <td className="px-3 py-2 text-foreground">{row.currency || '—'}</td>
-                  <td className="px-3 py-2 text-right text-foreground">{row.order_qty ?? '—'}</td>
-                  <td className="px-3 py-2 text-right text-foreground">{row.order_price != null ? `$${Number(row.order_price).toFixed(2)}` : '—'}</td>
-                  <td className="px-3 py-2 text-right text-foreground">{row.so_qty ?? '—'}</td>
-                  <td className="px-3 py-2 text-right text-foreground">{row.so_price != null ? `$${Number(row.so_price).toFixed(2)}` : '—'}</td>
-                  <td className="px-3 py-2 text-right text-foreground">{row.invoice_qty ?? '—'}</td>
-                  <td className="px-3 py-2 text-right text-foreground">{row.inv_price != null ? `$${Number(row.inv_price).toFixed(2)}` : '—'}</td>
+                  <td className="px-3 py-2 text-foreground border-r border-border">{row.so || '—'}</td>
+                  <td className="px-3 py-2 text-foreground border-r border-border">{row.nav || '—'}</td>
+                  <td className="px-3 py-2 font-mono text-foreground border-r border-border">{row.upc_ean || '—'}</td>
+                  <td className="px-3 py-2 text-foreground border-r border-border">{row.brand || '—'}</td>
+                  <td className="px-3 py-2 text-foreground max-w-[180px] truncate border-r border-border" title={row.nav_name}>{row.nav_name || '—'}</td>
+                  <td className="px-3 py-2 text-foreground border-r border-border">{row.currency || '—'}</td>
+                  <td className="px-3 py-2 text-right text-foreground border-r border-border">{row.order_qty ?? '—'}</td>
+                  <td className="px-3 py-2 text-right text-foreground border-r border-border">{row.order_price != null ? `$${Number(row.order_price).toFixed(2)}` : '—'}</td>
+                  <td className="px-3 py-2 text-right text-foreground border-r border-border">{row.so_qty ?? '—'}</td>
+                  <td className="px-3 py-2 text-right text-foreground border-r border-border">{row.so_price != null ? `$${Number(row.so_price).toFixed(2)}` : '—'}</td>
+                  <td className="px-3 py-2 text-right text-foreground border-r border-border">
+                    {row.sheet_type === 'PENDING ORDERS' ? (
+                      <input
+                        type="number"
+                        value={editValues[rowKey(row)]?.invoice_qty ?? row.invoice_qty ?? ''}
+                        onChange={e => handleEditChange(row, 'invoice_qty', e.target.value)}
+                        className="w-20 bg-background border border-border rounded px-1 py-0.5 text-xs text-right focus:ring-1 focus:ring-primary outline-none"
+                      />
+                    ) : (
+                      row.invoice_qty ?? '—'
+                    )}
+                  </td>
+                  <td className="px-3 py-2 text-right text-foreground border-r border-border">
+                    {row.sheet_type === 'PENDING ORDERS' ? (
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={editValues[rowKey(row)]?.inv_price ?? row.inv_price ?? ''}
+                        onChange={e => handleEditChange(row, 'inv_price', e.target.value)}
+                        className="w-20 bg-background border border-border rounded px-1 py-0.5 text-xs text-right focus:ring-1 focus:ring-primary outline-none"
+                      />
+                    ) : (
+                      row.inv_price != null ? `$${Number(row.inv_price).toFixed(2)}` : '—'
+                    )}
+                  </td>
                   <td className="px-3 py-2">
                     <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${sheetBadge(row.sheet_type)}`}>
                       {row.sheet_type || '—'}
