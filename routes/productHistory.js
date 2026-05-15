@@ -77,8 +77,16 @@ router.get('/', async (req, res) => {
       console.log('Added productName filter:', productName.trim());
     }
 
-    // Add sorting - order by price ASC only (consistent with search page)
-    sqlQuery += ' ORDER BY [Price] ASC';
+    // Add sorting with support for flexible sort options
+    if (req.query.sortBy === 'price') {
+      sqlQuery += ' ORDER BY [Price] ASC';
+    } else if (req.query.sortBy === 'name') {
+      sqlQuery += ' ORDER BY [Name] ASC';
+    } else if (req.query.sortBy === 'vendor') {
+      sqlQuery += ' ORDER BY [Vendor] ASC';
+    } else {
+      sqlQuery += ' ORDER BY [Price] ASC';
+    }
 
     console.log('Final SQL Query:', sqlQuery);
 
@@ -115,7 +123,6 @@ router.get('/', async (req, res) => {
   } catch (err) {
     console.error('Search product history error:', err);
     console.error('Error details:', err.message);
-    console.error('Stack:', err.stack);
     res.status(500).json({ error: 'Failed to search product history: ' + err.message });
   }
 });

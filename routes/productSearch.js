@@ -117,7 +117,6 @@ router.get('/', async (req, res) => {
   } catch (err) {
     console.error('Search product error:', err);
     console.error('Error details:', err.message);
-    console.error('Stack:', err.stack);
     res.status(500).json({ error: 'Failed to search products: ' + err.message });
   }
 });
