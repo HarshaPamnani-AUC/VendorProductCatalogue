@@ -12,7 +12,7 @@ const SHEET_TYPES: SheetType[] = ['PENDING ORDERS', 'DONE ORDERS', 'NOT BUY'];
 
 const COLUMNS = [
   { key: 'checkbox',            label: '' },
-  { key: 'actions',             label: '' },
+  { key: 'actions',             label: 'Status' },
   { key: 'company',             label: 'Company' },
   { key: 'order_demand_id',     label: 'Order/Demand ID' },
   { key: 'supplier',            label: 'Supplier' },
@@ -578,10 +578,10 @@ function HistoryTab() {
             className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
         </div>
         <div className="min-w-[150px]">
-          <label className="text-xs text-muted-foreground mb-1 block">NAV Number</label>
+          <label className="text-xs text-muted-foreground mb-1 block">SO / Invoice</label>
           <input type="text" value={nav} onChange={e => setNav(e.target.value)}
             onKeyDown={e => e.key === 'Enter' && fetchData(1)}
-            placeholder="NAV number…"
+            placeholder="SO or invoice…"
             className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
         </div>
         <button onClick={() => fetchData(1)} disabled={loading}

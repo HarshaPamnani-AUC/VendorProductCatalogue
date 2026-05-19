@@ -61,7 +61,8 @@ export async function GET(request: NextRequest) {
 
     for (const row of result.recordset) {
       const upcKey = (row.UPC ?? '').trim();
-      const vendorKey = (row.VendorCode ?? '').trim();
+      // Normalize vendor name: trim and collapse multiple spaces
+      const vendorKey = (row.VendorCode ?? '').trim().replace(/\s+/g, ' ');
 
       if (!upcMap[upcKey]) {
         upcMap[upcKey] = {
@@ -74,7 +75,7 @@ export async function GET(request: NextRequest) {
 
       if (!upcMap[upcKey].vendors[vendorKey]) {
         upcMap[upcKey].vendors[vendorKey] = {
-          vendorCode: vendorKey,
+          vendorCode: vendorKey, // already normalized
           priceHistory: [],
         };
       }

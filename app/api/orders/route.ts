@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
     }
     if (nav) {
       req.input('nav', sql.NVarChar, `%${nav}%`);
-      whereClause += ' AND nav LIKE @nav';
+      whereClause += ' AND (so LIKE @nav OR invoice_so_proforma LIKE @nav)';
     }
 
     // Union all three tables, tag each row with its source company

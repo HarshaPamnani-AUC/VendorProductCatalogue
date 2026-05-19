@@ -208,7 +208,7 @@ export default function SearchPage() {
 
   data.forEach(item => {
 
-    const vendor = item.vendorName || 'Unknown';
+    const vendor = ((item.vendorName || 'Unknown').trim().replace(/[-_]+/g, ' ').replace(/\s+/g, ' ')).toUpperCase();
 
     const date = item.productDate || 'Unknown';
 
@@ -316,7 +316,7 @@ export default function SearchPage() {
 
     searchResults.forEach(product => {
 
-      const vendor = product.vendorName || 'Unknown';
+      const vendor = ((product.vendorName || 'Unknown').trim().replace(/[-_]+/g, ' ').replace(/\s+/g, ' ')).toUpperCase();
 
       const quantity = product.stockQuantity || 0;
 
