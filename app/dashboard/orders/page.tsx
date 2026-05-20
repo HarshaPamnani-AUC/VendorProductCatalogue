@@ -334,6 +334,7 @@ function HistoryTab() {
   const [updating, setUpdating]   = useState<number | null>(null);
   const [selected, setSelected]   = useState<Set<string>>(new Set());
   const [deleting, setDeleting]   = useState(false);
+  const [exporting, setExporting] = useState(false);
   const [editValues, setEditValues] = useState<Record<string, any>>({});
   const pageSize = 50;
 
@@ -382,6 +383,65 @@ function HistoryTab() {
       alert('Delete failed: ' + e.message);
     } finally {
       setDeleting(false);
+    }
+  };
+
+  const exportData = async () => {
+    setExporting(true);
+    try {
+      // Fetch all matching rows (no pagination) for export
+      const params = new URLSearchParams({ page: '1', pageSize: '100000' });
+      if (company)   params.set('company', company);
+      if (sheetType) params.set('sheet_type', sheetType);
+      if (search)    params.set('search', search);
+      if (ean)       params.set('ean', ean);
+      if (nav)       params.set('nav', nav);
+      params.set('sortDir', sortDir);
+      const res  = await fetch(`/api/orders?${params}`);
+      const json = await res.json();
+      const rows = json.data || [];
+
+      // Build CSV
+      const headers = [
+        'Company','Order/Demand ID','Supplier','Order Date','Invoice/SO/Proforma',
+        'Invoice Date','Delivery Date','Port Info Date','Status','SO','NAV',
+        'UPC/EAN','Brand','NAV Name','Currency',
+        'Order Qty','Order Price','SO Qty','SO Price','Invoice Qty','Inv. Price','Sheet Type'
+      ];
+
+      const escape = (v: any) => {
+        if (v == null) return '';
+        const s = String(v);
+        return s.includes(',') || s.includes('"') || s.includes('\n')
+          ? `"${s.replace(/"/g, '""')}"` : s;
+      };
+
+      const csvRows = [
+        headers.join(','),
+        ...rows.map((r: any) => [
+          r.company, r.order_demand_id, r.supplier,
+          r.order_date ? new Date(r.order_date).toLocaleDateString() : '',
+          r.invoice_so_proforma,
+          r.invoice_date ? new Date(r.invoice_date).toLocaleDateString() : '',
+          r.delivery_date ? new Date(r.delivery_date).toLocaleDateString() : '',
+          r.port_info_date ? new Date(r.port_info_date).toLocaleDateString() : '',
+          r.status, r.so, r.nav, r.upc_ean, r.brand, r.nav_name, r.currency,
+          r.order_qty, r.order_price, r.so_qty, r.so_price, r.invoice_qty, r.inv_price,
+          r.sheet_type
+        ].map(escape).join(','))
+      ];
+
+      const blob = new Blob(['\ufeff' + csvRows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = `orders_export_${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (e: any) {
+      alert('Export failed: ' + e.message);
+    } finally {
+      setExporting(false);
     }
   };
 
@@ -603,6 +663,13 @@ function HistoryTab() {
               {deleting ? 'Deleting…' : `Delete ${selected.size} selected`}
             </button>
           )}
+          <button onClick={exportData} disabled={exporting || total === 0}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-xs font-semibold transition-colors disabled:opacity-50">
+            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            {exporting ? 'Exporting…' : `Export CSV (${total.toLocaleString()})`}
+          </button>
         </div>
         <div className="flex gap-2">
           <button onClick={() => fetchData(page - 1)} disabled={page <= 1 || loading}
