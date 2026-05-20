@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     req.input('offset',   sql.Int, offset);
     req.input('pageSize', sql.Int, pageSize);
 
-    let where = 'WHERE 1=1';
+    let where = 'WHERE sheet_type != \'NOT BUY\'';
     if (company) {
       req.input('company', sql.NVarChar, company);
       where += ' AND company = @company';

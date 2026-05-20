@@ -124,9 +124,7 @@ export default function SearchPage() {
       if (productName.trim()) {
 
         params.append('productName', productName.trim());
-
       }
-
 
 
       const url = `/api/products/search?${params.toString()}`;
@@ -490,7 +488,7 @@ export default function SearchPage() {
 
       <form onSubmit={handleSearch} className="bg-card border border-border rounded-lg p-6 mb-8">
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
 
           <div>
 
@@ -567,7 +565,6 @@ export default function SearchPage() {
             />
 
           </div>
-
         </div>
 
 

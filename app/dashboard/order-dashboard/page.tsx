@@ -45,6 +45,53 @@ export default function OrderDashboardPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error,   setError]   = useState('');
+  const [exporting, setExporting] = useState(false);
+
+  const exportData = async () => {
+    setExporting(true);
+    try {
+      const params = new URLSearchParams({ page: '1', pageSize: '100000' });
+      if (search)  params.set('search', search);
+      if (company) params.set('company', company);
+      const res  = await fetch(`/api/orders/dashboard?${params}`);
+      const json = await res.json();
+      const rows = json.data || [];
+
+      const headers = [
+        'Done/Pending','Company','Supplier','Invoice Date','Currency',
+        'Order Qty','Order Price','SO Qty','SO Price','Invoice Qty','Invoice Price'
+      ];
+
+      const escape = (v: any) => {
+        if (v == null) return '';
+        const s = String(v);
+        return s.includes(',') || s.includes('"') || s.includes('\n')
+          ? `"${s.replace(/"/g, '""')}"` : s;
+      };
+
+      const csvRows = [
+        headers.join(','),
+        ...rows.map((r: any) => [
+          r.sheet_type, r.company, r.supplier,
+          r.invoice_date ? new Date(r.invoice_date).toLocaleDateString('en-GB') : '',
+          r.currency, r.order_qty, r.order_price,
+          r.so_qty, r.so_price, r.invoice_qty, r.inv_price
+        ].map(escape).join(','))
+      ];
+
+      const blob = new Blob(['\ufeff' + csvRows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = `order_dashboard_${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch (e: any) {
+      alert('Export failed: ' + e.message);
+    } finally {
+      setExporting(false);
+    }
+  };
   const pageSize = 100;
 
   const fetchData = useCallback(async (p = 1) => {
@@ -80,12 +127,11 @@ export default function OrderDashboardPage() {
 
       {/* Summary cards */}
       {stats && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           {[
             { label: 'Total Orders',    value: Number(stats.total).toLocaleString(),         cls: 'border-border' },
             { label: 'Pending',         value: Number(stats.pending).toLocaleString(),        cls: 'border-yellow-300 bg-yellow-50/50' },
             { label: 'Done',            value: Number(stats.done).toLocaleString(),           cls: 'border-green-300 bg-green-50/50' },
-            { label: 'Not Buy',         value: Number(stats.not_buy).toLocaleString(),        cls: 'border-red-300 bg-red-50/50' },
             { label: 'Order Value',     value: `$${Number(stats.total_order_value).toLocaleString(undefined,{maximumFractionDigits:0})}`,   cls: 'border-blue-300 bg-blue-50/50' },
             { label: 'Invoice Value',   value: `$${Number(stats.total_invoice_value).toLocaleString(undefined,{maximumFractionDigits:0})}`, cls: 'border-purple-300 bg-purple-50/50' },
           ].map(c => (
@@ -116,6 +162,13 @@ export default function OrderDashboardPage() {
             placeholder="Supplier, UPC, NAV name, Order ID…"
             className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary" />
         </div>
+        <button onClick={exportData} disabled={exporting || total === 0}
+          className="flex items-center gap-1.5 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-semibold transition-colors disabled:opacity-50">
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          {exporting ? 'Exporting…' : `Export CSV (${total.toLocaleString()})`}
+        </button>
         <button onClick={() => fetchData(1)} disabled={loading}
           className="px-5 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-semibold hover:bg-primary/90 disabled:opacity-50 transition-colors">
           {loading ? 'Loading…' : 'Search'}

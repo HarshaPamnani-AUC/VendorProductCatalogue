@@ -59,7 +59,7 @@ router.get('/', async (req, res) => {
         [Name] as ProductName,
         FORMAT([Date], 'dd-MM-yyyy') as ProductDate,
         '' as Description,
-        '' as Brand,
+        [Brand] as Brand,
         '' as Category,
         CASE 
           WHEN ISNUMERIC(REPLACE(REPLACE(REPLACE([Price], '$', ''), ',', ''), ' ', '')) = 1 

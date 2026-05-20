@@ -31,6 +31,7 @@ export default function ProductHistoryPage() {
   const [navCode, setNavCode] = useState('');
   const [upcCode, setUpcCode] = useState('');
   const [productName, setProductName] = useState('');
+  const [brandName, setBrandName] = useState('');
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
@@ -39,7 +40,7 @@ export default function ProductHistoryPage() {
     e.preventDefault();
     
     // Check if at least one search field is filled
-    if (!navCode.trim() && !upcCode.trim() && !productName.trim()) {
+    if (!navCode.trim() && !upcCode.trim() && !productName.trim() && !brandName.trim()) {
       return;
     }
 
@@ -58,6 +59,9 @@ export default function ProductHistoryPage() {
       }
       if (productName.trim()) {
         params.append('productName', productName.trim());
+      }
+      if (brandName.trim()) {
+        params.append('brandName', brandName.trim());
       }
 
       const response = await fetch(`/api/products/history?${params}`);
@@ -83,6 +87,7 @@ export default function ProductHistoryPage() {
     setNavCode('');
     setUpcCode('');
     setProductName('');
+    setBrandName('');
     setSearchResults([]);
     setSearched(false);
   };
@@ -227,7 +232,7 @@ export default function ProductHistoryPage() {
 
       {/* Search Form */}
       <form onSubmit={handleSearch} className="bg-card border border-border rounded-lg p-6 mb-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <div>
             <label className="block text-sm font-medium text-foreground mb-2">
               NAV Code
@@ -266,12 +271,25 @@ export default function ProductHistoryPage() {
               className="w-full px-4 py-3 rounded-lg border border-border bg-input text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
+
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-2">
+              Brand Name
+            </label>
+            <input
+              type="text"
+              value={brandName}
+              onChange={(e) => setBrandName(e.target.value)}
+              placeholder="Enter brand name..."
+              className="w-full px-4 py-3 rounded-lg border border-border bg-input text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <button
             type="submit"
-            disabled={loading || (!navCode.trim() && !upcCode.trim() && !productName.trim())}
+            disabled={loading || (!navCode.trim() && !upcCode.trim() && !productName.trim() && !brandName.trim())}
             className="w-full py-3 px-4 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg transition-colors disabled:opacity-50"
           >
             {loading ? 'Analyzing...' : 'Analyze Insights'}

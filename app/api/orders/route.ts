@@ -101,7 +101,7 @@ export async function GET(request: NextRequest) {
 export async function PATCH(request: NextRequest) {
   try {
     const body = await request.json();
-    const { id, table, sheet_type, invoice_so_proforma, invoice_date, invoice_qty, inv_price } = body;
+    const { id, table, sheet_type, invoice_so_proforma, invoice_date, invoice_qty, inv_price, status } = body;
 
     const allowed = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders'];
     const allowedTypes = ['PENDING ORDERS', 'DONE ORDERS', 'NOT BUY'];
@@ -136,6 +136,10 @@ export async function PATCH(request: NextRequest) {
     if (inv_price !== undefined) {
       req.input('inv_price', sql.Decimal(15, 4), inv_price != null ? parseFloat(inv_price) : null);
       updateFields.push('inv_price = @inv_price');
+    }
+    if (status !== undefined) {
+      req.input('status', sql.NVarChar, status);
+      updateFields.push('status = @status');
     }
 
     if (updateFields.length === 0) {
