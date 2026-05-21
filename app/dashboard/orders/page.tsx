@@ -9,10 +9,18 @@ type SheetType = 'PENDING ORDERS' | 'DONE ORDERS' | 'NOT BUY';
 
 const TABLES: TableName[]     = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders'];
 const SHEET_TYPES: SheetType[] = ['PENDING ORDERS', 'DONE ORDERS', 'NOT BUY'];
+const STATUS_OPTIONS = [
+  'ON THE WAY (AIR)',
+  'ON THE WAY (SEA)',
+  'In Supplier WH',
+  'IN TRANSIT',
+  'DELIVERED',
+  'READY TO PICK UP',
+];
 
 const COLUMNS = [
   { key: 'checkbox',            label: '' },
-  { key: 'actions',             label: 'Status' },
+  { key: 'actions',             label: 'Actions' },
   { key: 'company',             label: 'Company' },
   { key: 'order_demand_id',     label: 'Order/Demand ID' },
   { key: 'supplier',            label: 'Supplier' },
@@ -331,7 +339,7 @@ function HistoryTab() {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading]     = useState(false);
   const [error, setError]         = useState('');
-  const [updating, setUpdating]   = useState<number | null>(null);
+  const [updating, setUpdating]   = useState<string | null>(null);
   const [selected, setSelected]   = useState<Set<string>>(new Set());
   const [deleting, setDeleting]   = useState(false);
   const [exporting, setExporting] = useState(false);
@@ -447,7 +455,7 @@ function HistoryTab() {
 
   const markAs = async (row: any, newType: 'DONE ORDERS' | 'NOT BUY') => {
     if (row.sheet_type === newType) return;
-    setUpdating(row.id);
+    setUpdating(rowKey(row));
     try {
       const res = await fetch('/api/orders', {
         method: 'PATCH',
@@ -492,10 +500,35 @@ function HistoryTab() {
           invoice_date: row.invoice_date ? new Date(row.invoice_date).toISOString().split('T')[0] : '',
           invoice_qty: row.invoice_qty || '',
           inv_price: row.inv_price || '',
+          status: row.status || '',
         }),
         [field]: value
       }
     }));
+  };
+
+  const updateStatus = async (row: any, status: string) => {
+    if (row.status === status) return;
+    const previousStatus = row.status;
+
+    // Optimistically update the local row status first to avoid a visible refresh blink.
+    setData(prev => prev.map(r => r.id === row.id && r.company === row.company ? { ...r, status } : r));
+    try {
+      const res = await fetch('/api/orders', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: row.id,
+          table: companyToTable[row.company],
+          status,
+        }),
+      });
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error);
+    } catch (e: any) {
+      alert('Failed to update status: ' + e.message);
+      setData(prev => prev.map(r => r.id === row.id && r.company === row.company ? { ...r, status: previousStatus } : r));
+    }
   };
 
   const saveOrder = async (row: any) => {
@@ -507,7 +540,7 @@ function HistoryTab() {
       return;
     }
 
-    setUpdating(row.id);
+    setUpdating(rowKey(row));
     try {
       const res = await fetch('/api/orders', {
         method: 'PATCH',
@@ -701,7 +734,7 @@ function HistoryTab() {
                     className="rounded border-border cursor-pointer" />
                 </th>
                 {COLUMNS.filter(c => c.key !== 'checkbox').map((c, idx) => (
-                  <th key={c.key} className={`text-left px-3 py-2.5 text-muted-foreground font-semibold whitespace-nowrap border-b border-border ${idx < COLUMNS.length - 2 ? 'border-r' : ''}`}>
+                  <th key={c.key} className={`text-left px-3 py-2.5 text-muted-foreground font-semibold whitespace-nowrap border-b border-border ${c.key === 'status' ? 'min-w-[220px]' : ''} ${idx < COLUMNS.length - 2 ? 'border-r' : ''}`}>
                     {c.label}
                   </th>
                 ))}
@@ -729,7 +762,7 @@ function HistoryTab() {
                       {row.sheet_type === 'PENDING ORDERS' ? (
                         <button
                           onClick={() => saveOrder(row)}
-                          disabled={updating === row.id}
+                          disabled={updating === rowKey(row)}
                           title="Save & Move to Done"
                           className="p-1.5 rounded-lg text-green-600 bg-green-50 hover:bg-green-100 transition-colors disabled:opacity-40"
                         >
@@ -740,7 +773,7 @@ function HistoryTab() {
                       ) : (
                         <button
                           onClick={() => markAs(row, 'DONE ORDERS')}
-                          disabled={updating === row.id || row.sheet_type === 'DONE ORDERS'}
+                          disabled={updating === rowKey(row) || row.sheet_type === 'DONE ORDERS'}
                           title="Mark as Done"
                           className={`p-1.5 rounded-lg transition-colors ${
                             row.sheet_type === 'DONE ORDERS'
@@ -756,7 +789,7 @@ function HistoryTab() {
                       {/* Mark as Not Buy */}
                       <button
                         onClick={() => markAs(row, 'NOT BUY')}
-                        disabled={updating === row.id || row.sheet_type === 'NOT BUY'}
+                        disabled={updating === rowKey(row) || row.sheet_type === 'NOT BUY'}
                         title="Mark as Not Buy"
                         className={`p-1.5 rounded-lg transition-colors ${
                           row.sheet_type === 'NOT BUY'
@@ -768,7 +801,7 @@ function HistoryTab() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>
-                      {updating === row.id && (
+                      {updating === rowKey(row) && (
                         <svg className="w-3 h-3 animate-spin text-muted-foreground" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
@@ -810,10 +843,19 @@ function HistoryTab() {
                   </td>
                   <td className="px-3 py-2 text-muted-foreground whitespace-nowrap border-r border-border">{fmtDate(row.delivery_date)}</td>
                   <td className="px-3 py-2 text-muted-foreground whitespace-nowrap border-r border-border">{fmtDate(row.port_info_date)}</td>
-                  <td className="px-3 py-2 border-r border-border">
-                    {row.status
-                      ? <span className="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 font-medium text-xs">{row.status}</span>
-                      : '—'}
+                  <td className="px-3 py-2 border-r border-border min-w-[220px]">
+                    <select
+                      value={row.status || ''}
+                      onChange={e => updateStatus(row, e.target.value)}
+                      className="w-full bg-background border border-border rounded px-2 py-1 text-xs text-foreground focus:ring-1 focus:ring-primary outline-none"
+                    >
+                      <option value="">Select status</option>
+                      {STATUS_OPTIONS.map(statusOption => (
+                        <option key={statusOption} value={statusOption}>
+                          {statusOption}
+                        </option>
+                      ))}
+                    </select>
                   </td>
                   <td className="px-3 py-2 text-foreground border-r border-border">{row.so || '—'}</td>
                   <td className="px-3 py-2 text-foreground border-r border-border">{row.nav || '—'}</td>

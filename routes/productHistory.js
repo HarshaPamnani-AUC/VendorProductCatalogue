@@ -8,10 +8,10 @@ router.get('/', async (req, res) => {
     console.log('=== PRODUCT HISTORY SEARCH ===');
     console.log('Request query:', req.query);
 
-    const { navCode, upcCode, productName } = req.query;
+    const { navCode, upcCode, productName, brandName } = req.query;
 
     // Check if at least one search parameter is provided
-    if (!navCode && !upcCode && !productName) {
+    if (!navCode && !upcCode && !productName && !brandName) {
       return res.status(400).json({ error: 'At least one search parameter is required' });
     }
 
@@ -36,7 +36,7 @@ router.get('/', async (req, res) => {
         [Name] as ProductName,
         FORMAT([Date], 'dd-MM-yyyy') as ProductDate,
         '' as Description,
-        '' as Brand,
+        [Brand] as Brand,
         '' as Category,
         CASE 
           WHEN ISNUMERIC(REPLACE(REPLACE(REPLACE([Price], '$', ''), ',', ''), ' ', '')) = 1 
@@ -75,6 +75,12 @@ router.get('/', async (req, res) => {
       sqlQuery += ' AND [Name] LIKE @productName';
       request.input('productName', sql.NVarChar, `%${productName.trim()}%`);
       console.log('Added productName filter:', productName.trim());
+    }
+
+    if (brandName && brandName.trim()) {
+      sqlQuery += ' AND [Brand] LIKE @brandName';
+      request.input('brandName', sql.NVarChar, `%${brandName.trim()}%`);
+      console.log('Added brandName filter:', brandName.trim());
     }
 
     // Add sorting with support for flexible sort options
