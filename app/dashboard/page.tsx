@@ -173,7 +173,7 @@ export default function DashboardPage() {
       const params = new URLSearchParams();
       params.append('upcCode', eanUpcSearch.trim());
 
-      const url = `/api/products/search?${params.toString()}`;
+      const url = `/api/price-intelligence?${params.toString()}`;
       console.log('Fetching EAN/UPC from URL:', url);
 
       const response = await fetch(url);
@@ -202,7 +202,7 @@ export default function DashboardPage() {
   // Fetch lowest price items by default on component mount
   const fetchLowestPriceItems = async () => {
     try {
-      const url = '/api/products/search?limit=10'; // Get top 10 items for best performance
+      const url = '/api/price-intelligence?limit=10'; // Get top 10 items for best performance
       console.log('Fetching lowest price items from URL:', url);
 
       const response = await fetch(url);

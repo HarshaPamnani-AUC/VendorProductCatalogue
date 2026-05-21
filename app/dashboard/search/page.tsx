@@ -2,7 +2,7 @@
 
 
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 
 import { Download } from 'lucide-react';
 
@@ -70,6 +70,8 @@ export default function SearchPage() {
 
   const [searched, setSearched] = useState(false);
 
+  const [error, setError] = useState('');
+
 
 
   
@@ -99,6 +101,8 @@ export default function SearchPage() {
 
     setSearched(true);
 
+    setError('');
+
 
 
     try {
@@ -127,15 +131,28 @@ export default function SearchPage() {
       }
 
 
-      const url = `/api/products/search?${params.toString()}`;
+      const url = `/api/price-intelligence?${params.toString()}`;
 
       console.log('Fetching from URL:', url);
 
 
 
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      const contentType = response.headers.get('content-type') || '';
+      if (!contentType.includes('application/json')) {
+        throw new Error('Price Intelligence received a page instead of search data. Please restart the Next.js server and try again.');
+      }
 
       const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to load price intelligence');
+      }
 
       
 
@@ -145,15 +162,15 @@ export default function SearchPage() {
 
       } else {
 
-        console.error('API returned non-array data:', data);
-
-        setSearchResults([]);
+        throw new Error('Price Intelligence returned data in an unexpected format');
 
       }
 
-    } catch (error) {
+    } catch (error: any) {
 
       console.error('Search error:', error);
+
+      setError(error.message || 'Failed to load price intelligence');
 
       setSearchResults([]);
 
@@ -178,6 +195,8 @@ export default function SearchPage() {
     setSearchResults([]);
 
     setSearched(false);
+
+    setError('');
 
     
 
@@ -605,6 +624,20 @@ export default function SearchPage() {
 
 
 
+      {error && (
+
+        <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4 mb-8">
+
+          <p className="text-destructive font-semibold">Price Intelligence search failed</p>
+
+          <p className="text-sm text-destructive/80 mt-1">{error}</p>
+
+        </div>
+
+      )}
+
+
+
       {/* Product Names Display Section */}
 
       {searched && searchResults.length > 0 && (
@@ -659,9 +692,9 @@ export default function SearchPage() {
 
               </svg>
 
-              <p className="text-foreground font-semibold mb-2">No products found</p>
+              <p className="text-foreground font-semibold mb-2">{error ? 'Search could not be completed' : 'No products found'}</p>
 
-              <p className="text-muted-foreground">Try adjusting your search criteria</p>
+              <p className="text-muted-foreground">{error ? 'Fix the error above and try again' : 'Try adjusting your search criteria'}</p>
 
             </div>
 

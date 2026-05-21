@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Download } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
@@ -35,9 +35,11 @@ export default function ProductHistoryPage() {
   const [searchResults, setSearchResults] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     
     // Check if at least one search field is filled
     if (!navCode.trim() && !upcCode.trim() && !productName.trim() && !brandName.trim()) {
@@ -46,6 +48,7 @@ export default function ProductHistoryPage() {
 
     setLoading(true);
     setSearched(true);
+    setError('');
 
     try {
       const params = new URLSearchParams();
@@ -64,19 +67,31 @@ export default function ProductHistoryPage() {
         params.append('brandName', brandName.trim());
       }
 
-      const response = await fetch(`/api/products/history?${params}`);
+      const response = await fetch(`/api/product-insights?${params}`, {
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      const contentType = response.headers.get('content-type') || '';
+      if (!contentType.includes('application/json')) {
+        throw new Error('Product Insights received a page instead of search data. Please restart the Next.js server and try again.');
+      }
+
       const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to load product insights');
+      }
+
       if (Array.isArray(data)) {
         setSearchResults(data as Product[]);
-      } else if (typeof data === 'object' && data !== null) {
-        // Convert object with numeric keys to array
-        const resultsArray = Object.values(data) as Product[];
-        setSearchResults(resultsArray);
       } else {
-        setSearchResults([]);
+        throw new Error('Product Insights returned data in an unexpected format');
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Search error:', err);
+      setError(err.message || 'Failed to load product insights');
       setSearchResults([]);
     } finally {
       setLoading(false);
@@ -90,6 +105,7 @@ export default function ProductHistoryPage() {
     setBrandName('');
     setSearchResults([]);
     setSearched(false);
+    setError('');
   };
 
   const handleDownload = () => {
@@ -304,6 +320,13 @@ export default function ProductHistoryPage() {
         </div>
       </form>
 
+      {error && (
+        <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4 mb-8">
+          <p className="text-destructive font-semibold">Product Insights search failed</p>
+          <p className="text-sm text-destructive/80 mt-1">{error}</p>
+        </div>
+      )}
+
       {/* Product Names Display Section */}
       {searched && searchResults.length > 0 && (
         <div className="bg-card border border-border rounded-lg p-6 mb-8">
@@ -331,8 +354,12 @@ export default function ProductHistoryPage() {
               <svg className="w-16 h-16 text-muted mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <p className="text-foreground font-semibold mb-2">No products found in history</p>
-              <p className="text-muted-foreground">Try adjusting your search criteria</p>
+              <p className="text-foreground font-semibold mb-2">
+                {error ? 'Search could not be completed' : 'No products found in history'}
+              </p>
+              <p className="text-muted-foreground">
+                {error ? 'Fix the error above and try again' : 'Try adjusting your search criteria'}
+              </p>
             </div>
           ) : (
             <div className="bg-card border border-border rounded-lg overflow-hidden">
