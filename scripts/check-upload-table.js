@@ -71,6 +71,24 @@ const config = {
     `);
     console.log('Sample upload dates:', samples.recordset);
 
+    try {
+      const proc = await pool.request().query(`
+        SELECT OBJECT_DEFINITION(OBJECT_ID('dbo.Proc_Upload_Tbl_Products')) AS definition
+      `);
+      const def = proc.recordset[0]?.definition || '';
+      console.log('Procedure (first 2000 chars):', def.slice(0, 2000));
+    } catch (e) {
+      console.log('Could not read procedure:', e.message);
+    }
+
+    const indexes = await pool.request().query(`
+      SELECT i.name, i.is_unique, i.type_desc
+      FROM sys.indexes i
+      JOIN sys.tables t ON i.object_id = t.object_id
+      WHERE t.name = 'Tbl_Products' AND i.index_id > 0
+    `);
+    console.log('Tbl_Products indexes:', indexes.recordset);
+
     await pool.close();
   } catch (e) {
     console.error('ERR:', e.message);

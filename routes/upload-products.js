@@ -7,6 +7,17 @@ const { verifyToken } = require('./auth');
 const fs = require('fs');
 const path = require('path');
 const { formatUploadDate } = require('../utils/formatUploadDate');
+const {
+  dedupeWithinFile,
+  loadExistingCatalogFingerprints,
+  filterExistingInCatalog,
+} = require('../utils/filterDuplicateUploadRows');
+const {
+  resolveColumnMapping,
+  parseRowFromSheet,
+  isDataRow,
+  SUPPORTED_FORMAT_HELP,
+} = require('../utils/uploadColumnMap');
 
 // Configure multer for memory storage
 const upload = multer({
@@ -390,34 +401,29 @@ router.post('/', upload.single('file'), async (req, res) => {
       });
     }
 
-    const excelHeaders = data[0].map(header => String(header).trim()).filter(header => header);
-    console.log('Excel headers found:', excelHeaders);
+    const { mapping, displayHeaders, missing, priceColumnIndexes } = resolveColumnMapping(data[0]);
+    console.log('Excel headers found:', displayHeaders);
+    console.log('Column mapping:', mapping, 'price columns:', priceColumnIndexes);
 
-    // Skip ALL validation for now - just check if we have the right columns
-    const hasRequiredColumns = excelHeaders.includes('Date') && 
-                              excelHeaders.includes('EAN/UPC') && 
-                              excelHeaders.includes('Name') && 
-                              excelHeaders.includes('Item_Code') && 
-                              excelHeaders.includes('Qty') && 
-                              excelHeaders.includes('Price');
-
-    console.log('Required columns check:', hasRequiredColumns);
-
-    if (!hasRequiredColumns) {
+    if (missing.length > 0) {
       const errorEntry = {
         timestamp: new Date().toISOString(),
         error: 'Missing required columns',
         fileName: file.originalname,
-        foundHeaders: excelHeaders,
-        requiredColumns: ['Date', 'EAN/UPC', 'Name', 'Item_Code', 'Qty', 'Price'],
-        status: 'COLUMNS_MISSING'
+        foundHeaders: displayHeaders,
+        missingColumns: missing,
+        status: 'COLUMNS_MISSING',
       };
       fs.appendFileSync('logs/uploads.log', JSON.stringify(errorEntry) + '\n');
-      
+
       return res.status(400).json({
         success: false,
-        message: 'Missing required columns. Need: Date, EAN/UPC, Name, Item_Code, Qty, Price',
-        found: excelHeaders
+        message: `Missing required column(s): ${missing.join(', ')}. ${SUPPORTED_FORMAT_HELP}`,
+        found: displayHeaders,
+        validationErrors: {
+          required: ['date', 'eanUpc', 'name', 'itemCode', 'qty', 'price'],
+          actual: displayHeaders,
+        },
       });
     }
 
@@ -457,19 +463,15 @@ router.post('/', upload.single('file'), async (req, res) => {
     let errorCount = 0;
     const importErrors = [];
 
-    const headers = data[0];
-    const colMapping = {};
-    headers.forEach((header, index) => { colMapping[header] = index; });
-
     // Build rows array, skip header
     const rows = [];
     const invalidDateRows = [];
     for (let i = 1; i < data.length; i++) {
       const row = data[i];
-      if (!row || row.length === 0 || !row[0]) continue;
+      if (!row || row.length === 0 || !isDataRow(row, mapping)) continue;
 
-      const rawDate = row[colMapping['Date']];
-      const date = formatUploadDate(rawDate);
+      const parsed = parseRowFromSheet(row, mapping, priceColumnIndexes);
+      const date = formatUploadDate(parsed.date);
       if (!date) {
         invalidDateRows.push(i + 1);
         continue;
@@ -477,11 +479,11 @@ router.post('/', upload.single('file'), async (req, res) => {
 
       rows.push({
         date,
-        eanUpc:   String(row[colMapping['EAN/UPC']]   || ''),
-        name:     String(row[colMapping['Name']]      || ''),
-        itemCode: String(row[colMapping['Item_Code']] || ''),
-        qty:      String(row[colMapping['Qty']]       || ''),
-        price:    String(row[colMapping['Price']]     || ''),
+        eanUpc: parsed.eanUpc,
+        name: parsed.name,
+        itemCode: parsed.itemCode,
+        qty: parsed.qty,
+        price: parsed.price,
       });
     }
 
@@ -493,10 +495,34 @@ router.post('/', upload.single('file'), async (req, res) => {
       });
     }
 
+    const totalRowsInFile = rows.length;
+    const { unique: rowsInFile, skippedInFile } = dedupeWithinFile(rows);
+    const existingFingerprints = await loadExistingCatalogFingerprints(pool, vendorName);
+    const { newRows, skippedExisting } = filterExistingInCatalog(rowsInFile, existingFingerprints);
+    const rowsSkippedDuplicates = skippedInFile + skippedExisting;
+
+    console.log(
+      `Duplicate filter (all fields): ${totalRowsInFile} in file → ${rowsInFile.length} unique in file → ${newRows.length} new (${rowsSkippedDuplicates} identical rows skipped)`,
+    );
+
+    if (newRows.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message:
+          'No new products to import. Every row is identical to one already in the catalog for this vendor or repeated in the file.',
+        results: {
+          rowsInFile: totalRowsInFile,
+          rowsSkippedDuplicates,
+          rowsInserted: 0,
+          vendor: vendorName,
+        },
+      });
+    }
+
     // Insert in batches of 500 to avoid parameter limits
     const BATCH_SIZE = 500;
-    for (let b = 0; b < rows.length; b += BATCH_SIZE) {
-      const batch = rows.slice(b, b + BATCH_SIZE);
+    for (let b = 0; b < newRows.length; b += BATCH_SIZE) {
+      const batch = newRows.slice(b, b + BATCH_SIZE);
       const valuePlaceholders = batch.map((_, idx) =>
         `(@d${idx},@e${idx},@n${idx},@i${idx},@q${idx},@p${idx})`
       ).join(',');
@@ -539,7 +565,8 @@ router.post('/', upload.single('file'), async (req, res) => {
       return res.status(400).json({
         success: false,
         message: 'No data was imported. Please check your Excel file format.',
-        errors: importErrors
+        errors: importErrors,
+        results: { rowsSkippedDuplicates },
       });
     }
 
@@ -587,15 +614,22 @@ router.post('/', upload.single('file'), async (req, res) => {
     };
     fs.appendFileSync('logs/uploads.log', JSON.stringify(successEntry) + '\n');
 
+    const successMessage =
+      rowsSkippedDuplicates > 0
+        ? `Uploaded ${insertedCount} new product(s). Skipped ${rowsSkippedDuplicates} row(s) with identical data already in the catalog or repeated in the file.`
+        : 'Product data uploaded and processed successfully';
+
     return res.json({
       success: true,
-      message: 'Product data uploaded and processed successfully',
+      message: successMessage,
       results: {
+        rowsInFile: totalRowsInFile,
         rowsInserted: insertedCount,
+        rowsSkippedDuplicates,
         rowsFailed: errorCount,
         vendor: vendorName,
-        errors: importErrors
-      }
+        errors: importErrors,
+      },
     });
 
   } catch (error) {
