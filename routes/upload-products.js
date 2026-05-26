@@ -54,7 +54,6 @@ async function parseAndInsertToUploadTable(pool, fileId, vendorId, fileContent) 
       const row = dataToProcess[i];
       
       try {
-        // Map columns according to our template structure
         const date = row['Date'] || '';
         const eanUpc = row['EAN/UPC'] || '';
         const name = row['Name'] || '';
@@ -62,51 +61,11 @@ async function parseAndInsertToUploadTable(pool, fileId, vendorId, fileContent) 
         const qty = row['Qty'] || '';
         const price = row['Price'] || '';
         
-        // Debug: Log the raw values and validation
-        if (i < 5) {
-          console.log(`Row ${i} - Raw values:`, {
-            date: row['Date'],
-            eanUpc: row['EAN/UPC'],
-            name: row['Name'],
-            itemCode: row['Item_Code'],
-            qty: row['Qty'],
-            price: row['Price'],
-            allColumns: Object.keys(row),
-            allValues: Object.values(row)
-          });
-        }
-        
-        // Log first few rows for debugging
-        if (i < 5) {
-          sampleRows.push({
-            rowIndex: i,
-            rawRow: row,
-            mappedData: {
-              date,
-              eanUpc,
-              name,
-              itemCode,
-              qty,
-              price,
-              availableColumns: Object.keys(row)
-            }
-          });
-        }
-        
-        // Skip rows with empty Item_Code (required field)
         if (!itemCode || itemCode.toString().trim() === '') {
           failureCount++;
-          if (failureCount <= 10) { // Log first 10 failures
-            logUpload(`Row ${i} skipped - Empty Item_Code`, {
-              rowIndex: i,
-              itemCode,
-              hasValidData: !!(itemCode && itemCode.toString().trim() !== '')
-            });
-          }
           continue;
         }
 
-        // Insert into Upload_Tbl_Products table
         await pool.request()
           .input('date', sql.NVarChar, date || null)
           .input('eanUpc', sql.NVarChar, eanUpc || null)
@@ -123,12 +82,9 @@ async function parseAndInsertToUploadTable(pool, fileId, vendorId, fileContent) 
           `);
 
         successCount++;
-        logUpload(`Row ${i} inserted successfully`, { itemCode, name });
-        
       } catch (rowError) {
         failureCount++;
         errors.push(`Row ${i} error: ${rowError.message}`);
-        logUpload(`Row ${i} processing error`, { error: rowError.message, row });
       }
     }
 
@@ -494,51 +450,63 @@ router.post('/', upload.single('file'), async (req, res) => {
       });
     }
 
-    // Step 4: Import data
-    console.log('Importing data...');
+    // Step 4: Import data - BULK INSERT using table variable
+    console.log('Importing data (bulk)...');
     let insertedCount = 0;
     let errorCount = 0;
     const importErrors = [];
 
-    // Create column mapping
     const headers = data[0];
     const colMapping = {};
-    headers.forEach((header, index) => {
-      colMapping[header] = index;
-    });
+    headers.forEach((header, index) => { colMapping[header] = index; });
 
-    console.log('Column mapping:', colMapping);
-
-    // Skip header row, start from index 1
+    // Build rows array, skip header
+    const rows = [];
     for (let i = 1; i < data.length; i++) {
       const row = data[i];
-
-      // Skip empty rows
       if (!row || row.length === 0 || !row[0]) continue;
+      rows.push({
+        date:     String(row[colMapping['Date']]      || ''),
+        eanUpc:   String(row[colMapping['EAN/UPC']]   || ''),
+        name:     String(row[colMapping['Name']]      || ''),
+        itemCode: String(row[colMapping['Item_Code']] || ''),
+        qty:      String(row[colMapping['Qty']]       || ''),
+        price:    String(row[colMapping['Price']]     || ''),
+      });
+    }
+
+    // Insert in batches of 500 to avoid parameter limits
+    const BATCH_SIZE = 500;
+    for (let b = 0; b < rows.length; b += BATCH_SIZE) {
+      const batch = rows.slice(b, b + BATCH_SIZE);
+      const valuePlaceholders = batch.map((_, idx) =>
+        `(@d${idx},@e${idx},@n${idx},@i${idx},@q${idx},@p${idx})`
+      ).join(',');
+
+      const req = pool.request();
+      batch.forEach((r, idx) => {
+        req.input(`d${idx}`, sql.NVarChar, r.date);
+        req.input(`e${idx}`, sql.NVarChar, r.eanUpc);
+        req.input(`n${idx}`, sql.NVarChar, r.name);
+        req.input(`i${idx}`, sql.NVarChar, r.itemCode);
+        req.input(`q${idx}`, sql.NVarChar, r.qty);
+        req.input(`p${idx}`, sql.NVarChar, r.price);
+      });
 
       try {
-        await pool.request()
-          .input('date', sql.NVarChar, String(row[colMapping['Date']] || ''))
-          .input('eanUpc', sql.NVarChar, String(row[colMapping['EAN/UPC']] || ''))
-          .input('name', sql.NVarChar, String(row[colMapping['Name']] || ''))
-          .input('itemCode', sql.NVarChar, String(row[colMapping['Item_Code']] || ''))
-          .input('qty', sql.NVarChar, String(row[colMapping['Qty']] || ''))
-          .input('price', sql.NVarChar, String(row[colMapping['Price']] || ''))
-          .query(`
-            INSERT INTO Upload_Tbl_Products
-            (Date, [EAN/UPC], Name, Item_Code, Qty, Price)
-            VALUES (@date, @eanUpc, @name, @itemCode, @qty, @price)
-          `);
-        insertedCount++;
-        console.log(`✅ Row ${i} inserted: ${row[colMapping['Item_Code']]}`);
-      } catch (insertError) {
-        errorCount++;
-        importErrors.push(`Row ${i + 1}: ${insertError.message}`);
-        console.error(`❌ Error inserting row ${i + 1}:`, insertError.message);
+        await req.query(`
+          INSERT INTO Upload_Tbl_Products (Date, [EAN/UPC], Name, Item_Code, Qty, Price)
+          VALUES ${valuePlaceholders}
+        `);
+        insertedCount += batch.length;
+      } catch (batchError) {
+        errorCount += batch.length;
+        importErrors.push(`Batch ${b}-${b + batch.length}: ${batchError.message}`);
+        console.error(`Batch insert error:`, batchError.message);
       }
     }
 
-    console.log(`✅ Import completed: ${insertedCount} rows inserted, ${errorCount} rows failed`);
+    console.log(`✅ Bulk import completed: ${insertedCount} rows inserted, ${errorCount} rows failed`);
 
     const importEntry = {
       timestamp: new Date().toISOString(),
