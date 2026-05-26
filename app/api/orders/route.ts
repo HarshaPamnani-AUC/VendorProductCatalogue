@@ -6,21 +6,21 @@ import sql from 'mssql';
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const company   = searchParams.get('company') || '';
+    const company = searchParams.get('company') || '';
     const sheetType = searchParams.get('sheet_type') || '';
-    const search    = searchParams.get('search') || '';
-    const ean       = searchParams.get('ean') || '';
-    const nav       = searchParams.get('nav') || '';
-    const sortDir   = searchParams.get('sortDir') === 'asc' ? 'ASC' : 'DESC';
-    const page      = parseInt(searchParams.get('page') || '1', 10);
-    const pageSize  = parseInt(searchParams.get('pageSize') || '50', 10);
-    const offset    = (page - 1) * pageSize;
+    const search = searchParams.get('search') || '';
+    const ean = searchParams.get('ean') || '';
+    const nav = searchParams.get('nav') || '';
+    const sortDir = searchParams.get('sortDir') === 'asc' ? 'ASC' : 'DESC';
+    const page = parseInt(searchParams.get('page') || '1', 10);
+    const pageSize = parseInt(searchParams.get('pageSize') || '50', 10);
+    const offset = (page - 1) * pageSize;
 
     const pool = await poolPromise;
     if (!pool) return NextResponse.json({ error: 'DB connection failed' }, { status: 500 });
 
     const req = pool.request();
-    req.input('offset',   sql.Int, offset);
+    req.input('offset', sql.Int, offset);
     req.input('pageSize', sql.Int, pageSize);
 
     let whereClause = 'WHERE 1=1';
@@ -157,7 +157,7 @@ export async function PATCH(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const body  = await request.json();
+    const body = await request.json();
     const table = body.table || 'LLP_Orders';
 
     const allowed = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders'];
@@ -169,27 +169,27 @@ export async function POST(request: NextRequest) {
     if (!pool) return NextResponse.json({ error: 'DB connection failed' }, { status: 500 });
 
     const req = pool.request();
-    req.input('order_demand_id',     sql.NVarChar, body.order_demand_id     || null);
-    req.input('supplier',            sql.NVarChar, body.supplier            || null);
-    req.input('order_date',          sql.Date,     body.order_date          ? new Date(body.order_date) : null);
+    req.input('order_demand_id', sql.NVarChar, body.order_demand_id || null);
+    req.input('supplier', sql.NVarChar, body.supplier || null);
+    req.input('order_date', sql.Date, body.order_date ? new Date(body.order_date) : null);
     req.input('invoice_so_proforma', sql.NVarChar, body.invoice_so_proforma || null);
-    req.input('invoice_date',        sql.Date,     body.invoice_date        ? new Date(body.invoice_date) : null);
-    req.input('delivery_date',       sql.Date,     body.delivery_date       ? new Date(body.delivery_date) : null);
-    req.input('port_info_date',      sql.Date,     body.port_info_date      ? new Date(body.port_info_date) : null);
-    req.input('status',              sql.NVarChar, body.status              || null);
-    req.input('so',                  sql.NVarChar, body.so                  || null);
-    req.input('nav',                 sql.NVarChar, body.nav                 || null);
-    req.input('upc_ean',             sql.NVarChar, body.upc_ean             || null);
-    req.input('brand',               sql.NVarChar, body.brand               || null);
-    req.input('nav_name',            sql.NVarChar, body.nav_name            || null);
-    req.input('currency',            sql.NVarChar, body.currency            || null);
-    req.input('order_qty',           sql.Decimal(15, 4), body.order_qty   != null ? parseFloat(body.order_qty)   : null);
-    req.input('order_price',         sql.Decimal(15, 4), body.order_price != null ? parseFloat(body.order_price) : null);
-    req.input('so_qty',              sql.Decimal(15, 4), body.so_qty      != null ? parseFloat(body.so_qty)      : null);
-    req.input('so_price',            sql.Decimal(15, 4), body.so_price    != null ? parseFloat(body.so_price)    : null);
-    req.input('invoice_qty',         sql.Decimal(15, 4), body.invoice_qty != null ? parseFloat(body.invoice_qty) : null);
-    req.input('inv_price',           sql.Decimal(15, 4), body.inv_price   != null ? parseFloat(body.inv_price)   : null);
-    req.input('sheet_type',          sql.NVarChar, body.sheet_type          || 'PENDING ORDERS');
+    req.input('invoice_date', sql.Date, body.invoice_date ? new Date(body.invoice_date) : null);
+    req.input('delivery_date', sql.Date, body.delivery_date ? new Date(body.delivery_date) : null);
+    req.input('port_info_date', sql.Date, body.port_info_date ? new Date(body.port_info_date) : null);
+    req.input('status', sql.NVarChar, body.status || null);
+    req.input('so', sql.NVarChar, body.so || null);
+    req.input('nav', sql.NVarChar, body.nav || null);
+    req.input('upc_ean', sql.NVarChar, body.upc_ean || null);
+    req.input('brand', sql.NVarChar, body.brand || null);
+    req.input('nav_name', sql.NVarChar, body.nav_name || null);
+    req.input('currency', sql.NVarChar, body.currency || null);
+    req.input('order_qty', sql.Decimal(15, 4), body.order_qty != null ? parseFloat(body.order_qty) : null);
+    req.input('order_price', sql.Decimal(15, 4), body.order_price != null ? parseFloat(body.order_price) : null);
+    req.input('so_qty', sql.Decimal(15, 4), body.so_qty != null ? parseFloat(body.so_qty) : null);
+    req.input('so_price', sql.Decimal(15, 4), body.so_price != null ? parseFloat(body.so_price) : null);
+    req.input('invoice_qty', sql.Decimal(15, 4), body.invoice_qty != null ? parseFloat(body.invoice_qty) : null);
+    req.input('inv_price', sql.Decimal(15, 4), body.inv_price != null ? parseFloat(body.inv_price) : null);
+    req.input('sheet_type', sql.NVarChar, body.sheet_type || 'PENDING ORDERS');
 
     await req.query(`
       INSERT INTO [dbo].[${table}] (
