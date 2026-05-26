@@ -67,13 +67,14 @@ function formatUploadDate(val) {
  * Rewrite the first worksheet so Date column cells use yyyy-MM-dd strings.
  */
 function normalizeWorkbookDates(workbook, XLSX) {
+  const { resolveColumnMapping } = require('./uploadColumnMap');
   const sheetName = workbook.SheetNames[0];
   const sheet = workbook.Sheets[sheetName];
   const data = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
   if (!data.length) return workbook;
 
-  const headers = data[0].map((h) => String(h ?? '').trim());
-  const dateCol = headers.indexOf('Date');
+  const { mapping } = resolveColumnMapping(data[0]);
+  const dateCol = mapping.date;
   if (dateCol < 0) return workbook;
 
   for (let i = 1; i < data.length; i++) {
