@@ -242,7 +242,10 @@ export default function DashboardPage() {
         setEanUpcResults(sortedData);
         setEanUpcSearched(true); // Show results by default
       } else {
-        console.error('Lowest price API returned non-array data:', data);
+        // API returned an error object - log quietly, don't show error to user
+        if (data?.error) {
+          console.warn('Lowest price API error:', data.error);
+        }
         setEanUpcResults([]);
       }
     } catch (error) {
