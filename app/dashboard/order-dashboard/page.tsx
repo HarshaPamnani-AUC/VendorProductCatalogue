@@ -58,7 +58,7 @@ export default function OrderDashboardPage() {
       const rows = json.data || [];
 
       const headers = [
-        'Done/Pending','Company','Supplier','Invoice Date','Currency',
+        'Done/Pending','Company','Supplier','NAV','UPC/EAN','Invoice Date','Currency',
         'Order Qty','Order Price','SO Qty','SO Price','Invoice Qty','Invoice Price'
       ];
 
@@ -72,7 +72,7 @@ export default function OrderDashboardPage() {
       const csvRows = [
         headers.join(','),
         ...rows.map((r: any) => [
-          r.sheet_type, r.company, r.supplier,
+          r.sheet_type, r.company, r.supplier, r.nav, r.upc_ean,
           r.invoice_date ? new Date(r.invoice_date).toLocaleDateString('en-GB') : '',
           r.currency, r.order_qty, r.order_price,
           r.so_qty, r.so_price, r.invoice_qty, r.inv_price
@@ -202,6 +202,7 @@ export default function OrderDashboardPage() {
               <tr className="bg-primary text-primary-foreground">
                 {[
                   'Done / Pending', 'Account', 'Supplier',
+                  'NAV', 'UPC/EAN',
                   'Invoice Date', 'Currency',
                   'Order Qty', 'Order Price',
                   'SO Qty', 'SO Price',
@@ -215,9 +216,9 @@ export default function OrderDashboardPage() {
             </thead>
             <tbody>
               {loading ? (
-                <tr><td colSpan={11} className="text-center py-16 text-muted-foreground">Loading…</td></tr>
+                <tr><td colSpan={13} className="text-center py-16 text-muted-foreground">Loading…</td></tr>
               ) : data.length === 0 ? (
-                <tr><td colSpan={11} className="text-center py-16 text-muted-foreground">No records found</td></tr>
+                <tr><td colSpan={13} className="text-center py-16 text-muted-foreground">No records found</td></tr>
               ) : data.map((row, i) => {
                 const { label, cls } = sheetLabel(row.sheet_type);
                 const isEven = i % 2 === 0;
@@ -236,6 +237,10 @@ export default function OrderDashboardPage() {
                     </td>
                     {/* Supplier */}
                     <td className="px-4 py-2.5 font-medium text-foreground whitespace-nowrap">{row.supplier || '—'}</td>
+                    {/* NAV */}
+                    <td className="px-4 py-2.5 text-foreground whitespace-nowrap">{row.nav || '—'}</td>
+                    {/* UPC/EAN */}
+                    <td className="px-4 py-2.5 font-mono text-foreground whitespace-nowrap">{row.upc_ean || '—'}</td>
                     {/* Invoice Date */}
                     <td className="px-4 py-2.5 text-muted-foreground whitespace-nowrap">{fmtDate(row.invoice_date)}</td>
                     {/* Currency */}

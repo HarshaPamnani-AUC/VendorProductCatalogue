@@ -31,17 +31,17 @@ export async function GET(request: NextRequest) {
     const unionSql = `
       SELECT id, sheet_type, 'LLP' AS company, supplier, invoice_date, currency,
              order_qty, order_price, so_qty, so_price, invoice_qty, inv_price,
-             order_demand_id, nav_name, upc_ean, order_date
+             order_demand_id, nav_name, upc_ean, order_date, nav
       FROM [dbo].[LLP_Orders]
       UNION ALL
       SELECT id, sheet_type, 'VW360' AS company, supplier, invoice_date, currency,
              order_qty, order_price, so_qty, so_price, invoice_qty, inv_price,
-             order_demand_id, nav_name, upc_ean, order_date
+             order_demand_id, nav_name, upc_ean, order_date, nav
       FROM [dbo].[VW360_Orders]
       UNION ALL
       SELECT id, sheet_type, 'BSLLC' AS company, supplier, invoice_date, currency,
              order_qty, order_price, so_qty, so_price, invoice_qty, inv_price,
-             order_demand_id, nav_name, upc_ean, order_date
+             order_demand_id, nav_name, upc_ean, order_date, nav
       FROM [dbo].[BSLLC_Orders]
     `;
 

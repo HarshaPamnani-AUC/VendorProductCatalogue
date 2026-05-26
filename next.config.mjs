@@ -34,6 +34,10 @@ const nextConfig = {
         source: '/api/move-data/:path*',
         destination: 'http://172.30.36.124:5000/api/move-data/:path*',
       },
+      {
+        source: '/api/upload-products',
+        destination: 'http://172.30.36.124:5000/api/upload-products',
+      },
     ];
   },
 }
