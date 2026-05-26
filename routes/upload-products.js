@@ -6,6 +6,7 @@ const router = express.Router();
 const { verifyToken } = require('./auth');
 const fs = require('fs');
 const path = require('path');
+const { formatUploadDate } = require('../utils/formatUploadDate');
 
 // Configure multer for memory storage
 const upload = multer({
@@ -462,16 +463,33 @@ router.post('/', upload.single('file'), async (req, res) => {
 
     // Build rows array, skip header
     const rows = [];
+    const invalidDateRows = [];
     for (let i = 1; i < data.length; i++) {
       const row = data[i];
       if (!row || row.length === 0 || !row[0]) continue;
+
+      const rawDate = row[colMapping['Date']];
+      const date = formatUploadDate(rawDate);
+      if (!date) {
+        invalidDateRows.push(i + 1);
+        continue;
+      }
+
       rows.push({
-        date:     String(row[colMapping['Date']]      || ''),
+        date,
         eanUpc:   String(row[colMapping['EAN/UPC']]   || ''),
         name:     String(row[colMapping['Name']]      || ''),
         itemCode: String(row[colMapping['Item_Code']] || ''),
         qty:      String(row[colMapping['Qty']]       || ''),
         price:    String(row[colMapping['Price']]     || ''),
+      });
+    }
+
+    if (invalidDateRows.length > 0) {
+      return res.status(400).json({
+        success: false,
+        message: `Invalid Date in row(s): ${invalidDateRows.join(', ')}. Use a valid Excel date or MM-DD-YY format (e.g. 01-18-26).`,
+        invalidRows: invalidDateRows,
       });
     }
 

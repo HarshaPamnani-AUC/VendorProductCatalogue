@@ -7,7 +7,7 @@ const config: sql.config = {
   database: process.env.DB_NAME || "ProductCatalog",
   options: {
     encrypt: process.env.DB_ENCRYPT === "true",
-    trustServerCertificate: process.env.DB_TRUST_CERT !== "false",
+    trustServerCertificate: process.env.DB_TRUST_SERVER_CERTIFICATE === "true",
   },
 };
 
