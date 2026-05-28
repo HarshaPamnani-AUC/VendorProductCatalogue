@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
     const fileBuffer = Buffer.from(await file.arrayBuffer());
     let workbook = XLSX.read(fileBuffer, { type: 'buffer' });
     workbook = normalizeWorkbookDates(workbook, XLSX);
-    const normalizedBuffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx' });
+    const normalizedBuffer = XLSX.write(workbook, { type: 'buffer', bookType: 'xlsx', compression: true });
 
     const backendFormData = new FormData();
     backendFormData.append('vendorName', vendorName);

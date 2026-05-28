@@ -22,7 +22,7 @@ const {
 // Configure multer for memory storage
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB limit
+  limits: { fileSize: 200 * 1024 * 1024 }, // 200MB limit
 });
 
 // Create logs directory if it doesn't exist
@@ -519,8 +519,8 @@ router.post('/', upload.single('file'), async (req, res) => {
       });
     }
 
-    // Insert in batches of 500 to avoid parameter limits
-    const BATCH_SIZE = 500;
+    // Insert in batches of 250 to avoid parameter limits (SQL Server allows max 2100 parameters)
+    const BATCH_SIZE = 250;
     for (let b = 0; b < newRows.length; b += BATCH_SIZE) {
       const batch = newRows.slice(b, b + BATCH_SIZE);
       const valuePlaceholders = batch.map((_, idx) =>
