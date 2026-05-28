@@ -17,7 +17,7 @@ app.use(cookieParser());
 // Multer configuration for file uploads
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB limit
+  limits: { fileSize: 200 * 1024 * 1024 }, // 200MB limit
 });
 
 // MSSQL Configuration

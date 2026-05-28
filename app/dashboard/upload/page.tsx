@@ -214,10 +214,31 @@ export default function UploadPage() {
               <div className={`text-sm ${uploadResult.success ? 'text-green-700' : 'text-red-700'}`}>
                 <p className="font-semibold">{uploadResult.message}</p>
                 
+                {uploadResult.success && uploadResult.results && (
+                  <div className="mt-3 space-y-2">
+                    <div className="p-3 bg-green-50 rounded border border-green-200">
+                      <p className="font-semibold text-green-800">Processing summary</p>
+                      {uploadResult.results.rowsInFile != null && (
+                        <p>Rows in file: {uploadResult.results.rowsInFile}</p>
+                      )}
+                      <p>New products added: {uploadResult.results.rowsInserted}</p>
+                      {(uploadResult.results.rowsSkippedDuplicates ?? 0) > 0 && (
+                        <p>Identical rows skipped: {uploadResult.results.rowsSkippedDuplicates}</p>
+                      )}
+                      {(uploadResult.results.rowsFailed ?? 0) > 0 && (
+                        <p>Rows failed: {uploadResult.results.rowsFailed}</p>
+                      )}
+                      {uploadResult.results.vendor && (
+                        <p>Vendor: {uploadResult.results.vendor}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+
                 {uploadResult.success && uploadResult.procedureResults && (
                   <div className="mt-3 space-y-2">
                     <div className="p-3 bg-green-50 rounded border border-green-200">
-                      <p className="font-semibold text-green-800">✅ Processing Summary:</p>
+                      <p className="font-semibold text-green-800">Processing summary</p>
                       <p>Records processed: {uploadResult.procedureResults.recordsProcessed}</p>
                       <p>Records inserted: {uploadResult.procedureResults.recordsInserted}</p>
                       <p>Rows moved to Products: {uploadResult.procedureResults.rowsMoved}</p>
@@ -259,10 +280,13 @@ export default function UploadPage() {
             </h3>
             <ol className="space-y-2 text-sm text-foreground">
               <li>1. Select your vendor from the dropdown</li>
-              <li>2. Download the Excel template</li>
+              <li>2. Download the Excel template (or use your sheet with DATE, EAN/UPC, NAME, ITEM CODE, QTY, and a price column)</li>
               <li>3. Fill in your product data</li>
               <li>4. Upload the completed file</li>
             </ol>
+            <p className="text-xs text-muted-foreground mt-3">
+              Also supported: SUPPLIER, EAN/ UPC, ITEM CODE, PRICE IN GBP, PRICE IN EURO, PRICE IN USD (uses GBP, then Euro, then USD per row).
+            </p>
           </div>
 
           {/* Template Download */}
