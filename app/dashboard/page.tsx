@@ -72,7 +72,9 @@ export default function DashboardPage() {
   const [eanUpcSearched, setEanUpcSearched] = useState(true); // Start with true to show chart by default
 
   useEffect(() => {
+    // Fire both fetches in parallel on mount — no need for two separate effects.
     fetchDashboardData();
+    fetchLowestPriceItems();
   }, []);
 
   const fetchDashboardData = async () => {
@@ -136,14 +138,36 @@ export default function DashboardPage() {
 
         // Update with real data if available
         if (Array.isArray(vendors) || Array.isArray(products)) {
+          const vendorList = Array.isArray(vendors) ? vendors : [];
+          const productList = Array.isArray(products) ? products : [];
+
+          // Calculate total revenue from product prices
+          const totalRevenue = productList.reduce((sum: number, p: any) => sum + (Number(p.price) || 0), 0);
+
           setStats({
-            totalFiles: 0,
-            totalProducts: Array.isArray(products) ? products.length : 0,
-            activeVendors: Array.isArray(vendors) ? vendors.length : 0,
-            successRate: 0,
-            totalRevenue: 0,
+            totalFiles: vendorList.length > 0 ? vendorList.length : 0,
+            totalProducts: productList.length,
+            activeVendors: vendorList.length,
+            successRate: vendorList.length > 0 ? 100 : 0,
+            totalRevenue,
             monthlyGrowth: 0,
           });
+
+          // Populate Top Vendors panel — sort by product count descending
+          if (vendorList.length > 0) {
+            const sorted = [...vendorList].sort(
+              (a: any, b: any) => (b.ProductCount || 0) - (a.ProductCount || 0)
+            );
+            setTopVendors(
+              sorted.slice(0, 5).map((v: any) => ({
+                VendorId:     v.VendorId     || 0,
+                VendorName:   v.VendorName   || '',
+                ProductCount: v.ProductCount || 0,
+                SuccessRate:  v.SuccessRate  || 100,
+                LastUpload:   v.LastUpload   || '',
+              }))
+            );
+          }
         }
       } catch (fetchError) {
         console.warn('Dashboard data fetch failed:', fetchError);
@@ -254,10 +278,7 @@ export default function DashboardPage() {
     }
   };
 
-  // Fetch lowest price items on component mount
-  useEffect(() => {
-    fetchLowestPriceItems();
-  }, []);
+  // Fetch lowest price items on component mount — called from the merged useEffect above.
 
   const handleEanUpcClear = () => {
     setEanUpcSearch('');

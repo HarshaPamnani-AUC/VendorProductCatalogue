@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { poolPromise } from '@/lib/db';
+import { getPool } from '@/lib/db';
 import sql from 'mssql';
 
 const getSortClause = (sortBy: string | null) => {
@@ -16,6 +16,40 @@ const getSortClause = (sortBy: string | null) => {
 
 const columnKey = (tableName: string, columnName: string) => `${tableName}.${columnName}`.toLowerCase();
 
+// Cache schema introspection — the table structure doesn't change at runtime.
+// Resolved once on first request, reused for all subsequent calls.
+interface SchemaCache {
+  storageHasBrand: boolean;
+  productsHasBrand: boolean;
+  canMatchProducts: boolean;
+}
+let schemaCache: SchemaCache | null = null;
+
+async function getSchemaInfo(): Promise<SchemaCache> {
+  if (schemaCache) return schemaCache;
+
+  const pool = await getPool();
+  const columnResult = await pool.request().query(`
+    SELECT TABLE_NAME, COLUMN_NAME
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_SCHEMA = 'dbo'
+      AND TABLE_NAME IN ('Tbl_Products_Storage', 'Tbl_Products')
+  `);
+  const columns = new Set(
+    columnResult.recordset.map((row) => columnKey(row.TABLE_NAME, row.COLUMN_NAME)),
+  );
+  schemaCache = {
+    storageHasBrand:  columns.has(columnKey('Tbl_Products_Storage', 'Brand')),
+    productsHasBrand: columns.has(columnKey('Tbl_Products', 'Brand')),
+    canMatchProducts:
+      columns.has(columnKey('Tbl_Products', 'Brand')) &&
+      columns.has(columnKey('Tbl_Products', 'Item_Code')) &&
+      columns.has(columnKey('Tbl_Products', 'EAN/UPC')) &&
+      columns.has(columnKey('Tbl_Products', 'Name')),
+  };
+  return schemaCache;
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -23,39 +57,24 @@ export async function GET(request: NextRequest) {
     const upcCode = searchParams.get('upcCode')?.trim();
     const productName = searchParams.get('productName')?.trim();
     const brandName = searchParams.get('brandName')?.trim();
+    const vendor = searchParams.get('vendor')?.trim();
 
-    if (!navCode && !upcCode && !productName && !brandName) {
+    if (!navCode && !upcCode && !productName && !brandName && !vendor) {
       return NextResponse.json(
         { error: 'At least one search parameter is required' },
         { status: 400 },
       );
     }
 
-    const pool = await poolPromise;
-    const columnResult = await pool.request().query(`
-      SELECT TABLE_NAME, COLUMN_NAME
-      FROM INFORMATION_SCHEMA.COLUMNS
-      WHERE TABLE_SCHEMA = 'dbo'
-        AND TABLE_NAME IN ('Tbl_Products_Storage', 'Tbl_Products')
-    `);
-    const columns = new Set(
-      columnResult.recordset.map((row) => columnKey(row.TABLE_NAME, row.COLUMN_NAME)),
-    );
-    const storageHasBrand = columns.has(columnKey('Tbl_Products_Storage', 'Brand'));
-    const productsHasBrand = columns.has(columnKey('Tbl_Products', 'Brand'));
-    const canMatchProducts =
-      productsHasBrand &&
-      columns.has(columnKey('Tbl_Products', 'Item_Code')) &&
-      columns.has(columnKey('Tbl_Products', 'EAN/UPC')) &&
-      columns.has(columnKey('Tbl_Products', 'Name'));
+    const { storageHasBrand, canMatchProducts } = await getSchemaInfo();
 
-    if (brandName && !storageHasBrand && !canMatchProducts) {
-      return NextResponse.json(
-        { error: 'Brand search is not available because no Brand column was found for products.' },
-        { status: 400 },
-      );
-    }
+    // If brandName was sent but Brand column doesn't exist, just ignore it
+    // rather than returning an error — silently skip the filter.
+    const effectiveBrandName = (brandName && (storageHasBrand || canMatchProducts))
+      ? brandName
+      : undefined;
 
+    const pool = await getPool();
     const dbRequest = pool.request();
     const filters: string[] = [];
     const brandExpression = storageHasBrand
@@ -97,9 +116,14 @@ export async function GET(request: NextRequest) {
       dbRequest.input('productName', sql.NVarChar, `%${productName}%`);
     }
 
-    if (brandName) {
+    if (effectiveBrandName) {
       filters.push(`${brandExpression} LIKE @brandName`);
-      dbRequest.input('brandName', sql.NVarChar, `%${brandName}%`);
+      dbRequest.input('brandName', sql.NVarChar, `%${effectiveBrandName}%`);
+    }
+
+    if (vendor) {
+      filters.push('UPPER(LTRIM(RTRIM(s.[Vendor]))) = UPPER(@vendor)');
+      dbRequest.input('vendor', sql.NVarChar, vendor);
     }
 
     const result = await dbRequest.query(`
@@ -117,7 +141,7 @@ export async function GET(request: NextRequest) {
         END AS Price,
         CASE
           WHEN ISNUMERIC(REPLACE(REPLACE(s.[Qty], ',', ''), ' ', '')) = 1
-          THEN CAST(REPLACE(REPLACE(s.[Qty], ',', ''), ' ', '') AS INT)
+          THEN CAST(CAST(REPLACE(REPLACE(s.[Qty], ',', ''), ' ', '') AS DECIMAL(18,2)) AS INT)
           ELSE 0
         END AS StockQuantity,
         s.[EAN/UPC] AS UPC,

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Background rounded square -->
+  <rect width="32" height="32" rx="7" fill="#1e293b"/>
+  <!-- "V" letter -->
+  <text
+    x="3"
+    y="23"
+    font-family="'Segoe UI', Arial, sans-serif"
+    font-size="18"
+    font-weight="800"
+    fill="#38bdf8"
+    letter-spacing="-1"
+  >VP</text>
+  <!-- Accent underline bar -->
+  <rect x="3" y="26" width="26" height="2.5" rx="1.25" fill="#38bdf8" opacity="0.5"/>
+</svg>

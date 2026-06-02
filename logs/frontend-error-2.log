@@ -1,0 +1,66 @@
+2026-05-28 15:01:33 +05:30: Database Connection Failed! Error [ConnectionError]: Failed to connect to 172.30.36.124:1433 in 15000ms
+    at ignore-listed frames {
+  code: 'ETIMEOUT',
+  originalError: Error: Failed to connect to 172.30.36.124:1433 in 15000ms
+      at ignore-listed frames {
+    code: 'ETIMEOUT'
+  }
+}
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+ConnectionError: Failed to connect to 172.30.36.124:1433 in 15000ms
+    at /var/www/vendorpro.beautystorellc.com/.next/server/chunks/[root-of-the-server]__27ab8fc3._.js:91:579829
+    at H.t (/var/www/vendorpro.beautystorellc.com/.next/server/chunks/[root-of-the-server]__27ab8fc3._.js:91:546874)
+    at Object.onceWrapper (node:events:639:26)
+    at H.emit (node:events:524:28)
+    at H.emit (/var/www/vendorpro.beautystorellc.com/.next/server/chunks/[root-of-the-server]__27ab8fc3._.js:91:547294)
+    at /var/www/vendorpro.beautystorellc.com/.next/server/chunks/[root-of-the-server]__27ab8fc3._.js:91:547176
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-05-28 15:01:33 +05:30: Error [ConnectionError]: Failed to connect to 172.30.36.124:1433 in 15000ms
+    at ignore-listed frames {
+  code: 'ETIMEOUT',
+  originalError: Error: Failed to connect to 172.30.36.124:1433 in 15000ms
+      at ignore-listed frames {
+    code: 'ETIMEOUT'
+  }
+}
+2026-05-28 15:01:34 +05:30: ⨯ unhandledRejection:  Error [ConnectionError]: Failed to connect to 172.30.36.124:1433 in 15000ms
+    at ignore-listed frames {
+  code: 'ETIMEOUT',
+  originalError: Error: Failed to connect to 172.30.36.124:1433 in 15000ms
+      at ignore-listed frames {
+    code: 'ETIMEOUT'
+  }
+}
+2026-05-29 11:18:04 +05:30: Database Connection Failed! Error [ConnectionError]: Login failed for user 'bcsqlsvr'.
+    at ignore-listed frames {
+  code: 'ELOGIN',
+  originalError: Error: Login failed for user 'bcsqlsvr'.
+      at ignore-listed frames {
+    code: 'ELOGIN'
+  }
+}
+You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+ConnectionError: Login failed for user 'bcsqlsvr'.
+    at /var/www/vendorpro.beautystorellc.com/.next/server/chunks/[root-of-the-server]__27ab8fc3._.js:91:579829
+    at H.t (/var/www/vendorpro.beautystorellc.com/.next/server/chunks/[root-of-the-server]__27ab8fc3._.js:91:546874)
+    at Object.onceWrapper (node:events:639:26)
+    at H.emit (node:events:524:28)
+    at H.emit (/var/www/vendorpro.beautystorellc.com/.next/server/chunks/[root-of-the-server]__27ab8fc3._.js:91:547294)
+    at /var/www/vendorpro.beautystorellc.com/.next/server/chunks/[root-of-the-server]__27ab8fc3._.js:91:547176
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)
+2026-05-29 11:18:04 +05:30: Error [ConnectionError]: Login failed for user 'bcsqlsvr'.
+    at ignore-listed frames {
+  code: 'ELOGIN',
+  originalError: Error: Login failed for user 'bcsqlsvr'.
+      at ignore-listed frames {
+    code: 'ELOGIN'
+  }
+}
+2026-05-29 11:18:05 +05:30: ⨯ unhandledRejection:  Error [ConnectionError]: Login failed for user 'bcsqlsvr'.
+    at ignore-listed frames {
+  code: 'ELOGIN',
+  originalError: Error: Login failed for user 'bcsqlsvr'.
+      at ignore-listed frames {
+    code: 'ELOGIN'
+  }
+}

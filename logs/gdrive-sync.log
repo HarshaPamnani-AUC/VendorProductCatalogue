@@ -1,0 +1,341 @@
+{"timestamp":"2026-06-01T12:42:51.769Z","level":"INFO","message":"Starting Google Drive sync","data":{"folderId":"1Qn1lCJdsgrzRCq_pMSPxRX7250-yaMzc","skipSheets":["MASTER"]}}
+{"timestamp":"2026-06-01T12:42:52.464Z","level":"INFO","message":"Selected file: \"JUNE\" (modified: 2026-06-01T07:52:13.860Z)","data":{"fileId":"1AZGFrCjGNgt1x3E3Qb2ybinRxuYucP5QtJzCli7Nu2w"}}
+{"timestamp":"2026-06-01T12:42:52.465Z","level":"INFO","message":"Downloading \"JUNE\"..."}
+{"timestamp":"2026-06-01T12:42:59.956Z","level":"INFO","message":"Downloaded 3.2 MB"}
+{"timestamp":"2026-06-01T12:43:02.279Z","level":"INFO","message":"Workbook has 18 sheets","data":{"sheets":["MASTER","LINDO","DTF","SGL","ACE BEAUTY","H&B","PCA","SCENT OPHORIA","ET","TJS","NANDANSONS","POTW","PERFUME PRICE","PPW","SATURN","MTZ","Sheet18","Sheet19"]}}
+{"timestamp":"2026-06-01T12:43:02.332Z","level":"INFO","message":"Connected to database"}
+{"timestamp":"2026-06-01T12:43:02.333Z","level":"INFO","message":"Processing 17 vendor sheets (skipping: MASTER)"}
+{"timestamp":"2026-06-01T12:43:02.333Z","level":"INFO","message":"Processing sheet: \"LINDO\""}
+{"timestamp":"2026-06-01T12:43:09.563Z","level":"INFO","message":"Sheet \"LINDO\" done","data":{"inserted":3319,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:09.564Z","level":"INFO","message":"Processing sheet: \"DTF\""}
+{"timestamp":"2026-06-01T12:43:09.564Z","level":"WARN","message":"Sheet \"DTF\" completed with issue","data":{"vendorName":"DTF","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"}}
+{"timestamp":"2026-06-01T12:43:09.564Z","level":"INFO","message":"Processing sheet: \"SGL\""}
+{"timestamp":"2026-06-01T12:43:25.425Z","level":"INFO","message":"Sheet \"SGL\" done","data":{"inserted":8464,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:25.426Z","level":"INFO","message":"Processing sheet: \"ACE BEAUTY\""}
+{"timestamp":"2026-06-01T12:43:28.570Z","level":"INFO","message":"Sheet \"ACE BEAUTY\" done","data":{"inserted":1503,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:28.571Z","level":"INFO","message":"Processing sheet: \"H&B\""}
+{"timestamp":"2026-06-01T12:43:30.262Z","level":"INFO","message":"Sheet \"H&B\" done","data":{"inserted":564,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:30.262Z","level":"INFO","message":"Processing sheet: \"PCA\""}
+{"timestamp":"2026-06-01T12:43:36.746Z","level":"INFO","message":"Sheet \"PCA\" done","data":{"inserted":3562,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:36.746Z","level":"INFO","message":"Processing sheet: \"SCENT OPHORIA\""}
+{"timestamp":"2026-06-01T12:43:41.454Z","level":"INFO","message":"Sheet \"SCENT OPHORIA\" done","data":{"inserted":2480,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:41.455Z","level":"INFO","message":"Processing sheet: \"ET\""}
+{"timestamp":"2026-06-01T12:43:43.306Z","level":"INFO","message":"Sheet \"ET\" done","data":{"inserted":602,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:43.307Z","level":"INFO","message":"Processing sheet: \"TJS\""}
+{"timestamp":"2026-06-01T12:43:46.283Z","level":"INFO","message":"Sheet \"TJS\" done","data":{"inserted":1356,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:46.283Z","level":"INFO","message":"Processing sheet: \"NANDANSONS\""}
+{"timestamp":"2026-06-01T12:43:49.028Z","level":"INFO","message":"Sheet \"NANDANSONS\" done","data":{"inserted":1175,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:49.029Z","level":"INFO","message":"Processing sheet: \"POTW\""}
+{"timestamp":"2026-06-01T12:43:50.418Z","level":"INFO","message":"Sheet \"POTW\" done","data":{"inserted":260,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:50.418Z","level":"INFO","message":"Processing sheet: \"PERFUME PRICE\""}
+{"timestamp":"2026-06-01T12:43:53.496Z","level":"INFO","message":"Sheet \"PERFUME PRICE\" done","data":{"inserted":1447,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:53.496Z","level":"INFO","message":"Processing sheet: \"PPW\""}
+{"timestamp":"2026-06-01T12:43:55.105Z","level":"INFO","message":"Sheet \"PPW\" done","data":{"inserted":423,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:55.105Z","level":"INFO","message":"Processing sheet: \"SATURN\""}
+{"timestamp":"2026-06-01T12:43:56.331Z","level":"INFO","message":"Sheet \"SATURN\" done","data":{"inserted":145,"skipped":0}}
+{"timestamp":"2026-06-01T12:43:56.331Z","level":"INFO","message":"Processing sheet: \"MTZ\""}
+{"timestamp":"2026-06-01T12:44:02.391Z","level":"INFO","message":"Sheet \"MTZ\" done","data":{"inserted":3318,"skipped":0}}
+{"timestamp":"2026-06-01T12:44:02.391Z","level":"INFO","message":"Processing sheet: \"Sheet18\""}
+{"timestamp":"2026-06-01T12:44:02.391Z","level":"WARN","message":"Sheet \"Sheet18\" completed with issue","data":{"vendorName":"Sheet18","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"}}
+{"timestamp":"2026-06-01T12:44:02.391Z","level":"INFO","message":"Processing sheet: \"Sheet19\""}
+{"timestamp":"2026-06-01T12:44:02.391Z","level":"WARN","message":"Sheet \"Sheet19\" completed with issue","data":{"vendorName":"Sheet19","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"}}
+{"timestamp":"2026-06-01T12:44:02.392Z","level":"INFO","message":"Sync completed","data":{"file":"JUNE","fileId":"1AZGFrCjGNgt1x3E3Qb2ybinRxuYucP5QtJzCli7Nu2w","sheetsProcessed":17,"totalInserted":28618,"totalSkipped":0,"totalFailed":0,"sheetsWithErrors":3,"results":[{"vendorName":"LINDO","rowsInserted":3319,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"DTF","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"},{"vendorName":"SGL","rowsInserted":8464,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"ACE BEAUTY","rowsInserted":1503,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"H&B","rowsInserted":564,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"PCA","rowsInserted":3562,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SCENT OPHORIA","rowsInserted":2480,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"ET","rowsInserted":602,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"TJS","rowsInserted":1356,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"NANDANSONS","rowsInserted":1175,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"POTW","rowsInserted":260,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"PERFUME PRICE","rowsInserted":1447,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"PPW","rowsInserted":423,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SATURN","rowsInserted":145,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"MTZ","rowsInserted":3318,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"Sheet18","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"},{"vendorName":"Sheet19","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"}]}}
+{"timestamp":"2026-06-01T12:51:29.148Z","level":"INFO","message":"Starting Google Drive sync","data":{"folderId":"1Qn1lCJdsgrzRCq_pMSPxRX7250-yaMzc","skipSheets":["MASTER"]}}
+{"timestamp":"2026-06-01T12:51:29.813Z","level":"INFO","message":"Selected file: \"MAY\" (modified: 2026-06-01T06:52:15.059Z)","data":{"fileId":"1pojw2uqRavn5Bzt7Ksj8d8rmcfvl6-gvNDXgbcFACJM"}}
+{"timestamp":"2026-06-01T12:51:29.814Z","level":"INFO","message":"Downloading \"MAY\"..."}
+{"timestamp":"2026-06-01T12:52:30.153Z","level":"ERROR","message":"Download failed","data":{"error":"Request failed with status code 403"}}
+{"timestamp":"2026-06-01T13:45:20.546Z","level":"INFO","message":"Starting Google Drive sync","data":{"folderId":"1Qn1lCJdsgrzRCq_pMSPxRX7250-yaMzc","skipSheets":["MASTER"],"maxDate":"2026-05-31"}}
+{"timestamp":"2026-06-01T13:45:21.200Z","level":"INFO","message":"Selected: \"MAY\" (modified: 2026-06-01T06:52:15.059Z, size: 20.4MB)","data":{"fileId":"1pojw2uqRavn5Bzt7Ksj8d8rmcfvl6-gvNDXgbcFACJM"}}
+{"timestamp":"2026-06-01T13:45:21.963Z","level":"INFO","message":"40 sheets found","data":{"sheets":["MASTER","AVANUE","BEAUTYNET","DTF","PCA","HAZ","PPW","POTW","ET","EFL","SATURN","MTZ","UNIVERSAL PERFUME","JIZAN","SAP","MAGNET","SGL","ACE BEAUTY","AFL","H&B","FRAGSENSE","SCENT SENSES","NANDANSONS","SIMEX USD","SIMEX EURO","Al Hussein","PARTHECO","LINDO","FRENCH PERFUME","FORMA ITALIANA","LUXSCENT","PERFUME PRICE","SCENT OPHORIA","NEFERTI","API CHURI","MB","TJS","Lux America","TITAN","RATAN"]}}
+{"timestamp":"2026-06-01T13:45:22.019Z","level":"INFO","message":"Connected to database"}
+{"timestamp":"2026-06-01T13:45:22.019Z","level":"INFO","message":"Processing 39 vendor sheets (skipping: MASTER)"}
+{"timestamp":"2026-06-01T13:45:22.019Z","level":"INFO","message":"Processing sheet: \"AVANUE\""}
+{"timestamp":"2026-06-01T13:45:22.690Z","level":"INFO","message":"Sheet \"AVANUE\": skipped 73 rows after May 31"}
+{"timestamp":"2026-06-01T13:45:22.690Z","level":"WARN","message":"Sheet \"AVANUE\" issue","data":{"vendorName":"AVANUE","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:45:22.690Z","level":"INFO","message":"Processing sheet: \"BEAUTYNET\""}
+{"timestamp":"2026-06-01T13:45:23.410Z","level":"INFO","message":"Sheet \"BEAUTYNET\": skipped 176 rows after May 31"}
+{"timestamp":"2026-06-01T13:45:23.410Z","level":"WARN","message":"Sheet \"BEAUTYNET\" issue","data":{"vendorName":"BEAUTYNET","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:45:23.410Z","level":"INFO","message":"Processing sheet: \"DTF\""}
+{"timestamp":"2026-06-01T13:45:24.124Z","level":"INFO","message":"Sheet \"DTF\": skipped 382 rows after May 31"}
+{"timestamp":"2026-06-01T13:45:24.124Z","level":"WARN","message":"Sheet \"DTF\" issue","data":{"vendorName":"DTF","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:45:24.124Z","level":"INFO","message":"Processing sheet: \"PCA\""}
+{"timestamp":"2026-06-01T13:45:27.509Z","level":"INFO","message":"Sheet \"PCA\": skipped 56541 rows after May 31"}
+{"timestamp":"2026-06-01T13:45:33.912Z","level":"INFO","message":"Sheet \"PCA\" done","data":{"inserted":3548,"skipped":0}}
+{"timestamp":"2026-06-01T13:45:33.912Z","level":"INFO","message":"Processing sheet: \"HAZ\""}
+{"timestamp":"2026-06-01T13:45:35.112Z","level":"INFO","message":"Sheet \"HAZ\": skipped 2650 rows after May 31"}
+{"timestamp":"2026-06-01T13:45:35.112Z","level":"WARN","message":"Sheet \"HAZ\" issue","data":{"vendorName":"HAZ","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:45:35.112Z","level":"INFO","message":"Processing sheet: \"PPW\""}
+{"timestamp":"2026-06-01T13:45:36.238Z","level":"INFO","message":"Sheet \"PPW\": skipped 6684 rows after May 31"}
+{"timestamp":"2026-06-01T13:45:36.238Z","level":"WARN","message":"Sheet \"PPW\": 416 invalid-date rows skipped"}
+{"timestamp":"2026-06-01T13:45:37.862Z","level":"INFO","message":"Sheet \"PPW\" done","data":{"inserted":830,"skipped":0}}
+{"timestamp":"2026-06-01T13:45:37.863Z","level":"INFO","message":"Processing sheet: \"POTW\""}
+{"timestamp":"2026-06-01T13:45:38.764Z","level":"INFO","message":"Sheet \"POTW\": skipped 4613 rows after May 31"}
+{"timestamp":"2026-06-01T13:45:40.117Z","level":"INFO","message":"Sheet \"POTW\" done","data":{"inserted":523,"skipped":0}}
+{"timestamp":"2026-06-01T13:45:40.117Z","level":"INFO","message":"Processing sheet: \"ET\""}
+{"timestamp":"2026-06-01T13:45:41.566Z","level":"INFO","message":"Sheet \"ET\": skipped 15435 rows after May 31"}
+{"timestamp":"2026-06-01T13:45:43.560Z","level":"INFO","message":"Sheet \"ET\" done","data":{"inserted":1011,"skipped":0}}
+{"timestamp":"2026-06-01T13:45:43.560Z","level":"INFO","message":"Processing sheet: \"EFL\""}
+{"timestamp":"2026-06-01T13:45:44.256Z","level":"INFO","message":"Sheet \"EFL\": skipped 864 rows after May 31"}
+{"timestamp":"2026-06-01T13:45:45.053Z","level":"INFO","message":"Sheet \"EFL\" done","data":{"inserted":120,"skipped":0}}
+{"timestamp":"2026-06-01T13:45:45.053Z","level":"INFO","message":"Processing sheet: \"SATURN\""}
+{"timestamp":"2026-06-01T13:45:45.737Z","level":"INFO","message":"Sheet \"SATURN\": skipped 1055 rows after May 31"}
+{"timestamp":"2026-06-01T13:45:45.737Z","level":"WARN","message":"Sheet \"SATURN\" issue","data":{"vendorName":"SATURN","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:45:45.737Z","level":"INFO","message":"Processing sheet: \"MTZ\""}
+{"timestamp":"2026-06-01T13:45:48.475Z","level":"INFO","message":"Sheet \"MTZ\": skipped 55961 rows after May 31"}
+{"timestamp":"2026-06-01T13:45:48.475Z","level":"WARN","message":"Sheet \"MTZ\": 3536 invalid-date rows skipped"}
+{"timestamp":"2026-06-01T13:46:01.711Z","level":"INFO","message":"Sheet \"MTZ\" done","data":{"inserted":7059,"skipped":0}}
+{"timestamp":"2026-06-01T13:46:01.711Z","level":"INFO","message":"Processing sheet: \"UNIVERSAL PERFUME\""}
+{"timestamp":"2026-06-01T13:46:02.764Z","level":"INFO","message":"Sheet \"UNIVERSAL PERFUME\": skipped 13244 rows after May 31"}
+{"timestamp":"2026-06-01T13:46:02.765Z","level":"WARN","message":"Sheet \"UNIVERSAL PERFUME\" issue","data":{"vendorName":"UNIVERSAL PERFUME","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:46:02.765Z","level":"INFO","message":"Processing sheet: \"JIZAN\""}
+{"timestamp":"2026-06-01T13:46:04.994Z","level":"INFO","message":"Sheet \"JIZAN\": skipped 30773 rows after May 31"}
+{"timestamp":"2026-06-01T13:46:15.781Z","level":"INFO","message":"Sheet \"JIZAN\" done","data":{"inserted":5335,"skipped":0}}
+{"timestamp":"2026-06-01T13:46:15.781Z","level":"INFO","message":"Processing sheet: \"SAP\""}
+{"timestamp":"2026-06-01T13:46:18.213Z","level":"INFO","message":"Sheet \"SAP\": skipped 50124 rows after May 31"}
+{"timestamp":"2026-06-01T13:46:35.763Z","level":"INFO","message":"Sheet \"SAP\" done","data":{"inserted":8840,"skipped":3838}}
+{"timestamp":"2026-06-01T13:46:35.763Z","level":"INFO","message":"Processing sheet: \"MAGNET\""}
+{"timestamp":"2026-06-01T13:46:36.746Z","level":"WARN","message":"Sheet \"MAGNET\" issue","data":{"vendorName":"MAGNET","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"}}
+{"timestamp":"2026-06-01T13:46:36.746Z","level":"INFO","message":"Processing sheet: \"SGL\""}
+{"timestamp":"2026-06-01T13:46:39.362Z","level":"INFO","message":"Sheet \"SGL\": skipped 37016 rows after May 31"}
+{"timestamp":"2026-06-01T13:46:45.214Z","level":"INFO","message":"Sheet \"SGL\" done","data":{"inserted":2749,"skipped":0}}
+{"timestamp":"2026-06-01T13:46:45.215Z","level":"INFO","message":"Processing sheet: \"ACE BEAUTY\""}
+{"timestamp":"2026-06-01T13:46:47.249Z","level":"INFO","message":"Sheet \"ACE BEAUTY\": skipped 23358 rows after May 31"}
+{"timestamp":"2026-06-01T13:46:52.270Z","level":"INFO","message":"Sheet \"ACE BEAUTY\" done","data":{"inserted":3024,"skipped":0}}
+{"timestamp":"2026-06-01T13:46:52.270Z","level":"INFO","message":"Processing sheet: \"AFL\""}
+{"timestamp":"2026-06-01T13:46:53.140Z","level":"INFO","message":"Sheet \"AFL\": skipped 2905 rows after May 31"}
+{"timestamp":"2026-06-01T13:46:53.140Z","level":"WARN","message":"Sheet \"AFL\" issue","data":{"vendorName":"AFL","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:46:53.140Z","level":"INFO","message":"Processing sheet: \"H&B\""}
+{"timestamp":"2026-06-01T13:46:54.122Z","level":"INFO","message":"Sheet \"H&B\": skipped 3671 rows after May 31"}
+{"timestamp":"2026-06-01T13:46:55.388Z","level":"INFO","message":"Sheet \"H&B\" done","data":{"inserted":613,"skipped":0}}
+{"timestamp":"2026-06-01T13:46:55.389Z","level":"INFO","message":"Processing sheet: \"FRAGSENSE\""}
+{"timestamp":"2026-06-01T13:46:56.683Z","level":"INFO","message":"Sheet \"FRAGSENSE\": skipped 2029 rows after May 31"}
+{"timestamp":"2026-06-01T13:46:59.249Z","level":"INFO","message":"Sheet \"FRAGSENSE\" done","data":{"inserted":1014,"skipped":0}}
+{"timestamp":"2026-06-01T13:46:59.249Z","level":"INFO","message":"Processing sheet: \"SCENT SENSES\""}
+{"timestamp":"2026-06-01T13:46:59.981Z","level":"INFO","message":"Sheet \"SCENT SENSES\": skipped 735 rows after May 31"}
+{"timestamp":"2026-06-01T13:47:02.044Z","level":"INFO","message":"Sheet \"SCENT SENSES\" done","data":{"inserted":859,"skipped":0}}
+{"timestamp":"2026-06-01T13:47:02.044Z","level":"INFO","message":"Processing sheet: \"NANDANSONS\""}
+{"timestamp":"2026-06-01T13:47:03.714Z","level":"INFO","message":"Sheet \"NANDANSONS\": skipped 17960 rows after May 31"}
+{"timestamp":"2026-06-01T13:47:08.138Z","level":"INFO","message":"Sheet \"NANDANSONS\" done","data":{"inserted":2025,"skipped":0}}
+{"timestamp":"2026-06-01T13:47:08.138Z","level":"INFO","message":"Processing sheet: \"SIMEX USD\""}
+{"timestamp":"2026-06-01T13:47:09.169Z","level":"INFO","message":"Sheet \"SIMEX USD\": skipped 5642 rows after May 31"}
+{"timestamp":"2026-06-01T13:47:09.169Z","level":"WARN","message":"Sheet \"SIMEX USD\" issue","data":{"vendorName":"SIMEX USD","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:47:09.169Z","level":"INFO","message":"Processing sheet: \"SIMEX EURO\""}
+{"timestamp":"2026-06-01T13:47:10.137Z","level":"INFO","message":"Sheet \"SIMEX EURO\": skipped 5188 rows after May 31"}
+{"timestamp":"2026-06-01T13:47:10.138Z","level":"WARN","message":"Sheet \"SIMEX EURO\" issue","data":{"vendorName":"SIMEX EURO","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:47:10.138Z","level":"INFO","message":"Processing sheet: \"Al Hussein\""}
+{"timestamp":"2026-06-01T13:47:10.839Z","level":"INFO","message":"Sheet \"Al Hussein\": skipped 1641 rows after May 31"}
+{"timestamp":"2026-06-01T13:47:10.839Z","level":"WARN","message":"Sheet \"Al Hussein\" issue","data":{"vendorName":"Al Hussein","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:47:10.839Z","level":"INFO","message":"Processing sheet: \"PARTHECO\""}
+{"timestamp":"2026-06-01T13:47:12.755Z","level":"INFO","message":"Sheet \"PARTHECO\": skipped 17652 rows after May 31"}
+{"timestamp":"2026-06-01T13:47:29.970Z","level":"INFO","message":"Sheet \"PARTHECO\" done","data":{"inserted":8848,"skipped":0}}
+{"timestamp":"2026-06-01T13:47:29.970Z","level":"INFO","message":"Processing sheet: \"LINDO\""}
+{"timestamp":"2026-06-01T13:47:32.179Z","level":"INFO","message":"Sheet \"LINDO\": skipped 48265 rows after May 31"}
+{"timestamp":"2026-06-01T13:47:41.805Z","level":"INFO","message":"Sheet \"LINDO\" done","data":{"inserted":5197,"skipped":0}}
+{"timestamp":"2026-06-01T13:47:41.805Z","level":"INFO","message":"Processing sheet: \"FRENCH PERFUME\""}
+{"timestamp":"2026-06-01T13:47:42.734Z","level":"INFO","message":"Sheet \"FRENCH PERFUME\": skipped 5010 rows after May 31"}
+{"timestamp":"2026-06-01T13:47:43.250Z","level":"INFO","message":"Sheet \"FRENCH PERFUME\" done","data":{"inserted":186,"skipped":0}}
+{"timestamp":"2026-06-01T13:47:43.251Z","level":"INFO","message":"Processing sheet: \"FORMA ITALIANA\""}
+{"timestamp":"2026-06-01T13:47:44.006Z","level":"INFO","message":"Sheet \"FORMA ITALIANA\": skipped 3743 rows after May 31"}
+{"timestamp":"2026-06-01T13:47:44.006Z","level":"WARN","message":"Sheet \"FORMA ITALIANA\" issue","data":{"vendorName":"FORMA ITALIANA","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:47:44.006Z","level":"INFO","message":"Processing sheet: \"LUXSCENT\""}
+{"timestamp":"2026-06-01T13:47:44.638Z","level":"WARN","message":"Sheet \"LUXSCENT\" issue","data":{"vendorName":"LUXSCENT","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"}}
+{"timestamp":"2026-06-01T13:47:44.639Z","level":"INFO","message":"Processing sheet: \"PERFUME PRICE\""}
+{"timestamp":"2026-06-01T13:47:46.090Z","level":"INFO","message":"Sheet \"PERFUME PRICE\": skipped 24271 rows after May 31"}
+{"timestamp":"2026-06-01T13:47:52.064Z","level":"INFO","message":"Sheet \"PERFUME PRICE\" done","data":{"inserted":3178,"skipped":0}}
+{"timestamp":"2026-06-01T13:47:52.064Z","level":"INFO","message":"Processing sheet: \"SCENT OPHORIA\""}
+{"timestamp":"2026-06-01T13:47:53.519Z","level":"INFO","message":"Sheet \"SCENT OPHORIA\": skipped 11954 rows after May 31"}
+{"timestamp":"2026-06-01T13:47:58.309Z","level":"INFO","message":"Sheet \"SCENT OPHORIA\" done","data":{"inserted":2538,"skipped":1}}
+{"timestamp":"2026-06-01T13:47:58.310Z","level":"INFO","message":"Processing sheet: \"NEFERTI\""}
+{"timestamp":"2026-06-01T13:47:58.953Z","level":"INFO","message":"Sheet \"NEFERTI\": skipped 900 rows after May 31"}
+{"timestamp":"2026-06-01T13:47:58.953Z","level":"WARN","message":"Sheet \"NEFERTI\" issue","data":{"vendorName":"NEFERTI","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:47:58.953Z","level":"INFO","message":"Processing sheet: \"API CHURI\""}
+{"timestamp":"2026-06-01T13:48:00.253Z","level":"INFO","message":"Sheet \"API CHURI\": skipped 11740 rows after May 31"}
+{"timestamp":"2026-06-01T13:48:00.253Z","level":"WARN","message":"Sheet \"API CHURI\" issue","data":{"vendorName":"API CHURI","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:48:00.253Z","level":"INFO","message":"Processing sheet: \"MB\""}
+{"timestamp":"2026-06-01T13:48:00.973Z","level":"INFO","message":"Sheet \"MB\": skipped 1129 rows after May 31"}
+{"timestamp":"2026-06-01T13:48:03.219Z","level":"INFO","message":"Sheet \"MB\" done","data":{"inserted":578,"skipped":0}}
+{"timestamp":"2026-06-01T13:48:03.220Z","level":"INFO","message":"Processing sheet: \"TJS\""}
+{"timestamp":"2026-06-01T13:48:04.028Z","level":"INFO","message":"Sheet \"TJS\": skipped 4170 rows after May 31"}
+{"timestamp":"2026-06-01T13:48:04.029Z","level":"WARN","message":"Sheet \"TJS\" issue","data":{"vendorName":"TJS","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:48:04.029Z","level":"INFO","message":"Processing sheet: \"Lux America\""}
+{"timestamp":"2026-06-01T13:48:04.724Z","level":"INFO","message":"Sheet \"Lux America\": skipped 1581 rows after May 31"}
+{"timestamp":"2026-06-01T13:48:04.724Z","level":"WARN","message":"Sheet \"Lux America\" issue","data":{"vendorName":"Lux America","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:48:04.724Z","level":"INFO","message":"Processing sheet: \"TITAN\""}
+{"timestamp":"2026-06-01T13:48:05.460Z","level":"INFO","message":"Sheet \"TITAN\": skipped 1104 rows after May 31"}
+{"timestamp":"2026-06-01T13:48:08.076Z","level":"INFO","message":"Sheet \"TITAN\" done","data":{"inserted":1090,"skipped":0}}
+{"timestamp":"2026-06-01T13:48:08.076Z","level":"INFO","message":"Processing sheet: \"RATAN\""}
+{"timestamp":"2026-06-01T13:48:08.835Z","level":"INFO","message":"Sheet \"RATAN\": skipped 2095 rows after May 31"}
+{"timestamp":"2026-06-01T13:48:08.836Z","level":"WARN","message":"Sheet \"RATAN\" issue","data":{"vendorName":"RATAN","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}}
+{"timestamp":"2026-06-01T13:48:08.837Z","level":"INFO","message":"Sync completed","data":{"file":"MAY","fileId":"1pojw2uqRavn5Bzt7Ksj8d8rmcfvl6-gvNDXgbcFACJM","sheetsProcessed":39,"totalInserted":59165,"totalSkipped":3839,"totalFailed":0,"sheetsWithErrors":18,"results":[{"vendorName":"AVANUE","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"BEAUTYNET","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"DTF","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"PCA","rowsInserted":3548,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"HAZ","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"PPW","rowsInserted":830,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"POTW","rowsInserted":523,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"ET","rowsInserted":1011,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"EFL","rowsInserted":120,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SATURN","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"MTZ","rowsInserted":7059,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"UNIVERSAL PERFUME","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"JIZAN","rowsInserted":5335,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SAP","rowsInserted":8840,"rowsSkipped":3838,"rowsFailed":0},{"vendorName":"MAGNET","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"},{"vendorName":"SGL","rowsInserted":2749,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"ACE BEAUTY","rowsInserted":3024,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"AFL","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"H&B","rowsInserted":613,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"FRAGSENSE","rowsInserted":1014,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SCENT SENSES","rowsInserted":859,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"NANDANSONS","rowsInserted":2025,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SIMEX USD","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"SIMEX EURO","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"Al Hussein","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"PARTHECO","rowsInserted":8848,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"LINDO","rowsInserted":5197,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"FRENCH PERFUME","rowsInserted":186,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"FORMA ITALIANA","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"LUXSCENT","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"},{"vendorName":"PERFUME PRICE","rowsInserted":3178,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SCENT OPHORIA","rowsInserted":2538,"rowsSkipped":1,"rowsFailed":0},{"vendorName":"NEFERTI","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"API CHURI","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"MB","rowsInserted":578,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"TJS","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"Lux America","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"},{"vendorName":"TITAN","rowsInserted":1090,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"RATAN","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"No valid data rows after parsing"}]}}
+{"timestamp":"2026-06-01T14:10:41.999Z","level":"INFO","message":"Starting Google Drive sync","data":{"folderId":"1Qn1lCJdsgrzRCq_pMSPxRX7250-yaMzc","skipSheets":["MASTER"],"maxDate":"2026-05-31"}}
+{"timestamp":"2026-06-01T14:10:42.642Z","level":"INFO","message":"Selected: \"MAY\" (modified: 2026-06-01T06:52:15.059Z, size: 20.4MB)","data":{"fileId":"1pojw2uqRavn5Bzt7Ksj8d8rmcfvl6-gvNDXgbcFACJM"}}
+{"timestamp":"2026-06-01T14:10:43.561Z","level":"INFO","message":"40 sheets found","data":{"sheets":["MASTER","AVANUE","BEAUTYNET","DTF","PCA","HAZ","PPW","POTW","ET","EFL","SATURN","MTZ","UNIVERSAL PERFUME","JIZAN","SAP","MAGNET","SGL","ACE BEAUTY","AFL","H&B","FRAGSENSE","SCENT SENSES","NANDANSONS","SIMEX USD","SIMEX EURO","Al Hussein","PARTHECO","LINDO","FRENCH PERFUME","FORMA ITALIANA","LUXSCENT","PERFUME PRICE","SCENT OPHORIA","NEFERTI","API CHURI","MB","TJS","Lux America","TITAN","RATAN"]}}
+{"timestamp":"2026-06-01T14:10:43.644Z","level":"INFO","message":"Connected to database"}
+{"timestamp":"2026-06-01T14:10:43.644Z","level":"INFO","message":"Processing 39 vendor sheets (skipping: MASTER)"}
+{"timestamp":"2026-06-01T14:10:43.644Z","level":"INFO","message":"Processing sheet: \"AVANUE\""}
+{"timestamp":"2026-06-01T14:10:45.063Z","level":"INFO","message":"Sheet \"AVANUE\" done","data":{"inserted":73,"skipped":0}}
+{"timestamp":"2026-06-01T14:10:45.063Z","level":"INFO","message":"Processing sheet: \"BEAUTYNET\""}
+{"timestamp":"2026-06-01T14:10:45.933Z","level":"INFO","message":"Sheet \"BEAUTYNET\" done","data":{"inserted":176,"skipped":0}}
+{"timestamp":"2026-06-01T14:10:45.933Z","level":"INFO","message":"Processing sheet: \"DTF\""}
+{"timestamp":"2026-06-01T14:10:47.109Z","level":"INFO","message":"Sheet \"DTF\" done","data":{"inserted":382,"skipped":0}}
+{"timestamp":"2026-06-01T14:10:47.110Z","level":"INFO","message":"Processing sheet: \"PCA\""}
+{"timestamp":"2026-06-01T14:12:43.903Z","level":"INFO","message":"Sheet \"PCA\" done","data":{"inserted":60089,"skipped":0}}
+{"timestamp":"2026-06-01T14:12:43.904Z","level":"INFO","message":"Processing sheet: \"HAZ\""}
+{"timestamp":"2026-06-01T14:12:49.642Z","level":"INFO","message":"Sheet \"HAZ\" done","data":{"inserted":2650,"skipped":0}}
+{"timestamp":"2026-06-01T14:12:49.642Z","level":"INFO","message":"Processing sheet: \"PPW\""}
+{"timestamp":"2026-06-01T14:12:50.741Z","level":"WARN","message":"Sheet \"PPW\": 416 invalid-date rows skipped"}
+{"timestamp":"2026-06-01T14:13:04.073Z","level":"INFO","message":"Sheet \"PPW\" done","data":{"inserted":7514,"skipped":0}}
+{"timestamp":"2026-06-01T14:13:04.073Z","level":"INFO","message":"Processing sheet: \"POTW\""}
+{"timestamp":"2026-06-01T14:13:13.548Z","level":"INFO","message":"Sheet \"POTW\" done","data":{"inserted":5136,"skipped":0}}
+{"timestamp":"2026-06-01T14:13:13.548Z","level":"INFO","message":"Processing sheet: \"ET\""}
+{"timestamp":"2026-06-01T14:13:46.230Z","level":"INFO","message":"Sheet \"ET\" done","data":{"inserted":16446,"skipped":0}}
+{"timestamp":"2026-06-01T14:13:46.230Z","level":"INFO","message":"Processing sheet: \"EFL\""}
+{"timestamp":"2026-06-01T14:13:49.838Z","level":"INFO","message":"Sheet \"EFL\" done","data":{"inserted":984,"skipped":0}}
+{"timestamp":"2026-06-01T14:13:49.839Z","level":"INFO","message":"Processing sheet: \"SATURN\""}
+{"timestamp":"2026-06-01T14:13:52.356Z","level":"INFO","message":"Sheet \"SATURN\" done","data":{"inserted":1055,"skipped":0}}
+{"timestamp":"2026-06-01T14:13:52.356Z","level":"INFO","message":"Processing sheet: \"MTZ\""}
+{"timestamp":"2026-06-01T14:13:55.990Z","level":"WARN","message":"Sheet \"MTZ\": 3536 invalid-date rows skipped"}
+{"timestamp":"2026-06-01T14:15:58.196Z","level":"INFO","message":"Sheet \"MTZ\" done","data":{"inserted":63020,"skipped":0}}
+{"timestamp":"2026-06-01T14:15:58.196Z","level":"INFO","message":"Processing sheet: \"UNIVERSAL PERFUME\""}
+{"timestamp":"2026-06-01T14:16:26.177Z","level":"INFO","message":"Sheet \"UNIVERSAL PERFUME\" done","data":{"inserted":13244,"skipped":0}}
+{"timestamp":"2026-06-01T14:16:26.177Z","level":"INFO","message":"Processing sheet: \"JIZAN\""}
+{"timestamp":"2026-06-01T14:17:38.093Z","level":"INFO","message":"Sheet \"JIZAN\" done","data":{"inserted":36108,"skipped":0}}
+{"timestamp":"2026-06-01T14:17:38.094Z","level":"INFO","message":"Processing sheet: \"SAP\""}
+{"timestamp":"2026-06-01T14:17:46.967Z","level":"INFO","message":"Starting Google Drive sync","data":{"folderId":"1Qn1lCJdsgrzRCq_pMSPxRX7250-yaMzc","skipSheets":["MASTER"],"maxDate":"2026-05-31"}}
+{"timestamp":"2026-06-01T14:17:47.611Z","level":"INFO","message":"Selected: \"MAY\" (modified: 2026-06-01T06:52:15.059Z, size: 20.4MB)","data":{"fileId":"1pojw2uqRavn5Bzt7Ksj8d8rmcfvl6-gvNDXgbcFACJM"}}
+{"timestamp":"2026-06-01T14:17:48.319Z","level":"INFO","message":"40 sheets found","data":{"sheets":["MASTER","AVANUE","BEAUTYNET","DTF","PCA","HAZ","PPW","POTW","ET","EFL","SATURN","MTZ","UNIVERSAL PERFUME","JIZAN","SAP","MAGNET","SGL","ACE BEAUTY","AFL","H&B","FRAGSENSE","SCENT SENSES","NANDANSONS","SIMEX USD","SIMEX EURO","Al Hussein","PARTHECO","LINDO","FRENCH PERFUME","FORMA ITALIANA","LUXSCENT","PERFUME PRICE","SCENT OPHORIA","NEFERTI","API CHURI","MB","TJS","Lux America","TITAN","RATAN"]}}
+{"timestamp":"2026-06-01T14:17:48.434Z","level":"INFO","message":"Connected to database"}
+{"timestamp":"2026-06-01T14:17:48.434Z","level":"INFO","message":"Processing 39 vendor sheets (skipping: MASTER)"}
+{"timestamp":"2026-06-01T14:17:48.434Z","level":"INFO","message":"Processing sheet: \"AVANUE\""}
+{"timestamp":"2026-06-01T14:17:50.307Z","level":"INFO","message":"Sheet \"AVANUE\" done","data":{"inserted":0,"skipped":73}}
+{"timestamp":"2026-06-01T14:17:50.307Z","level":"INFO","message":"Processing sheet: \"BEAUTYNET\""}
+{"timestamp":"2026-06-01T14:17:52.248Z","level":"INFO","message":"Sheet \"BEAUTYNET\" done","data":{"inserted":0,"skipped":176}}
+{"timestamp":"2026-06-01T14:17:52.249Z","level":"INFO","message":"Processing sheet: \"DTF\""}
+{"timestamp":"2026-06-01T14:18:01.884Z","level":"INFO","message":"Sheet \"DTF\" done","data":{"inserted":381,"skipped":1}}
+{"timestamp":"2026-06-01T14:18:01.884Z","level":"INFO","message":"Processing sheet: \"PCA\""}
+{"timestamp":"2026-06-01T14:18:11.800Z","level":"INFO","message":"Sheet \"PCA\" done","data":{"inserted":314,"skipped":59775}}
+{"timestamp":"2026-06-01T14:18:11.800Z","level":"INFO","message":"Processing sheet: \"HAZ\""}
+{"timestamp":"2026-06-01T14:19:38.532Z","level":"INFO","message":"Sheet \"HAZ\" done","data":{"inserted":2648,"skipped":2}}
+{"timestamp":"2026-06-01T14:19:38.532Z","level":"INFO","message":"Processing sheet: \"PPW\""}
+{"timestamp":"2026-06-01T14:19:39.602Z","level":"WARN","message":"Sheet \"PPW\": 416 invalid-date rows skipped"}
+{"timestamp":"2026-06-01T14:19:42.579Z","level":"INFO","message":"Sheet \"PPW\" done","data":{"inserted":0,"skipped":7514}}
+{"timestamp":"2026-06-01T14:19:42.579Z","level":"INFO","message":"Processing sheet: \"POTW\""}
+{"timestamp":"2026-06-01T14:19:44.988Z","level":"INFO","message":"Sheet \"POTW\" done","data":{"inserted":0,"skipped":5136}}
+{"timestamp":"2026-06-01T14:19:44.988Z","level":"INFO","message":"Processing sheet: \"ET\""}
+{"timestamp":"2026-06-01T14:19:47.963Z","level":"INFO","message":"Sheet \"ET\" done","data":{"inserted":0,"skipped":16446}}
+{"timestamp":"2026-06-01T14:19:47.963Z","level":"INFO","message":"Processing sheet: \"EFL\""}
+{"timestamp":"2026-06-01T14:19:55.624Z","level":"INFO","message":"Sheet \"EFL\" done","data":{"inserted":10,"skipped":974}}
+{"timestamp":"2026-06-01T14:19:55.624Z","level":"INFO","message":"Processing sheet: \"SATURN\""}
+{"timestamp":"2026-06-01T14:19:57.835Z","level":"INFO","message":"Sheet \"SATURN\" done","data":{"inserted":0,"skipped":1055}}
+{"timestamp":"2026-06-01T14:19:57.835Z","level":"INFO","message":"Processing sheet: \"MTZ\""}
+{"timestamp":"2026-06-01T14:20:00.815Z","level":"WARN","message":"Sheet \"MTZ\": 3536 invalid-date rows skipped"}
+{"timestamp":"2026-06-01T14:20:03.335Z","level":"INFO","message":"Sheet \"MTZ\" done","data":{"inserted":0,"skipped":63020}}
+{"timestamp":"2026-06-01T14:20:03.335Z","level":"INFO","message":"Processing sheet: \"UNIVERSAL PERFUME\""}
+{"timestamp":"2026-06-01T14:20:28.189Z","level":"INFO","message":"Sheet \"SAP\" done","data":{"inserted":61350,"skipped":1452}}
+{"timestamp":"2026-06-01T14:20:28.190Z","level":"INFO","message":"Processing sheet: \"MAGNET\""}
+{"timestamp":"2026-06-01T14:20:28.875Z","level":"WARN","message":"Sheet \"MAGNET\" issue","data":{"vendorName":"MAGNET","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"}}
+{"timestamp":"2026-06-01T14:20:28.876Z","level":"INFO","message":"Processing sheet: \"SGL\""}
+{"timestamp":"2026-06-01T14:20:36.664Z","level":"INFO","message":"Sheet \"UNIVERSAL PERFUME\" done","data":{"inserted":8587,"skipped":4657}}
+{"timestamp":"2026-06-01T14:20:36.665Z","level":"INFO","message":"Processing sheet: \"JIZAN\""}
+{"timestamp":"2026-06-01T14:20:48.381Z","level":"INFO","message":"Sheet \"JIZAN\" done","data":{"inserted":871,"skipped":35237}}
+{"timestamp":"2026-06-01T14:20:48.381Z","level":"INFO","message":"Processing sheet: \"SAP\""}
+{"timestamp":"2026-06-01T14:24:18.382Z","level":"INFO","message":"Sheet \"SGL\" done","data":{"inserted":39765,"skipped":0}}
+{"timestamp":"2026-06-01T14:24:18.382Z","level":"INFO","message":"Processing sheet: \"ACE BEAUTY\""}
+{"timestamp":"2026-06-01T14:24:19.154Z","level":"INFO","message":"Sheet \"SAP\" done","data":{"inserted":58328,"skipped":4474}}
+{"timestamp":"2026-06-01T14:24:19.154Z","level":"INFO","message":"Processing sheet: \"MAGNET\""}
+{"timestamp":"2026-06-01T14:24:19.794Z","level":"WARN","message":"Sheet \"MAGNET\" issue","data":{"vendorName":"MAGNET","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"}}
+{"timestamp":"2026-06-01T14:24:19.794Z","level":"INFO","message":"Processing sheet: \"SGL\""}
+{"timestamp":"2026-06-01T14:24:52.175Z","level":"INFO","message":"Sheet \"SGL\" done","data":{"inserted":10249,"skipped":29516}}
+{"timestamp":"2026-06-01T14:24:52.175Z","level":"INFO","message":"Processing sheet: \"ACE BEAUTY\""}
+{"timestamp":"2026-06-01T14:26:47.982Z","level":"INFO","message":"Sheet \"ACE BEAUTY\" done","data":{"inserted":26382,"skipped":0}}
+{"timestamp":"2026-06-01T14:26:47.982Z","level":"INFO","message":"Processing sheet: \"AFL\""}
+{"timestamp":"2026-06-01T14:26:47.983Z","level":"ERROR","message":"Sheet \"ACE BEAUTY\" failed","data":{"error":"Transaction (Process ID 51) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."}}
+{"timestamp":"2026-06-01T14:26:47.983Z","level":"INFO","message":"Processing sheet: \"AFL\""}
+{"timestamp":"2026-06-01T14:27:10.535Z","level":"ERROR","message":"Sheet \"AFL\" failed","data":{"error":"Transaction (Process ID 51) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."}}
+{"timestamp":"2026-06-01T14:27:10.535Z","level":"INFO","message":"Processing sheet: \"H&B\""}
+{"timestamp":"2026-06-01T14:27:23.456Z","level":"INFO","message":"Sheet \"AFL\" done","data":{"inserted":2905,"skipped":0}}
+{"timestamp":"2026-06-01T14:27:23.456Z","level":"INFO","message":"Processing sheet: \"H&B\""}
+{"timestamp":"2026-06-01T14:27:43.103Z","level":"INFO","message":"Sheet \"H&B\" done","data":{"inserted":4284,"skipped":0}}
+{"timestamp":"2026-06-01T14:27:43.103Z","level":"INFO","message":"Processing sheet: \"FRAGSENSE\""}
+{"timestamp":"2026-06-01T14:27:43.104Z","level":"ERROR","message":"Sheet \"H&B\" failed","data":{"error":"Transaction (Process ID 84) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."}}
+{"timestamp":"2026-06-01T14:27:43.104Z","level":"INFO","message":"Processing sheet: \"FRAGSENSE\""}
+{"timestamp":"2026-06-01T14:28:03.704Z","level":"INFO","message":"Sheet \"FRAGSENSE\" done","data":{"inserted":3043,"skipped":0}}
+{"timestamp":"2026-06-01T14:28:03.704Z","level":"INFO","message":"Processing sheet: \"SCENT SENSES\""}
+{"timestamp":"2026-06-01T14:28:03.716Z","level":"INFO","message":"Sheet \"FRAGSENSE\" done","data":{"inserted":3043,"skipped":0}}
+{"timestamp":"2026-06-01T14:28:03.716Z","level":"INFO","message":"Processing sheet: \"SCENT SENSES\""}
+{"timestamp":"2026-06-01T14:28:17.796Z","level":"INFO","message":"Sheet \"SCENT SENSES\" done","data":{"inserted":1594,"skipped":0}}
+{"timestamp":"2026-06-01T14:28:17.797Z","level":"INFO","message":"Processing sheet: \"NANDANSONS\""}
+{"timestamp":"2026-06-01T14:28:17.881Z","level":"INFO","message":"Sheet \"SCENT SENSES\" done","data":{"inserted":1594,"skipped":0}}
+{"timestamp":"2026-06-01T14:28:17.881Z","level":"INFO","message":"Processing sheet: \"NANDANSONS\""}
+{"timestamp":"2026-06-01T14:30:25.946Z","level":"ERROR","message":"Sheet \"NANDANSONS\" failed","data":{"error":"Transaction (Process ID 84) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."}}
+{"timestamp":"2026-06-01T14:30:25.946Z","level":"INFO","message":"Processing sheet: \"SIMEX USD\""}
+{"timestamp":"2026-06-01T14:30:33.926Z","level":"INFO","message":"Sheet \"NANDANSONS\" done","data":{"inserted":19985,"skipped":0}}
+{"timestamp":"2026-06-01T14:30:33.926Z","level":"INFO","message":"Processing sheet: \"SIMEX USD\""}
+{"timestamp":"2026-06-01T14:31:03.515Z","level":"INFO","message":"Sheet \"SIMEX USD\" done","data":{"inserted":5642,"skipped":0}}
+{"timestamp":"2026-06-01T14:31:03.515Z","level":"INFO","message":"Processing sheet: \"SIMEX EURO\""}
+{"timestamp":"2026-06-01T14:31:03.516Z","level":"ERROR","message":"Sheet \"SIMEX USD\" failed","data":{"error":"Transaction (Process ID 51) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."}}
+{"timestamp":"2026-06-01T14:31:03.516Z","level":"INFO","message":"Processing sheet: \"SIMEX EURO\""}
+{"timestamp":"2026-06-01T14:31:36.095Z","level":"ERROR","message":"Sheet \"SIMEX EURO\" failed","data":{"error":"Transaction (Process ID 51) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."}}
+{"timestamp":"2026-06-01T14:31:36.095Z","level":"INFO","message":"Processing sheet: \"Al Hussein\""}
+{"timestamp":"2026-06-01T14:31:36.095Z","level":"INFO","message":"Sheet \"SIMEX EURO\" done","data":{"inserted":5058,"skipped":130}}
+{"timestamp":"2026-06-01T14:31:36.095Z","level":"INFO","message":"Processing sheet: \"Al Hussein\""}
+{"timestamp":"2026-06-01T14:31:48.619Z","level":"INFO","message":"Sheet \"Al Hussein\" done","data":{"inserted":1641,"skipped":0}}
+{"timestamp":"2026-06-01T14:31:48.619Z","level":"INFO","message":"Processing sheet: \"PARTHECO\""}
+{"timestamp":"2026-06-01T14:31:48.619Z","level":"ERROR","message":"Sheet \"Al Hussein\" failed","data":{"error":"Transaction (Process ID 51) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."}}
+{"timestamp":"2026-06-01T14:31:48.619Z","level":"INFO","message":"Processing sheet: \"PARTHECO\""}
+{"timestamp":"2026-06-01T14:34:45.114Z","level":"INFO","message":"Sheet \"PARTHECO\" done","data":{"inserted":26500,"skipped":0}}
+{"timestamp":"2026-06-01T14:34:45.114Z","level":"INFO","message":"Processing sheet: \"LINDO\""}
+{"timestamp":"2026-06-01T14:34:45.118Z","level":"INFO","message":"Sheet \"PARTHECO\" done","data":{"inserted":26500,"skipped":0}}
+{"timestamp":"2026-06-01T14:34:45.119Z","level":"INFO","message":"Processing sheet: \"LINDO\""}
+{"timestamp":"2026-06-01T14:40:30.721Z","level":"ERROR","message":"Sheet \"LINDO\" failed","data":{"error":"Timeout: Request failed to complete in 120000ms"}}
+{"timestamp":"2026-06-01T14:40:30.721Z","level":"INFO","message":"Processing sheet: \"FRENCH PERFUME\""}
+{"timestamp":"2026-06-01T14:40:31.084Z","level":"ERROR","message":"Sheet \"LINDO\" failed","data":{"error":"Timeout: Request failed to complete in 120000ms"}}
+{"timestamp":"2026-06-01T14:40:31.084Z","level":"INFO","message":"Processing sheet: \"FRENCH PERFUME\""}
+{"timestamp":"2026-06-01T14:40:47.074Z","level":"INFO","message":"Sheet \"FRENCH PERFUME\" done","data":{"inserted":5196,"skipped":0}}
+{"timestamp":"2026-06-01T14:40:47.074Z","level":"INFO","message":"Processing sheet: \"FORMA ITALIANA\""}
+{"timestamp":"2026-06-01T14:40:55.779Z","level":"INFO","message":"Sheet \"FORMA ITALIANA\" done","data":{"inserted":3743,"skipped":0}}
+{"timestamp":"2026-06-01T14:40:55.779Z","level":"INFO","message":"Processing sheet: \"LUXSCENT\""}
+{"timestamp":"2026-06-01T14:40:56.398Z","level":"WARN","message":"Sheet \"LUXSCENT\" issue","data":{"vendorName":"LUXSCENT","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"}}
+{"timestamp":"2026-06-01T14:40:56.399Z","level":"INFO","message":"Processing sheet: \"PERFUME PRICE\""}
+{"timestamp":"2026-06-01T14:41:52.189Z","level":"INFO","message":"Sheet \"PERFUME PRICE\" done","data":{"inserted":27449,"skipped":0}}
+{"timestamp":"2026-06-01T14:41:52.190Z","level":"INFO","message":"Processing sheet: \"SCENT OPHORIA\""}
+{"timestamp":"2026-06-01T14:42:23.396Z","level":"INFO","message":"Sheet \"SCENT OPHORIA\" done","data":{"inserted":14492,"skipped":1}}
+{"timestamp":"2026-06-01T14:42:23.396Z","level":"INFO","message":"Processing sheet: \"NEFERTI\""}
+{"timestamp":"2026-06-01T14:42:28.171Z","level":"INFO","message":"Sheet \"NEFERTI\" done","data":{"inserted":900,"skipped":0}}
+{"timestamp":"2026-06-01T14:42:28.171Z","level":"INFO","message":"Processing sheet: \"API CHURI\""}
+{"timestamp":"2026-06-01T14:42:36.208Z","level":"ERROR","message":"Sheet \"FRENCH PERFUME\" failed","data":{"error":"Timeout: Request failed to complete in 120000ms"}}
+{"timestamp":"2026-06-01T14:42:36.208Z","level":"INFO","message":"Processing sheet: \"FORMA ITALIANA\""}
+{"timestamp":"2026-06-01T14:42:54.477Z","level":"INFO","message":"Sheet \"API CHURI\" done","data":{"inserted":11740,"skipped":0}}
+{"timestamp":"2026-06-01T14:42:54.478Z","level":"INFO","message":"Processing sheet: \"MB\""}
+{"timestamp":"2026-06-01T14:42:59.775Z","level":"INFO","message":"Sheet \"MB\" done","data":{"inserted":1707,"skipped":0}}
+{"timestamp":"2026-06-01T14:42:59.775Z","level":"INFO","message":"Processing sheet: \"TJS\""}
+{"timestamp":"2026-06-01T14:43:09.745Z","level":"INFO","message":"Sheet \"TJS\" done","data":{"inserted":4170,"skipped":0}}
+{"timestamp":"2026-06-01T14:43:09.745Z","level":"INFO","message":"Processing sheet: \"Lux America\""}
+{"timestamp":"2026-06-01T14:43:15.791Z","level":"INFO","message":"Sheet \"Lux America\" done","data":{"inserted":1581,"skipped":0}}
+{"timestamp":"2026-06-01T14:43:15.791Z","level":"INFO","message":"Processing sheet: \"TITAN\""}
+{"timestamp":"2026-06-01T14:43:21.832Z","level":"INFO","message":"Sheet \"TITAN\" done","data":{"inserted":2194,"skipped":0}}
+{"timestamp":"2026-06-01T14:43:21.832Z","level":"INFO","message":"Processing sheet: \"RATAN\""}
+{"timestamp":"2026-06-01T14:43:27.778Z","level":"INFO","message":"Sheet \"RATAN\" done","data":{"inserted":2095,"skipped":0}}
+{"timestamp":"2026-06-01T14:43:27.779Z","level":"INFO","message":"Sync completed","data":{"file":"MAY","fileId":"1pojw2uqRavn5Bzt7Ksj8d8rmcfvl6-gvNDXgbcFACJM","sheetsProcessed":39,"totalInserted":438665,"totalSkipped":1453,"totalFailed":0,"sheetsWithErrors":8,"results":[{"vendorName":"AVANUE","rowsInserted":73,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"BEAUTYNET","rowsInserted":176,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"DTF","rowsInserted":382,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"PCA","rowsInserted":60089,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"HAZ","rowsInserted":2650,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"PPW","rowsInserted":7514,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"POTW","rowsInserted":5136,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"ET","rowsInserted":16446,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"EFL","rowsInserted":984,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SATURN","rowsInserted":1055,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"MTZ","rowsInserted":63020,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"UNIVERSAL PERFUME","rowsInserted":13244,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"JIZAN","rowsInserted":36108,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SAP","rowsInserted":61350,"rowsSkipped":1452,"rowsFailed":0},{"vendorName":"MAGNET","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"},{"vendorName":"SGL","rowsInserted":39765,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"ACE BEAUTY","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Transaction (Process ID 51) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."},{"vendorName":"AFL","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Transaction (Process ID 51) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."},{"vendorName":"H&B","rowsInserted":4284,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"FRAGSENSE","rowsInserted":3043,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SCENT SENSES","rowsInserted":1594,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"NANDANSONS","rowsInserted":19985,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SIMEX USD","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Transaction (Process ID 51) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."},{"vendorName":"SIMEX EURO","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Transaction (Process ID 51) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."},{"vendorName":"Al Hussein","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Transaction (Process ID 51) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."},{"vendorName":"PARTHECO","rowsInserted":26500,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"LINDO","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Timeout: Request failed to complete in 120000ms"},{"vendorName":"FRENCH PERFUME","rowsInserted":5196,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"FORMA ITALIANA","rowsInserted":3743,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"LUXSCENT","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"},{"vendorName":"PERFUME PRICE","rowsInserted":27449,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SCENT OPHORIA","rowsInserted":14492,"rowsSkipped":1,"rowsFailed":0},{"vendorName":"NEFERTI","rowsInserted":900,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"API CHURI","rowsInserted":11740,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"MB","rowsInserted":1707,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"TJS","rowsInserted":4170,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"Lux America","rowsInserted":1581,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"TITAN","rowsInserted":2194,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"RATAN","rowsInserted":2095,"rowsSkipped":0,"rowsFailed":0}]}}
+{"timestamp":"2026-06-01T14:43:31.509Z","level":"INFO","message":"Sheet \"FORMA ITALIANA\" done","data":{"inserted":3743,"skipped":0}}
+{"timestamp":"2026-06-01T14:43:31.509Z","level":"INFO","message":"Processing sheet: \"LUXSCENT\""}
+{"timestamp":"2026-06-01T14:43:32.245Z","level":"WARN","message":"Sheet \"LUXSCENT\" issue","data":{"vendorName":"LUXSCENT","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"}}
+{"timestamp":"2026-06-01T14:43:32.245Z","level":"INFO","message":"Processing sheet: \"PERFUME PRICE\""}
+{"timestamp":"2026-06-01T14:44:00.835Z","level":"INFO","message":"Sheet \"PERFUME PRICE\" done","data":{"inserted":27449,"skipped":0}}
+{"timestamp":"2026-06-01T14:44:00.835Z","level":"INFO","message":"Processing sheet: \"SCENT OPHORIA\""}
+{"timestamp":"2026-06-01T14:44:16.912Z","level":"INFO","message":"Sheet \"SCENT OPHORIA\" done","data":{"inserted":14492,"skipped":1}}
+{"timestamp":"2026-06-01T14:44:16.912Z","level":"INFO","message":"Processing sheet: \"NEFERTI\""}
+{"timestamp":"2026-06-01T14:44:20.847Z","level":"INFO","message":"Sheet \"NEFERTI\" done","data":{"inserted":900,"skipped":0}}
+{"timestamp":"2026-06-01T14:44:20.847Z","level":"INFO","message":"Processing sheet: \"API CHURI\""}
+{"timestamp":"2026-06-01T14:44:35.252Z","level":"INFO","message":"Sheet \"API CHURI\" done","data":{"inserted":11740,"skipped":0}}
+{"timestamp":"2026-06-01T14:44:35.252Z","level":"INFO","message":"Processing sheet: \"MB\""}
+{"timestamp":"2026-06-01T14:44:41.241Z","level":"INFO","message":"Sheet \"MB\" done","data":{"inserted":1707,"skipped":0}}
+{"timestamp":"2026-06-01T14:44:41.241Z","level":"INFO","message":"Processing sheet: \"TJS\""}
+{"timestamp":"2026-06-01T14:44:48.421Z","level":"INFO","message":"Sheet \"TJS\" done","data":{"inserted":4170,"skipped":0}}
+{"timestamp":"2026-06-01T14:44:48.421Z","level":"INFO","message":"Processing sheet: \"Lux America\""}
+{"timestamp":"2026-06-01T14:44:52.588Z","level":"INFO","message":"Sheet \"Lux America\" done","data":{"inserted":1581,"skipped":0}}
+{"timestamp":"2026-06-01T14:44:52.588Z","level":"INFO","message":"Processing sheet: \"TITAN\""}
+{"timestamp":"2026-06-01T14:44:56.867Z","level":"INFO","message":"Sheet \"TITAN\" done","data":{"inserted":2194,"skipped":0}}
+{"timestamp":"2026-06-01T14:44:56.867Z","level":"INFO","message":"Processing sheet: \"RATAN\""}
+{"timestamp":"2026-06-01T14:45:01.834Z","level":"INFO","message":"Sheet \"RATAN\" done","data":{"inserted":2095,"skipped":0}}
+{"timestamp":"2026-06-01T14:45:01.836Z","level":"INFO","message":"Sync completed","data":{"file":"MAY","fileId":"1pojw2uqRavn5Bzt7Ksj8d8rmcfvl6-gvNDXgbcFACJM","sheetsProcessed":39,"totalInserted":224224,"totalSkipped":228187,"totalFailed":0,"sheetsWithErrors":6,"results":[{"vendorName":"AVANUE","rowsInserted":0,"rowsSkipped":73,"rowsFailed":0},{"vendorName":"BEAUTYNET","rowsInserted":0,"rowsSkipped":176,"rowsFailed":0},{"vendorName":"DTF","rowsInserted":381,"rowsSkipped":1,"rowsFailed":0},{"vendorName":"PCA","rowsInserted":314,"rowsSkipped":59775,"rowsFailed":0},{"vendorName":"HAZ","rowsInserted":2648,"rowsSkipped":2,"rowsFailed":0},{"vendorName":"PPW","rowsInserted":0,"rowsSkipped":7514,"rowsFailed":0},{"vendorName":"POTW","rowsInserted":0,"rowsSkipped":5136,"rowsFailed":0},{"vendorName":"ET","rowsInserted":0,"rowsSkipped":16446,"rowsFailed":0},{"vendorName":"EFL","rowsInserted":10,"rowsSkipped":974,"rowsFailed":0},{"vendorName":"SATURN","rowsInserted":0,"rowsSkipped":1055,"rowsFailed":0},{"vendorName":"MTZ","rowsInserted":0,"rowsSkipped":63020,"rowsFailed":0},{"vendorName":"UNIVERSAL PERFUME","rowsInserted":8587,"rowsSkipped":4657,"rowsFailed":0},{"vendorName":"JIZAN","rowsInserted":871,"rowsSkipped":35237,"rowsFailed":0},{"vendorName":"SAP","rowsInserted":58328,"rowsSkipped":4474,"rowsFailed":0},{"vendorName":"MAGNET","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"},{"vendorName":"SGL","rowsInserted":10249,"rowsSkipped":29516,"rowsFailed":0},{"vendorName":"ACE BEAUTY","rowsInserted":26382,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"AFL","rowsInserted":2905,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"H&B","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Transaction (Process ID 84) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."},{"vendorName":"FRAGSENSE","rowsInserted":3043,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SCENT SENSES","rowsInserted":1594,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"NANDANSONS","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Transaction (Process ID 84) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction."},{"vendorName":"SIMEX USD","rowsInserted":5642,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SIMEX EURO","rowsInserted":5058,"rowsSkipped":130,"rowsFailed":0},{"vendorName":"Al Hussein","rowsInserted":1641,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"PARTHECO","rowsInserted":26500,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"LINDO","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Timeout: Request failed to complete in 120000ms"},{"vendorName":"FRENCH PERFUME","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Timeout: Request failed to complete in 120000ms"},{"vendorName":"FORMA ITALIANA","rowsInserted":3743,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"LUXSCENT","rowsInserted":0,"rowsSkipped":0,"rowsFailed":0,"error":"Sheet has no data rows"},{"vendorName":"PERFUME PRICE","rowsInserted":27449,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"SCENT OPHORIA","rowsInserted":14492,"rowsSkipped":1,"rowsFailed":0},{"vendorName":"NEFERTI","rowsInserted":900,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"API CHURI","rowsInserted":11740,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"MB","rowsInserted":1707,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"TJS","rowsInserted":4170,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"Lux America","rowsInserted":1581,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"TITAN","rowsInserted":2194,"rowsSkipped":0,"rowsFailed":0},{"vendorName":"RATAN","rowsInserted":2095,"rowsSkipped":0,"rowsFailed":0}]}}

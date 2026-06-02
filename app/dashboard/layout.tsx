@@ -119,19 +119,6 @@ export default function DashboardLayout({
             <span>Dashboard</span>
           </Link>
 
-          <Link
-            href="/dashboard/search"
-            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-              isActive('/dashboard/search')
-                ? 'bg-sidebar-primary text-sidebar-primary-foreground shadow-sm font-medium'
-                : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
-            }`}
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <span>Price Intelligence</span>
-          </Link>
 
           <Link
             href="/dashboard/upload"
@@ -202,6 +189,22 @@ export default function DashboardLayout({
             </svg>
             <span>Order Dashboard</span>
           </Link>
+
+          {/* Drive Sync — disabled June 1 2026, re-enable when needed
+          <Link
+            href="/dashboard/sync"
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+              isActive('/dashboard/sync')
+                ? 'bg-sidebar-primary text-sidebar-primary-foreground shadow-sm font-medium'
+                : 'text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground'
+            }`}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span>Drive Sync</span>
+          </Link>
+          */}
         </nav>
 
         {/* User Profile */}

@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
     const table     = (formData.get('table') as string) || 'LLP_Orders';
     const sheetType = (formData.get('sheet_type') as string) || 'PENDING ORDERS';
 
-    const allowed = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders'];
+    const allowed = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders', 'BM_Orders', 'BCGGB_Orders'];
     if (!allowed.includes(table)) {
       return NextResponse.json({ error: 'Invalid table name' }, { status: 400 });
     }

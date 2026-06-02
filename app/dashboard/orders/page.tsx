@@ -3,11 +3,11 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { toast } from "sonner";
 
-type TabId = 'upload' | 'form' | 'history';
-type TableName = 'LLP_Orders' | 'VW360_Orders' | 'BSLLC_Orders';
+type TabId = 'upload' | 'form' | 'history' | 'gsheet';
+type TableName = 'LLP_Orders' | 'VW360_Orders' | 'BSLLC_Orders' | 'BM_Orders' | 'BCGGB_Orders';
 type SheetType = 'PENDING ORDERS' | 'DONE ORDERS' | 'NOT BUY';
 
-const TABLES: TableName[]     = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders'];
+const TABLES: TableName[]     = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders', 'BM_Orders', 'BCGGB_Orders'];
 const SHEET_TYPES: SheetType[] = ['PENDING ORDERS', 'DONE ORDERS', 'NOT BUY'];
 const STATUS_OPTIONS = [
   'ON THE WAY (AIR)',
@@ -348,6 +348,7 @@ function HistoryTab() {
 
   const companyToTable: Record<string, string> = {
     LLP: 'LLP_Orders', VW360: 'VW360_Orders', BSLLC: 'BSLLC_Orders',
+    BM: 'BM_Orders', BCGGB: 'BCGGB_Orders',
   };
 
   const rowKey = (row: any) => `${row.company}-${row.id}`;
@@ -613,6 +614,8 @@ function HistoryTab() {
       'LLP':   'bg-purple-100 text-purple-800',
       'VW360': 'bg-blue-100 text-blue-800',
       'BSLLC': 'bg-orange-100 text-orange-800',
+      'BM':    'bg-teal-100 text-teal-800',
+      'BCGGB': 'bg-pink-100 text-pink-800',
     };
     return colors[c] || 'bg-gray-100 text-gray-700';
   };
@@ -646,6 +649,8 @@ function HistoryTab() {
             <option value="LLP">LLP</option>
             <option value="VW360">VW360</option>
             <option value="BSLLC">BSLLC</option>
+            <option value="BM">BM</option>
+            <option value="BCGGB">BCGGB</option>
           </select>
         </div>
         <div>
@@ -930,6 +935,271 @@ function HistoryTab() {
   );
 }
 
+// ── Google Sheet Sync Tab ─────────────────────────────────────────────────────
+interface SheetConfig { label: string; table: string; company: string; }
+interface SheetResult {
+  label: string; table: string;
+  inserted: number; skipped: number; skippedDups: number; error?: string;
+}
+interface SyncResponse {
+  success: boolean; error?: string;
+  totalInserted: number; totalDuplicatesSkipped: number;
+  totalEmptyRowsSkipped: number; sheetsProcessed: number;
+  sheetsWithErrors: number; results: SheetResult[];
+}
+
+function GoogleSheetSyncTab() {
+  const [sheets, setSheets]       = useState<SheetConfig[]>([]);
+  const [selected, setSelected]   = useState<Set<string>>(new Set());
+  const [syncing, setSyncing]     = useState(false);
+  const [result, setResult]       = useState<SyncResponse | null>(null);
+  const [loadingConfig, setLoadingConfig] = useState(true);
+
+  // Load sheet configs on mount
+  useEffect(() => {
+    fetch('/api/orders/sync-sheets')
+      .then(r => r.json())
+      .then(d => {
+        setSheets(d.sheets || []);
+        // Select all by default
+        setSelected(new Set((d.sheets || []).map((s: SheetConfig) => s.label)));
+      })
+      .catch(() => {})
+      .finally(() => setLoadingConfig(false));
+  }, []);
+
+  const toggleSheet = (label: string) => {
+    setSelected(prev => {
+      const next = new Set(prev);
+      next.has(label) ? next.delete(label) : next.add(label);
+      return next;
+    });
+  };
+
+  const toggleAll = () => {
+    if (selected.size === sheets.length) setSelected(new Set());
+    else setSelected(new Set(sheets.map(s => s.label)));
+  };
+
+  const handleSync = async () => {
+    if (selected.size === 0) return;
+    setSyncing(true); setResult(null);
+    try {
+      const res  = await fetch('/api/orders/sync-sheets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sheets: Array.from(selected) }),
+      });
+      const data = await res.json();
+      setResult(data);
+      if (data.success && data.totalInserted > 0) {
+        toast.success(`Synced ${data.totalInserted} new orders from Google Sheets`);
+      } else if (data.success && data.totalInserted === 0) {
+        toast.success('Sync complete — no new orders found (all were duplicates)');
+      }
+    } catch (err: any) {
+      setResult({ success: false, error: err.message, totalInserted: 0, totalDuplicatesSkipped: 0, totalEmptyRowsSkipped: 0, sheetsProcessed: 0, sheetsWithErrors: 0, results: [] });
+    } finally {
+      setSyncing(false);
+    }
+  };
+
+  const companyColor: Record<string, string> = {
+    BSLLC: 'bg-orange-100 text-orange-800',
+    VW360:  'bg-blue-100 text-blue-800',
+    LLP:    'bg-purple-100 text-purple-800',
+    BM:     'bg-teal-100 text-teal-800',
+    BCGGB:  'bg-pink-100 text-pink-800',
+  };
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Left: sheet selector + sync button */}
+      <div className="lg:col-span-2 space-y-5">
+        <div className="bg-card border border-border rounded-xl p-6 space-y-5">
+          <div>
+            <h3 className="text-sm font-semibold text-foreground mb-1">Google Sheets to Sync</h3>
+            <p className="text-xs text-muted-foreground">
+              Select which sheets to pull data from. Duplicate rows (all fields identical) are skipped automatically.
+            </p>
+          </div>
+
+          {loadingConfig ? (
+            <div className="text-sm text-muted-foreground">Loading sheets…</div>
+          ) : (
+            <div className="space-y-2">
+              {/* Select all */}
+              <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={selected.size === sheets.length && sheets.length > 0}
+                  onChange={toggleAll}
+                  className="rounded border-border w-4 h-4 cursor-pointer"
+                />
+                <span className="text-sm font-semibold text-foreground">Select All</span>
+              </label>
+              <div className="border-t border-border" />
+              {sheets.map(s => (
+                <label key={s.label} className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-muted/50 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={selected.has(s.label)}
+                    onChange={() => toggleSheet(s.label)}
+                    className="rounded border-border w-4 h-4 cursor-pointer"
+                  />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-foreground truncate">{s.label}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">→ {s.table}</p>
+                  </div>
+                  <span className={`px-2 py-0.5 rounded-full text-xs font-semibold flex-shrink-0 ${companyColor[s.company] || 'bg-gray-100 text-gray-700'}`}>
+                    {s.company}
+                  </span>
+                </label>
+              ))}
+            </div>
+          )}
+
+          <button
+            onClick={handleSync}
+            disabled={syncing || selected.size === 0 || loadingConfig}
+            className="w-full py-3 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-lg transition-colors disabled:opacity-50 text-sm flex items-center justify-center gap-2"
+          >
+            {syncing ? (
+              <>
+                <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                </svg>
+                Syncing from Google Sheets…
+              </>
+            ) : (
+              <>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Sync {selected.size} Sheet{selected.size !== 1 ? 's' : ''} Now
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Results */}
+        {result && (
+          <div className={`bg-card border rounded-xl p-5 space-y-4 ${result.error || result.sheetsWithErrors > 0 ? 'border-yellow-300' : 'border-green-300'}`}>
+            {result.error ? (
+              <p className="text-red-600 font-semibold text-sm">❌ {result.error}</p>
+            ) : (
+              <>
+                {/* Summary */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {[
+                    { label: 'New Orders Added',   value: result.totalInserted,            cls: 'text-green-700 bg-green-50 border-green-200' },
+                    { label: 'Duplicates Skipped', value: result.totalDuplicatesSkipped,   cls: 'text-yellow-700 bg-yellow-50 border-yellow-200' },
+                    { label: 'Empty Rows Skipped', value: result.totalEmptyRowsSkipped,    cls: 'text-gray-700 bg-gray-50 border-gray-200' },
+                    { label: 'Sheets with Errors', value: result.sheetsWithErrors,         cls: result.sheetsWithErrors > 0 ? 'text-red-700 bg-red-50 border-red-200' : 'text-gray-700 bg-gray-50 border-gray-200' },
+                  ].map(card => (
+                    <div key={card.label} className={`rounded-lg border p-3 ${card.cls}`}>
+                      <p className="text-xs font-medium opacity-75">{card.label}</p>
+                      <p className="text-xl font-bold mt-1">{card.value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Per-sheet breakdown */}
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Per-Sheet Breakdown</p>
+                  <div className="space-y-1.5">
+                    {result.results.map(r => (
+                      <div key={r.label} className={`flex items-start gap-3 p-2.5 rounded-lg text-xs ${r.error ? 'bg-red-50 border border-red-200' : 'bg-muted/40'}`}>
+                        <span className="mt-0.5">
+                          {r.error
+                            ? <span className="text-red-500">✗</span>
+                            : <span className="text-green-600">✓</span>}
+                        </span>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-foreground truncate">{r.label}</p>
+                          {r.error ? (
+                            <p className="text-red-600 mt-0.5">{r.error}</p>
+                          ) : (
+                            <p className="text-muted-foreground mt-0.5">
+                              {r.inserted} inserted · {r.skippedDups} duplicates skipped · {r.skipped} empty skipped
+                            </p>
+                          )}
+                        </div>
+                        <span className="text-muted-foreground flex-shrink-0">→ {r.table}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Right: info panel */}
+      <div className="space-y-5">
+        <div className="bg-card border border-border rounded-xl p-5">
+          <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2 text-sm">
+            <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            How it works
+          </h3>
+          <ol className="space-y-2 text-sm text-foreground list-decimal list-inside">
+            <li>Select the sheets you want to pull</li>
+            <li>Click &ldquo;Sync Now&rdquo;</li>
+            <li>New orders are inserted with status <strong>PENDING ORDERS</strong></li>
+            <li>Rows already in the DB are skipped automatically</li>
+            <li>View results in the Order History tab</li>
+          </ol>
+        </div>
+
+        <div className="bg-card border border-border rounded-xl p-5">
+          <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2 text-sm">
+            <svg className="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+            </svg>
+            Permissions required
+          </h3>
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            Each Google Sheet must be shared with the service account:
+          </p>
+          <code className="block mt-2 text-xs bg-muted rounded p-2 break-all select-all">
+            vendorpro@vendorpro-498112.iam.gserviceaccount.com
+          </code>
+          <p className="text-xs text-muted-foreground mt-2">
+            Share as <strong>Viewer</strong>. Only needs read access.
+          </p>
+        </div>
+
+        <div className="bg-card border border-border rounded-xl p-5">
+          <h3 className="font-semibold text-foreground mb-3 flex items-center gap-2 text-sm">
+            <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Sheet → Table mapping
+          </h3>
+          <div className="space-y-1.5">
+            {[
+              { label: 'BSLLC Pending',  table: 'BSLLC_Orders',  color: 'bg-orange-100 text-orange-800' },
+              { label: 'VW360 Pending',  table: 'VW360_Orders',  color: 'bg-blue-100 text-blue-800' },
+              { label: 'LLP Pending',    table: 'LLP_Orders',    color: 'bg-purple-100 text-purple-800' },
+              { label: 'BCG GB Pending', table: 'BCGGB_Orders',  color: 'bg-pink-100 text-pink-800' },
+              { label: 'BM Pending',     table: 'BM_Orders',     color: 'bg-teal-100 text-teal-800' },
+            ].map(m => (
+              <div key={m.label} className="flex items-center justify-between text-xs">
+                <span className={`px-2 py-0.5 rounded-full font-medium ${m.color}`}>{m.label}</span>
+                <span className="text-muted-foreground font-mono">{m.table}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Main Page ─────────────────────────────────────────────────────────────────
 export default function OrdersPage() {
   const [activeTab, setActiveTab] = useState<TabId>('history');
@@ -959,6 +1229,15 @@ export default function OrdersPage() {
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+        </svg>
+      ),
+    },
+    {
+      id: 'gsheet',
+      label: 'Sync Google Sheets',
+      icon: (
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
         </svg>
       ),
     },
@@ -999,6 +1278,7 @@ export default function OrdersPage() {
         {activeTab === 'upload'  && <UploadTab />}
         {activeTab === 'form'    && <FormTab />}
         {activeTab === 'history' && <HistoryTab />}
+        {activeTab === 'gsheet'  && <GoogleSheetSyncTab />}
       </div>
     </div>
   );

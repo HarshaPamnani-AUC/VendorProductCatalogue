@@ -1,16 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { dbConfig as rawConfig } from '@/lib/dbConfig';
 
 const sql = require('mssql');
 
 const sqlConfig = {
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  server: process.env.DB_SERVER,
-  database: process.env.DB_NAME,
+  user: rawConfig.user,
+  password: rawConfig.password,
+  server: rawConfig.server,
+  database: rawConfig.database,
   options: {
-    encrypt: process.env.DB_ENCRYPT === 'true',
-    trustServerCertificate: process.env.DB_TRUST_CERT === 'true',
-    enableArithAbort: true
+    encrypt: true,
+    trustServerCertificate: true,
+    connectTimeout: 15000,
+    requestTimeout: 30000,
   }
 };
 

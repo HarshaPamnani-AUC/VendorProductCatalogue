@@ -14,8 +14,8 @@ export default function UploadPage() {
   useEffect(() => {
     const fetchVendors = async () => {
       try {
-        console.log('Fetching vendors from /api/vendors/list...');
-        const response = await fetch('/api/vendors/list', {
+        console.log('Fetching vendors from /api/vendors...');
+        const response = await fetch('/api/vendors', {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

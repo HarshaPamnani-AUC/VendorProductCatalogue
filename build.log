@@ -1,0 +1,71 @@
+
+> my-v0-project@0.1.0 build
+> next build --webpack
+
+⚠ Invalid next.config.mjs options detected: 
+⚠     Unrecognized key(s) in object: 'outputFileTracing'
+⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+▲ Next.js 16.1.6 (webpack)
+- Environments: .env.local, .env.production
+
+  Creating an optimized production build ...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+✓ Compiled successfully in 14.0s
+  Skipping validation of types
+  Collecting page data using 7 workers ...
+✅ Connected to SQL Server
+✅ Connected to SQL Server
+✅ Connected to SQL Server
+✅ Connected to SQL Server
+  Generating static pages using 7 workers (0/33) ...
+  Generating static pages using 7 workers (8/33) 
+  Generating static pages using 7 workers (16/33) 
+  Generating static pages using 7 workers (24/33) 
+✓ Generating static pages using 7 workers (33/33) in 390.5ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/auth/login
+├ ƒ /api/auth/me
+├ ƒ /api/auth/register
+├ ƒ /api/direct-transfer
+├ ƒ /api/orders
+├ ƒ /api/orders/dashboard
+├ ƒ /api/orders/template
+├ ƒ /api/orders/upload
+├ ƒ /api/price-history
+├ ƒ /api/price-intelligence
+├ ƒ /api/product-insights
+├ ƒ /api/template
+├ ƒ /api/templates/UploadFormat.xlsx
+├ ƒ /api/upload
+├ ƒ /api/upload-products
+├ ƒ /api/uploads
+├ ○ /dashboard
+├ ○ /dashboard/add-vendor
+├ ○ /dashboard/order-dashboard
+├ ○ /dashboard/orders
+├ ○ /dashboard/price-history
+├ ƒ /dashboard/products/[productCode]/edit
+├ ○ /dashboard/search
+├ ○ /dashboard/update
+├ ○ /dashboard/update/history
+├ ○ /dashboard/upload
+├ ○ /forgot-password
+├ ○ /login
+├ ○ /register
+├ ○ /simple
+└ ○ /test
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

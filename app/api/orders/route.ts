@@ -2,7 +2,46 @@ import { NextRequest, NextResponse } from 'next/server';
 import { poolPromise } from '@/lib/db';
 import sql from 'mssql';
 
-// ── GET: fetch orders from all three tables merged ────────────────────────────
+const EXTRA_TABLES = ['BM_Orders', 'BCGGB_Orders'];
+
+async function ensureExtraTablesExist(pool: sql.ConnectionPool) {
+  const createSql = (t: string) => `
+    IF NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES
+                   WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = '${t}')
+    BEGIN
+      CREATE TABLE [dbo].[${t}] (
+        [id]                  INT           PRIMARY KEY IDENTITY(1,1),
+        [order_demand_id]     NVARCHAR(255),
+        [supplier]            NVARCHAR(255),
+        [order_date]          DATE,
+        [invoice_so_proforma] NVARCHAR(255),
+        [invoice_date]        DATE,
+        [delivery_date]       DATE,
+        [port_info_date]      DATE,
+        [status]              NVARCHAR(255),
+        [so]                  NVARCHAR(255),
+        [nav]                 NVARCHAR(255),
+        [upc_ean]             NVARCHAR(255),
+        [brand]               NVARCHAR(255),
+        [nav_name]            NVARCHAR(500),
+        [currency]            NVARCHAR(50),
+        [order_qty]           DECIMAL(15,4),
+        [order_price]         DECIMAL(15,4),
+        [so_qty]              DECIMAL(15,4),
+        [so_price]            DECIMAL(15,4),
+        [invoice_qty]         DECIMAL(15,4),
+        [inv_price]           DECIMAL(15,4),
+        [sheet_type]          NVARCHAR(100) NOT NULL DEFAULT 'PENDING ORDERS',
+        [inserted_at]         DATETIME      DEFAULT GETUTCDATE()
+      )
+    END
+  `;
+  for (const t of EXTRA_TABLES) {
+    await pool.request().query(createSql(t));
+  }
+}
+
+// ── GET: fetch orders from all five tables merged ─────────────────────────────
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -18,6 +57,8 @@ export async function GET(request: NextRequest) {
 
     const pool = await poolPromise;
     if (!pool) return NextResponse.json({ error: 'DB connection failed' }, { status: 500 });
+
+    await ensureExtraTablesExist(pool);
 
     const req = pool.request();
     req.input('offset', sql.Int, offset);
@@ -45,7 +86,7 @@ export async function GET(request: NextRequest) {
       whereClause += ' AND (so LIKE @nav OR invoice_so_proforma LIKE @nav)';
     }
 
-    // Union all three tables, tag each row with its source company
+    // Union all five tables, tag each row with its source company
     const unionSql = `
       SELECT id, order_demand_id, supplier, order_date, invoice_so_proforma,
              invoice_date, delivery_date, port_info_date, status, so, nav,
@@ -67,6 +108,20 @@ export async function GET(request: NextRequest) {
              order_qty, order_price, so_qty, so_price, invoice_qty, inv_price,
              sheet_type, inserted_at, 'BSLLC' AS company
       FROM [dbo].[BSLLC_Orders]
+      UNION ALL
+      SELECT id, order_demand_id, supplier, order_date, invoice_so_proforma,
+             invoice_date, delivery_date, port_info_date, status, so, nav,
+             upc_ean, brand, nav_name, currency,
+             order_qty, order_price, so_qty, so_price, invoice_qty, inv_price,
+             sheet_type, inserted_at, 'BM' AS company
+      FROM [dbo].[BM_Orders]
+      UNION ALL
+      SELECT id, order_demand_id, supplier, order_date, invoice_so_proforma,
+             invoice_date, delivery_date, port_info_date, status, so, nav,
+             upc_ean, brand, nav_name, currency,
+             order_qty, order_price, so_qty, so_price, invoice_qty, inv_price,
+             sheet_type, inserted_at, 'BCGGB' AS company
+      FROM [dbo].[BCGGB_Orders]
     `;
 
     const countResult = await req.query(
@@ -103,7 +158,7 @@ export async function PATCH(request: NextRequest) {
     const body = await request.json();
     const { id, table, sheet_type, invoice_so_proforma, invoice_date, invoice_qty, inv_price, status } = body;
 
-    const allowed = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders'];
+    const allowed = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders', 'BM_Orders', 'BCGGB_Orders'];
     const allowedTypes = ['PENDING ORDERS', 'DONE ORDERS', 'NOT BUY'];
 
     if (!allowed.includes(table)) return NextResponse.json({ error: 'Invalid table' }, { status: 400 });
@@ -160,7 +215,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const table = body.table || 'LLP_Orders';
 
-    const allowed = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders'];
+    const allowed = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders', 'BM_Orders', 'BCGGB_Orders'];
     if (!allowed.includes(table)) {
       return NextResponse.json({ error: 'Invalid table name' }, { status: 400 });
     }
@@ -222,7 +277,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: 'No rows provided' }, { status: 400 });
     }
 
-    const allowed = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders'];
+    const allowed = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders', 'BM_Orders', 'BCGGB_Orders'];
     const pool = await poolPromise;
     if (!pool) return NextResponse.json({ error: 'DB connection failed' }, { status: 500 });
 
