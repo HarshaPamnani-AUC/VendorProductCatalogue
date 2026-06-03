@@ -210,7 +210,7 @@ export default function DashboardLayout({
         {/* User Profile */}
         <div className="p-4 border-t border-sidebar-border">
           <div className="p-4 rounded-lg bg-sidebar-primary/10 mb-3">
-            <p className="text-sm text-sidebar-foreground font-semibold">
+            <p className="text-sm font-medium text-sidebar-foreground truncate max-w-[200px]">
               {user?.email || 'No email'}
             </p>
             <p className="text-xs text-sidebar-accent-foreground opacity-70">

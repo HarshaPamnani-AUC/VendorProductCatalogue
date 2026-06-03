@@ -1,0 +1,923 @@
+[2026-06-03T08:27:08.955Z] ========================================
+[2026-06-03T08:27:08.956Z] Starting Currency Support Setup
+[2026-06-03T08:27:08.956Z] ========================================
+[2026-06-03T08:27:09.041Z] Database connection established
+[2026-06-03T08:27:09.041Z] === RUNNING SQL MIGRATION ===
+[2026-06-03T08:27:09.155Z] Batch execution error (may be expected):
+"Cannot find the object \"dbo.Products\" because it does not exist or you do not have permissions."
+[2026-06-03T08:27:09.368Z] SQL Migration completed successfully
+[2026-06-03T08:27:09.368Z] === UPDATING VENDOR CURRENCIES ===
+[2026-06-03T08:27:09.751Z] Updated 42 vendors with currency information
+[
+  {
+    "vendorId": 1,
+    "vendorName": "ET",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 2,
+    "vendorName": "PCA",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 3,
+    "vendorName": "H&B",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 4,
+    "vendorName": "HAZ",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 5,
+    "vendorName": "SIMEX",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 6,
+    "vendorName": "SIMEX - EURO",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 7,
+    "vendorName": "AFL",
+    "currency": "GBP"
+  },
+  {
+    "vendorId": 9,
+    "vendorName": "PERFUME PRICE",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 10,
+    "vendorName": "UNIVESAL PERFUME",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 11,
+    "vendorName": "FRAGSENSE",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 12,
+    "vendorName": "LUX AMERICA",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 13,
+    "vendorName": "FRENCH PERFUMES",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 14,
+    "vendorName": "MB (EGDG)",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 15,
+    "vendorName": "API CHURI",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 16,
+    "vendorName": "LUXSCENT",
+    "currency": "GBP"
+  },
+  {
+    "vendorId": 17,
+    "vendorName": "ACE BEAUTY",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 19,
+    "vendorName": "FORMA-ITALIANA",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 20,
+    "vendorName": "PARTHECO",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 21,
+    "vendorName": "BEAUTYNET",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 22,
+    "vendorName": "DTF (ELLE)",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 23,
+    "vendorName": "SUSHMA",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 24,
+    "vendorName": "SATURN",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 25,
+    "vendorName": "AVENUE",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 26,
+    "vendorName": "MTZ",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 27,
+    "vendorName": "SCENTE OPHORIA",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 28,
+    "vendorName": "MAGNET",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 29,
+    "vendorName": "LINDO",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 31,
+    "vendorName": "JIZAN",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 32,
+    "vendorName": "SAP",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 36,
+    "vendorName": "SCENT SENSES",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 37,
+    "vendorName": "TJS",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 38,
+    "vendorName": "POTW",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 39,
+    "vendorName": "PPW",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 40,
+    "vendorName": "AL HUSSEIN",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 45,
+    "vendorName": "EFL",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 46,
+    "vendorName": "NANDANSONS",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 47,
+    "vendorName": "NEFERTI",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 48,
+    "vendorName": "PARTHECO (EURO)",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 49,
+    "vendorName": "RATAN",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 50,
+    "vendorName": "SFM",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 51,
+    "vendorName": "SGL",
+    "currency": "GBP"
+  },
+  {
+    "vendorId": 52,
+    "vendorName": "TITAN",
+    "currency": "USD"
+  }
+]
+[2026-06-03T08:27:09.752Z] === UPDATING PRODUCT CURRENCIES ===
+[2026-06-03T08:27:09.755Z] Update product currencies error:
+"Invalid object name 'dbo.Products'."
+[2026-06-03T08:27:09.755Z] FATAL ERROR:
+"Invalid object name 'dbo.Products'."
+[2026-06-03T08:31:18.102Z] ========================================
+[2026-06-03T08:31:18.102Z] Starting Currency Support Setup
+[2026-06-03T08:31:18.103Z] ========================================
+[2026-06-03T08:31:18.247Z] Database connection established
+[2026-06-03T08:31:18.248Z] === RUNNING SQL MIGRATION ===
+[2026-06-03T08:31:18.801Z] SQL Migration completed successfully
+[2026-06-03T08:31:18.801Z] === UPDATING VENDOR CURRENCIES ===
+[2026-06-03T08:31:19.217Z] Updated 42 vendors with currency information
+[
+  {
+    "vendorId": 1,
+    "vendorName": "ET",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 2,
+    "vendorName": "PCA",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 3,
+    "vendorName": "H&B",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 4,
+    "vendorName": "HAZ",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 5,
+    "vendorName": "SIMEX",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 6,
+    "vendorName": "SIMEX - EURO",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 7,
+    "vendorName": "AFL",
+    "currency": "GBP"
+  },
+  {
+    "vendorId": 9,
+    "vendorName": "PERFUME PRICE",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 10,
+    "vendorName": "UNIVESAL PERFUME",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 11,
+    "vendorName": "FRAGSENSE",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 12,
+    "vendorName": "LUX AMERICA",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 13,
+    "vendorName": "FRENCH PERFUMES",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 14,
+    "vendorName": "MB (EGDG)",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 15,
+    "vendorName": "API CHURI",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 16,
+    "vendorName": "LUXSCENT",
+    "currency": "GBP"
+  },
+  {
+    "vendorId": 17,
+    "vendorName": "ACE BEAUTY",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 19,
+    "vendorName": "FORMA-ITALIANA",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 20,
+    "vendorName": "PARTHECO",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 21,
+    "vendorName": "BEAUTYNET",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 22,
+    "vendorName": "DTF (ELLE)",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 23,
+    "vendorName": "SUSHMA",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 24,
+    "vendorName": "SATURN",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 25,
+    "vendorName": "AVENUE",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 26,
+    "vendorName": "MTZ",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 27,
+    "vendorName": "SCENTE OPHORIA",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 28,
+    "vendorName": "MAGNET",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 29,
+    "vendorName": "LINDO",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 31,
+    "vendorName": "JIZAN",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 32,
+    "vendorName": "SAP",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 36,
+    "vendorName": "SCENT SENSES",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 37,
+    "vendorName": "TJS",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 38,
+    "vendorName": "POTW",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 39,
+    "vendorName": "PPW",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 40,
+    "vendorName": "AL HUSSEIN",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 45,
+    "vendorName": "EFL",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 46,
+    "vendorName": "NANDANSONS",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 47,
+    "vendorName": "NEFERTI",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 48,
+    "vendorName": "PARTHECO (EURO)",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 49,
+    "vendorName": "RATAN",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 50,
+    "vendorName": "SFM",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 51,
+    "vendorName": "SGL",
+    "currency": "GBP"
+  },
+  {
+    "vendorId": 52,
+    "vendorName": "TITAN",
+    "currency": "USD"
+  }
+]
+[2026-06-03T08:31:19.218Z] === UPDATING PRODUCT CURRENCIES ===
+[2026-06-03T08:31:19.232Z] Found existing tables:
+[
+  "Tbl_Products",
+  "Tbl_Products_Storage",
+  "Upload_Tbl_Products"
+]
+[2026-06-03T08:31:19.232Z] Products table does not exist (skipped)
+[2026-06-03T08:31:20.196Z] Updated Tbl_Products with vendor currencies
+{
+  "recordsAffected": 0
+}
+[2026-06-03T08:31:22.945Z] Updated Tbl_Products_Storage with vendor currencies
+{
+  "recordsAffected": 0
+}
+[2026-06-03T08:31:22.965Z] Upload_Tbl_Products update skipped:
+"Invalid column name 'VendorId'."
+[2026-06-03T08:31:22.966Z] === UPDATING ORDER TABLES CURRENCIES ===
+[2026-06-03T08:31:23.707Z] Updated LLP_Orders - default currency set to USD
+{
+  "recordsAffected": 217
+}
+[2026-06-03T08:31:23.870Z] Updated VW360_Orders - default currency set to USD
+{
+  "recordsAffected": 56
+}
+[2026-06-03T08:31:24.127Z] Updated BSLLC_Orders - default currency set to USD
+{
+  "recordsAffected": 146
+}
+[2026-06-03T08:31:24.186Z] Updated BM_Orders - default currency set to USD
+{
+  "recordsAffected": 0
+}
+[2026-06-03T08:31:24.281Z] Updated BCGGB_Orders - default currency set to USD
+{
+  "recordsAffected": 0
+}
+[2026-06-03T08:31:24.281Z] === VERIFYING CHANGES ===
+[2026-06-03T08:31:24.301Z] Vendor currency summary
+{
+  "TotalVendors": 42,
+  "USD_Count": 34,
+  "EUR_Count": 5,
+  "GBP_Count": 3
+}
+[2026-06-03T08:31:24.306Z] Products table does not exist or cannot be queried (skipped)
+[2026-06-03T08:31:25.942Z] Tbl_Products currency summary
+{
+  "TotalProducts": 629980,
+  "NullCurrencyCount": 0,
+  "USD_Count": 629980,
+  "EUR_Count": 0,
+  "GBP_Count": 0
+}
+[2026-06-03T08:31:25.947Z] Sample vendors with currencies:
+[
+  {
+    "VendorId": 17,
+    "VendorName": "ACE BEAUTY",
+    "Country": null,
+    "Currency": "USD"
+  },
+  {
+    "VendorId": 7,
+    "VendorName": "AFL",
+    "Country": null,
+    "Currency": "GBP"
+  },
+  {
+    "VendorId": 40,
+    "VendorName": "AL HUSSEIN",
+    "Country": null,
+    "Currency": "USD"
+  },
+  {
+    "VendorId": 15,
+    "VendorName": "API CHURI",
+    "Country": null,
+    "Currency": "USD"
+  },
+  {
+    "VendorId": 25,
+    "VendorName": "AVENUE",
+    "Country": null,
+    "Currency": "USD"
+  },
+  {
+    "VendorId": 21,
+    "VendorName": "BEAUTYNET",
+    "Country": null,
+    "Currency": "EUR"
+  },
+  {
+    "VendorId": 22,
+    "VendorName": "DTF (ELLE)",
+    "Country": null,
+    "Currency": "EUR"
+  },
+  {
+    "VendorId": 45,
+    "VendorName": "EFL",
+    "Country": null,
+    "Currency": "USD"
+  },
+  {
+    "VendorId": 1,
+    "VendorName": "ET",
+    "Country": null,
+    "Currency": "USD"
+  },
+  {
+    "VendorId": 30,
+    "VendorName": "EURO-FREGRANCE-LLC",
+    "Country": null,
+    "Currency": "USD"
+  }
+]
+[2026-06-03T08:31:25.948Z] ========================================
+[2026-06-03T08:31:25.948Z] Currency Support Setup Completed Successfully!
+[2026-06-03T08:31:25.948Z] ========================================
+[2026-06-03T08:31:25.948Z] Next steps:
+[2026-06-03T08:31:25.948Z] 1. Review the vendor currency assignments
+[2026-06-03T08:31:25.948Z] 2. For international vendors, run: PATCH /api/vendors/:vendorId/currency
+[2026-06-03T08:31:25.948Z] 3. Update your upload files to include Currency column if needed
+[2026-06-03T08:31:25.948Z] 4. Restart the application: pm2 restart vendorpro-backend
+[2026-06-03T08:31:25.949Z] Database connection closed
+[2026-06-03T08:32:01.382Z] ========================================
+[2026-06-03T08:32:01.382Z] Starting Currency Support Setup
+[2026-06-03T08:32:01.382Z] ========================================
+[2026-06-03T08:32:01.483Z] Database connection established
+[2026-06-03T08:32:01.483Z] === RUNNING SQL MIGRATION ===
+[2026-06-03T08:32:01.600Z] SQL Migration completed successfully
+[2026-06-03T08:32:01.600Z] === UPDATING VENDOR CURRENCIES ===
+[2026-06-03T08:32:01.991Z] Updated 42 vendors with currency information
+[
+  {
+    "vendorId": 1,
+    "vendorName": "ET",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 2,
+    "vendorName": "PCA",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 3,
+    "vendorName": "H&B",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 4,
+    "vendorName": "HAZ",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 5,
+    "vendorName": "SIMEX",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 6,
+    "vendorName": "SIMEX - EURO",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 7,
+    "vendorName": "AFL",
+    "currency": "GBP"
+  },
+  {
+    "vendorId": 9,
+    "vendorName": "PERFUME PRICE",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 10,
+    "vendorName": "UNIVESAL PERFUME",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 11,
+    "vendorName": "FRAGSENSE",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 12,
+    "vendorName": "LUX AMERICA",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 13,
+    "vendorName": "FRENCH PERFUMES",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 14,
+    "vendorName": "MB (EGDG)",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 15,
+    "vendorName": "API CHURI",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 16,
+    "vendorName": "LUXSCENT",
+    "currency": "GBP"
+  },
+  {
+    "vendorId": 17,
+    "vendorName": "ACE BEAUTY",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 19,
+    "vendorName": "FORMA-ITALIANA",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 20,
+    "vendorName": "PARTHECO",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 21,
+    "vendorName": "BEAUTYNET",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 22,
+    "vendorName": "DTF (ELLE)",
+    "currency": "EUR"
+  },
+  {
+    "vendorId": 23,
+    "vendorName": "SUSHMA",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 24,
+    "vendorName": "SATURN",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 25,
+    "vendorName": "AVENUE",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 26,
+    "vendorName": "MTZ",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 27,
+    "vendorName": "SCENTE OPHORIA",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 28,
+    "vendorName": "MAGNET",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 29,
+    "vendorName": "LINDO",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 31,
+    "vendorName": "JIZAN",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 32,
+    "vendorName": "SAP",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 36,
+    "vendorName": "SCENT SENSES",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 37,
+    "vendorName": "TJS",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 38,
+    "vendorName": "POTW",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 39,
+    "vendorName": "PPW",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 40,
+    "vendorName": "AL HUSSEIN",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 45,
+    "vendorName": "EFL",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 46,
+    "vendorName": "NANDANSONS",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 47,
+    "vendorName": "NEFERTI",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 48,
+    "vendorName": "PARTHECO (EURO)",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 49,
+    "vendorName": "RATAN",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 50,
+    "vendorName": "SFM",
+    "currency": "USD"
+  },
+  {
+    "vendorId": 51,
+    "vendorName": "SGL",
+    "currency": "GBP"
+  },
+  {
+    "vendorId": 52,
+    "vendorName": "TITAN",
+    "currency": "USD"
+  }
+]
+[2026-06-03T08:32:01.992Z] === UPDATING PRODUCT CURRENCIES ===
+[2026-06-03T08:32:01.997Z] Found existing tables:
+[
+  "Tbl_Products",
+  "Tbl_Products_Storage",
+  "Upload_Tbl_Products"
+]
+[2026-06-03T08:32:01.998Z] Products table does not exist (skipped)
+[2026-06-03T08:32:02.378Z] Updated Tbl_Products with vendor currencies
+{
+  "recordsAffected": 0
+}
+[2026-06-03T08:32:04.728Z] Updated Tbl_Products_Storage with vendor currencies
+{
+  "recordsAffected": 0
+}
+[2026-06-03T08:32:04.732Z] Upload_Tbl_Products update skipped:
+"Invalid column name 'VendorId'."
+[2026-06-03T08:32:04.732Z] === UPDATING ORDER TABLES CURRENCIES ===
+[2026-06-03T08:32:04.789Z] Updated LLP_Orders - default currency set to USD
+{
+  "recordsAffected": 0
+}
+[2026-06-03T08:32:04.798Z] Updated VW360_Orders - default currency set to USD
+{
+  "recordsAffected": 0
+}
+[2026-06-03T08:32:04.821Z] Updated BSLLC_Orders - default currency set to USD
+{
+  "recordsAffected": 0
+}
+[2026-06-03T08:32:04.827Z] Updated BM_Orders - default currency set to USD
+{
+  "recordsAffected": 0
+}
+[2026-06-03T08:32:04.832Z] Updated BCGGB_Orders - default currency set to USD
+{
+  "recordsAffected": 0
+}
+[2026-06-03T08:32:04.832Z] === VERIFYING CHANGES ===
+[2026-06-03T08:32:04.835Z] Vendor currency summary
+{
+  "TotalVendors": 42,
+  "USD_Count": 34,
+  "EUR_Count": 5,
+  "GBP_Count": 3
+}
+[2026-06-03T08:32:04.838Z] Products table does not exist or cannot be queried (skipped)
+[2026-06-03T08:32:06.446Z] Tbl_Products currency summary
+{
+  "TotalProducts": 629980,
+  "NullCurrencyCount": 0,
+  "USD_Count": 629980,
+  "EUR_Count": 0,
+  "GBP_Count": 0
+}
+[2026-06-03T08:32:06.449Z] Sample vendors with currencies:
+[
+  {
+    "VendorId": 17,
+    "VendorName": "ACE BEAUTY",
+    "Country": null,
+    "Currency": "USD"
+  },
+  {
+    "VendorId": 7,
+    "VendorName": "AFL",
+    "Country": null,
+    "Currency": "GBP"
+  },
+  {
+    "VendorId": 40,
+    "VendorName": "AL HUSSEIN",
+    "Country": null,
+    "Currency": "USD"
+  },
+  {
+    "VendorId": 15,
+    "VendorName": "API CHURI",
+    "Country": null,
+    "Currency": "USD"
+  },
+  {
+    "VendorId": 25,
+    "VendorName": "AVENUE",
+    "Country": null,
+    "Currency": "USD"
+  },
+  {
+    "VendorId": 21,
+    "VendorName": "BEAUTYNET",
+    "Country": null,
+    "Currency": "EUR"
+  },
+  {
+    "VendorId": 22,
+    "VendorName": "DTF (ELLE)",
+    "Country": null,
+    "Currency": "EUR"
+  },
+  {
+    "VendorId": 45,
+    "VendorName": "EFL",
+    "Country": null,
+    "Currency": "USD"
+  },
+  {
+    "VendorId": 1,
+    "VendorName": "ET",
+    "Country": null,
+    "Currency": "USD"
+  },
+  {
+    "VendorId": 30,
+    "VendorName": "EURO-FREGRANCE-LLC",
+    "Country": null,
+    "Currency": "USD"
+  }
+]
+[2026-06-03T08:32:06.449Z] ========================================
+[2026-06-03T08:32:06.449Z] Currency Support Setup Completed Successfully!
+[2026-06-03T08:32:06.450Z] ========================================
+[2026-06-03T08:32:06.450Z] Next steps:
+[2026-06-03T08:32:06.450Z] 1. Review the vendor currency assignments
+[2026-06-03T08:32:06.450Z] 2. For international vendors, run: PATCH /api/vendors/:vendorId/currency
+[2026-06-03T08:32:06.450Z] 3. Update your upload files to include Currency column if needed
+[2026-06-03T08:32:06.450Z] 4. Restart the application: pm2 restart vendorpro-backend
+[2026-06-03T08:32:06.451Z] Database connection closed

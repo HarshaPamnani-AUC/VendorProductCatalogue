@@ -1,0 +1,15 @@
+2026-06-03 13:24:38 +05:30: [dotenv@17.2.3] injecting env (12) from .env.local -- tip: ⚙️  suppress all logs with { quiet: true }
+2026-06-03 13:24:38 +05:30: Database connection successful
+2026-06-03 13:24:38 +05:30: 🔍 Checking if AI_Alerts table exists...
+2026-06-03 13:24:38 +05:30: ✅ AI_Alerts table already exists
+2026-06-03 13:24:38 +05:30: Server running on http://0.0.0.0:5000
+2026-06-03 13:51:20 +05:30: [dotenv@17.2.3] injecting env (12) from .env.local -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+2026-06-03 13:51:21 +05:30: Database connection successful
+2026-06-03 13:51:21 +05:30: 🔍 Checking if AI_Alerts table exists...
+2026-06-03 13:51:21 +05:30: ✅ AI_Alerts table already exists
+2026-06-03 13:51:21 +05:30: Server running on http://0.0.0.0:5000
+2026-06-03 14:05:26 +05:30: [dotenv@17.2.3] injecting env (12) from .env.local -- tip: ✅ audit secrets and track compliance: https://dotenvx.com/ops
+2026-06-03 14:05:26 +05:30: Database connection successful
+2026-06-03 14:05:26 +05:30: 🔍 Checking if AI_Alerts table exists...
+2026-06-03 14:05:26 +05:30: ✅ AI_Alerts table already exists
+2026-06-03 14:05:26 +05:30: Server running on http://0.0.0.0:5000

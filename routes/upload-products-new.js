@@ -4,6 +4,7 @@ const XLSX = require('xlsx');
 const multer = require('multer');
 const router = express.Router();
 const { verifyToken } = require('./auth');
+const { detectAnomaliesForUpload, storeAlerts } = require('../services/anomalyDetection');
 
 // Configure multer for memory storage
 const upload = multer({ 
@@ -134,11 +135,60 @@ router.post('/', upload.single('file'), async (req, res) => {
         });
       }
 
-      // Step 5: Return success response
+      // Step 5: Get FileUploadId (for linking alerts to this upload)
+      // Note: In a real scenario, you'd track this in FileUploads table
+      // For now, we'll query the most recent file upload for this vendor
+      let fileUploadId = null;
+      try {
+        const fileUploadQuery = await pool.request()
+          .input('vendorName', sql.NVarChar, vendorName)
+          .query(`
+            SELECT TOP 1 FileId FROM FileUploads
+            WHERE VendorId = (SELECT VendorId FROM Vendors WHERE VendorName = @vendorName)
+            ORDER BY FileId DESC
+          `);
+        if (fileUploadQuery.recordset.length > 0) {
+          fileUploadId = fileUploadQuery.recordset[0].FileId;
+        }
+      } catch (e) {
+        console.log('⚠️ Could not get FileUploadId:', e.message);
+      }
+
+      // Step 6: Run anomaly detection on newly inserted products
+      console.log('🔍 Running anomaly detection...');
+      let anomalies = [];
+      let anomaliesStored = 0;
+      try {
+        anomalies = await detectAnomaliesForUpload(pool, fileUploadId, vendorName);
+        console.log(`📊 Detected ${anomalies.length} anomalies`);
+        
+        if (anomalies.length > 0) {
+          anomaliesStored = await storeAlerts(pool, anomalies);
+          console.log(`💾 Stored ${anomaliesStored} anomaly alerts`);
+        }
+      } catch (anomalyError) {
+        console.error('⚠️ Anomaly detection error (non-fatal):', anomalyError.message);
+        // Don't fail upload if anomaly detection fails
+      }
+
+      // Step 7: Return success response with anomaly data
       console.log('✅ Upload completed successfully');
       return res.json({
         success: true,
-        message: 'Data uploaded successfully'
+        message: 'Data uploaded successfully',
+        anomalies: {
+          detected: anomalies.length,
+          stored: anomaliesStored,
+          alerts: anomalies.map(a => ({
+            type: a.AlertType,
+            severity: a.Severity,
+            product: a.ProductCode,
+            vendor: a.Vendor,
+            message: a.Description,
+            action: a.RecommendedAction,
+            impact: a.MonthlyImpact
+          }))
+        }
       });
 
     } catch (dbError) {

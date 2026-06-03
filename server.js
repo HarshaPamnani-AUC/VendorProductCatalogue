@@ -55,9 +55,89 @@ async function initializeDatabase() {
     pool = new sql.ConnectionPool(sqlConfig);
     await pool.connect();
     console.log('Database connection successful');
+    
+    // Initialize AI_Alerts table if it doesn't exist
+    await initializeAIAlertsTable();
   } catch (err) {
     console.error('Database connection failed:', err);
     process.exit(1);
+  }
+}
+
+// Initialize AI_Alerts table for anomaly detection
+async function initializeAIAlertsTable() {
+  try {
+    console.log('🔍 Checking if AI_Alerts table exists...');
+    
+    // Check if table exists
+    const checkTableQuery = `
+      SELECT COUNT(*) as TableCount 
+      FROM INFORMATION_SCHEMA.TABLES 
+      WHERE TABLE_NAME = 'AI_Alerts'
+    `;
+    
+    const result = await pool.request().query(checkTableQuery);
+    
+    if (result.recordset[0].TableCount === 0) {
+      console.log('📝 Creating AI_Alerts table...');
+      
+      // Create the table
+      const createTableSQL = `
+        CREATE TABLE [dbo].[AI_Alerts] (
+          [AlertId] INT PRIMARY KEY IDENTITY(1,1),
+          [AlertType] NVARCHAR(50) NOT NULL,
+          [Severity] NVARCHAR(20) NOT NULL,
+          [ProductCode] NVARCHAR(100) NOT NULL,
+          [ProductName] NVARCHAR(500),
+          [Vendor] NVARCHAR(255) NOT NULL,
+          [OldPrice] DECIMAL(18,2),
+          [NewPrice] DECIMAL(18,2) NOT NULL,
+          [PriceChange] DECIMAL(5,2),
+          [ZScore] DECIMAL(8,3),
+          [Confidence] DECIMAL(5,2),
+          [MonthlyVolume] INT DEFAULT 0,
+          [MonthlyImpact] DECIMAL(12,2),
+          [Description] NVARCHAR(MAX),
+          [RecommendedAction] NVARCHAR(MAX),
+          [IsAcknowledged] BIT DEFAULT 0,
+          [AcknowledgedBy] INT,
+          [AcknowledgedAt] DATETIME,
+          [FileUploadId] INT,
+          [CreatedAt] DATETIME DEFAULT GETUTCDATE(),
+          [UpdatedAt] DATETIME DEFAULT GETUTCDATE(),
+          FOREIGN KEY ([FileUploadId]) REFERENCES [dbo].[FileUploads]([FileId]) ON DELETE SET NULL,
+          FOREIGN KEY ([AcknowledgedBy]) REFERENCES [dbo].[Users]([UserId]) ON DELETE SET NULL
+        );
+      `;
+      
+      await pool.request().query(createTableSQL);
+      console.log('✅ Created AI_Alerts table');
+      
+      // Create indexes
+      const indexes = [
+        'CREATE NONCLUSTERED INDEX [IX_AI_Alerts_ProductCode] ON [dbo].[AI_Alerts] ([ProductCode]);',
+        'CREATE NONCLUSTERED INDEX [IX_AI_Alerts_Vendor] ON [dbo].[AI_Alerts] ([Vendor]);',
+        'CREATE NONCLUSTERED INDEX [IX_AI_Alerts_CreatedAt] ON [dbo].[AI_Alerts] ([CreatedAt] DESC);',
+        'CREATE NONCLUSTERED INDEX [IX_AI_Alerts_IsAcknowledged] ON [dbo].[AI_Alerts] ([IsAcknowledged], [CreatedAt] DESC);',
+        'CREATE NONCLUSTERED INDEX [IX_AI_Alerts_Severity] ON [dbo].[AI_Alerts] ([Severity], [CreatedAt] DESC);',
+        'CREATE NONCLUSTERED INDEX [IX_AI_Alerts_AlertType] ON [dbo].[AI_Alerts] ([AlertType], [CreatedAt] DESC);'
+      ];
+      
+      for (const indexSQL of indexes) {
+        try {
+          await pool.request().query(indexSQL);
+        } catch (e) {
+          console.log(`⚠️  Index creation note: ${e.message.substring(0, 80)}`);
+        }
+      }
+      
+      console.log('✅ AI_Alerts indexes created');
+    } else {
+      console.log('✅ AI_Alerts table already exists');
+    }
+  } catch (err) {
+    console.error('⚠️  Warning: Could not initialize AI_Alerts table:', err.message);
+    // Don't fail startup if table initialization fails
   }
 }
 
@@ -72,6 +152,7 @@ const fixTableRoutes = require('./routes/fix-table');
 const moveDataRoutes = require('./routes/move-data');
 const productHistoryRoutes = require('./routes/productHistory');
 const productSearchRoutes = require('./routes/productSearch');
+const aiAnomaliesRoutes = require('./routes/ai-anomalies');
 
 // Make pool available to routes
 app.use((req, res, next) => {
@@ -90,6 +171,7 @@ app.use('/api/table-structure', tableStructureRoutes);
 app.use('/api/upload-products', uploadProductsRoutes);
 app.use('/api/fix-table', fixTableRoutes);
 app.use('/api/move-data', moveDataRoutes);
+app.use('/api/ai/anomalies', aiAnomaliesRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

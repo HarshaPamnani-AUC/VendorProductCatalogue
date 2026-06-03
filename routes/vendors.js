@@ -13,7 +13,7 @@ router.get('/list', async (req, res) => {
     console.log('Executing vendors query...');
 
     const result = await pool.request()
-      .query('SELECT VendorId, VendorName FROM [dbo].[Vendors] WHERE IsActive = 1 ORDER BY VendorName');
+      .query('SELECT VendorId, VendorName, Currency FROM [dbo].[Vendors] WHERE IsActive = 1 ORDER BY VendorName');
 
     console.log('Query result:', result.recordset.length, 'vendors found');
     console.log('Sample vendor:', result.recordset[0]);
@@ -71,11 +71,17 @@ router.get('/:vendorId', async (req, res) => {
 // Create vendor
 router.post('/', verifyToken, async (req, res) => {
   try {
-    const { vendorName, vendorCode, email, phone, address, website, description } = req.body;
+    const { vendorName, vendorCode, email, phone, address, website, description, currency } = req.body;
 
     if (!vendorName) {
       return res.status(400).json({ error: 'Vendor name is required' });
     }
+
+    // Validate currency if provided
+    const validCurrencies = ['USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD', 'CHF', 'CNY', 'INR'];
+    const vendorCurrency = currency && validCurrencies.includes(currency.toUpperCase()) 
+      ? currency.toUpperCase() 
+      : 'USD';
 
     const pool = req.pool;
 
@@ -107,6 +113,12 @@ router.post('/', verifyToken, async (req, res) => {
       return res.status(500).json({ error: 'Failed to create vendor' });
     }
 
+    // Update vendor currency
+    await pool.request()
+      .input('vendorId', sql.Int, newVendorId)
+      .input('currency', sql.NVarChar, vendorCurrency)
+      .query('UPDATE [dbo].[Vendors] SET Currency = @currency WHERE VendorId = @vendorId');
+
     // Fetch the created vendor to return complete data
     const vendorResult = await pool.request()
       .input('vendorId', sql.Int, newVendorId)
@@ -120,6 +132,7 @@ router.post('/', verifyToken, async (req, res) => {
           Address,
           City,
           Country,
+          Currency,
           Description,
           IsActive,
           CreatedAt,
@@ -133,7 +146,8 @@ router.post('/', verifyToken, async (req, res) => {
     console.log('Vendor created successfully using stored procedure:', {
       vendorId: newVendorId,
       vendorName: vendor.VendorName,
-      vendorCode: vendor.VendorCode
+      vendorCode: vendor.VendorCode,
+      currency: vendor.Currency
     });
 
     res.status(201).json({ 
@@ -146,6 +160,7 @@ router.post('/', verifyToken, async (req, res) => {
         Email: vendor.Email,
         Phone: vendor.Phone,
         Address: vendor.Address,
+        Currency: vendor.Currency,
         Description: vendor.Description
       }
     });
@@ -171,6 +186,7 @@ router.post('/:vendorId/column-mapping', verifyToken, async (req, res) => {
       priceColumn,
       stockQuantityColumn,
       upcColumn,
+      currencyColumn,
       skipHeaderRows
     } = req.body;
 
@@ -197,6 +213,7 @@ router.post('/:vendorId/column-mapping', verifyToken, async (req, res) => {
         .input('priceColumn', sql.NVarChar, priceColumn)
         .input('stockQuantityColumn', sql.NVarChar, stockQuantityColumn || null)
         .input('upcColumn', sql.NVarChar, upcColumn || null)
+        .input('currencyColumn', sql.NVarChar, currencyColumn || null)
         .input('skipHeaderRows', sql.Int, skipHeaderRows || 0)
         .query(`UPDATE [dbo].[VendorColumnMappings]
                 SET ProductCodeColumn = @productCodeColumn,
@@ -207,6 +224,7 @@ router.post('/:vendorId/column-mapping', verifyToken, async (req, res) => {
                     PriceColumn = @priceColumn,
                     StockQuantityColumn = @stockQuantityColumn,
                     UPCColumn = @upcColumn,
+                    CurrencyColumn = @currencyColumn,
                     SkipHeaderRows = @skipHeaderRows,
                     UpdatedAt = GETUTCDATE()
                 WHERE VendorId = @vendorId`);
@@ -222,16 +240,56 @@ router.post('/:vendorId/column-mapping', verifyToken, async (req, res) => {
         .input('priceColumn', sql.NVarChar, priceColumn)
         .input('stockQuantityColumn', sql.NVarChar, stockQuantityColumn || null)
         .input('upcColumn', sql.NVarChar, upcColumn || null)
+        .input('currencyColumn', sql.NVarChar, currencyColumn || null)
         .input('skipHeaderRows', sql.Int, skipHeaderRows || 0)
         .query(`INSERT INTO [dbo].[VendorColumnMappings]
-                (VendorId, ProductCodeColumn, ProductNameColumn, DescriptionColumn, BrandColumn, CategoryColumn, PriceColumn, StockQuantityColumn, UPCColumn, SkipHeaderRows)
-                VALUES (@vendorId, @productCodeColumn, @productNameColumn, @descriptionColumn, @brandColumn, @categoryColumn, @priceColumn, @stockQuantityColumn, @upcColumn, @skipHeaderRows)`);
+                (VendorId, ProductCodeColumn, ProductNameColumn, DescriptionColumn, BrandColumn, CategoryColumn, PriceColumn, StockQuantityColumn, UPCColumn, CurrencyColumn, SkipHeaderRows)
+                VALUES (@vendorId, @productCodeColumn, @productNameColumn, @descriptionColumn, @brandColumn, @categoryColumn, @priceColumn, @stockQuantityColumn, @upcColumn, @currencyColumn, @skipHeaderRows)`);
     }
 
     res.json({ message: 'Column mapping updated successfully' });
   } catch (err) {
     console.error('Update column mapping error:', err);
     res.status(500).json({ error: 'Failed to update column mapping' });
+  }
+});
+
+// Update vendor currency
+router.patch('/:vendorId/currency', verifyToken, async (req, res) => {
+  try {
+    const vendorId = req.params.vendorId;
+    const { currency } = req.body;
+
+    if (!currency) {
+      return res.status(400).json({ error: 'Currency is required' });
+    }
+
+    const validCurrencies = ['USD', 'EUR', 'GBP', 'JPY', 'AUD', 'CAD', 'CHF', 'CNY', 'INR'];
+    if (!validCurrencies.includes(currency.toUpperCase())) {
+      return res.status(400).json({ error: `Invalid currency. Supported: ${validCurrencies.join(', ')}` });
+    }
+
+    const pool = req.pool;
+
+    // Verify vendor exists
+    const vendorExists = await pool.request()
+      .input('vendorId', sql.Int, vendorId)
+      .query('SELECT VendorId FROM [dbo].[Vendors] WHERE VendorId = @vendorId');
+
+    if (vendorExists.recordset.length === 0) {
+      return res.status(404).json({ error: 'Vendor not found' });
+    }
+
+    // Update currency
+    await pool.request()
+      .input('vendorId', sql.Int, vendorId)
+      .input('currency', sql.NVarChar, currency.toUpperCase())
+      .query('UPDATE [dbo].[Vendors] SET Currency = @currency, UpdatedAt = GETUTCDATE() WHERE VendorId = @vendorId');
+
+    res.json({ message: 'Vendor currency updated successfully', vendorId, currency: currency.toUpperCase() });
+  } catch (err) {
+    console.error('Update vendor currency error:', err);
+    res.status(500).json({ error: 'Failed to update vendor currency' });
   }
 });
 

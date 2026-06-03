@@ -1,0 +1,18 @@
+2026-06-03 13:24:38 +05:30: [dotenv@17.2.3] injecting env (16) from .env.production -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+2026-06-03 13:24:38 +05:30: 📊 Anomaly Detection Scheduler Started
+2026-06-03 13:24:38 +05:30: ⏰ Schedule: Every 6 hours
+2026-06-03 13:24:38 +05:30: 🔄 First run: In 5 minutes
+2026-06-03 13:24:38 +05:30: 
+2026-06-03 13:29:38 +05:30: 🚀 Initial run after startup delay
+2026-06-03 13:29:38 +05:30: 
+2026-06-03 13:29:38 +05:30: ══════════════════════════════════════════════════
+2026-06-03 13:29:38 +05:30: 🔄 Starting anomaly detection [2026-06-03T07:59:38.161Z]
+2026-06-03 13:29:38 +05:30: ══════════════════════════════════════════════════
+2026-06-03 13:29:38 +05:30: [dotenv@17.2.3] injecting env (0) from .env.production -- tip: ⚙️  suppress all logs with { quiet: true }
+2026-06-03 13:29:38 +05:30: 🔄 Connecting to database...
+2026-06-03 13:29:38 +05:30: ✅ Connected
+2026-06-03 13:29:38 +05:30: 
+2026-06-03 13:29:38 +05:30: 📊 Fetching product price history...
+2026-06-03 13:29:53 +05:30: ══════════════════════════════════════════════════
+2026-06-03 13:29:53 +05:30: 
+2026-06-03 13:54:38 +05:30: ⏰ [2026-06-03T08:24:38.160Z] Scheduler running, waiting for next cycle (idle)

@@ -1,0 +1,587 @@
+2026-06-03 13:24:38 +05:30: ▲ Next.js 16.1.6
+2026-06-03 13:24:38 +05:30: - Local:         http://localhost:3000
+2026-06-03 13:24:38 +05:30: - Network:       http://0.0.0.0:3000
+2026-06-03 13:24:38 +05:30: 
+2026-06-03 13:24:38 +05:30: ✓ Starting...
+2026-06-03 13:24:38 +05:30: ✓ Ready in 270ms
+2026-06-03 13:24:46 +05:30: ✅ Connected to SQL Server
+2026-06-03 13:24:46 +05:30: ✅ Connected to SQL Server
+2026-06-03 13:25:03 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:25:03 +05:30: ✅ Found 5 alerts
+2026-06-03 13:26:03 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:26:03 +05:30: ✅ Found 5 alerts
+2026-06-03 13:26:04 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:26:04 +05:30: ✅ Found 5 alerts
+2026-06-03 13:26:12 +05:30: 📈 GET /api/ai/anomalies/stats
+2026-06-03 13:26:12 +05:30: ✅ Stats calculated successfully
+2026-06-03 13:26:14 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:26:14 +05:30: ✅ Found 5 alerts
+2026-06-03 13:26:23 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:26:23 +05:30: ✅ Found 5 alerts
+2026-06-03 13:27:45 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:27:45 +05:30: ✅ Found 5 alerts
+2026-06-03 13:33:19 +05:30: Creating connection with config: {
+  server: 'bcdwsqlserver.database.windows.net',
+  user: 'bcsqlsvr',
+  database: 'Product_Catalogue'
+}
+2026-06-03 13:33:20 +05:30: User query result count: 1
+2026-06-03 13:33:20 +05:30: Found user: 20 Harsha.Pamnani@acornuniversalconsultancy.com
+2026-06-03 13:33:20 +05:30: ❌ Password mismatch
+2026-06-03 13:33:20 +05:30: ✅ Database connection closed
+2026-06-03 13:33:25 +05:30: Creating connection with config: {
+  server: 'bcdwsqlserver.database.windows.net',
+  user: 'bcsqlsvr',
+  database: 'Product_Catalogue'
+}
+2026-06-03 13:33:25 +05:30: User query result count: 1
+2026-06-03 13:33:25 +05:30: Found user: 20 Harsha.Pamnani@acornuniversalconsultancy.com
+2026-06-03 13:33:25 +05:30: ✅ Password matched (plain text)
+2026-06-03 13:33:25 +05:30: ✅ JWT token created successfully
+2026-06-03 13:33:25 +05:30: ✅ Login successful for: Harsha.Pamnani@acornuniversalconsultancy.com
+2026-06-03 13:33:25 +05:30: === END LOGIN DEBUG ===
+2026-06-03 13:33:25 +05:30: ✅ Database connection closed
+2026-06-03 13:33:30 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:33:30 +05:30: ✅ Found 5 alerts
+2026-06-03 13:34:01 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:34:01 +05:30: ✅ Found 5 alerts
+2026-06-03 13:34:47 +05:30: 📈 GET /api/ai/anomalies/stats
+2026-06-03 13:34:47 +05:30: ✅ Stats calculated successfully
+2026-06-03 13:34:51 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:34:52 +05:30: ✅ Found 5 alerts
+2026-06-03 13:35:01 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:35:01 +05:30: ✅ Found 5 alerts
+2026-06-03 13:35:13 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:35:13 +05:30: ✅ Found 5 alerts
+2026-06-03 13:35:17 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:35:17 +05:30: ✅ Found 5 alerts
+2026-06-03 13:36:19 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:36:20 +05:30: ✅ Found 100 alerts
+2026-06-03 13:36:24 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:36:24 +05:30: ✅ Found 100 alerts
+2026-06-03 13:36:26 +05:30: 📈 GET /api/ai/anomalies/stats
+2026-06-03 13:36:27 +05:30: ✅ Stats calculated successfully
+2026-06-03 13:36:35 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:36:35 +05:30: ✅ Found 100 alerts
+2026-06-03 13:36:42 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:36:42 +05:30: ✅ Found 100 alerts
+2026-06-03 13:37:01 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:37:01 +05:30: ✅ Found 100 alerts
+2026-06-03 13:37:14 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:37:15 +05:30: ✅ Found 100 alerts
+2026-06-03 13:37:35 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:37:35 +05:30: ✅ Found 100 alerts
+2026-06-03 13:37:40 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:37:40 +05:30: ✅ Found 100 alerts
+2026-06-03 13:37:45 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:37:45 +05:30: ✅ Found 100 alerts
+2026-06-03 13:38:45 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:38:45 +05:30: ✅ Found 100 alerts
+2026-06-03 13:39:00 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:39:00 +05:30: ✅ Found 100 alerts
+2026-06-03 13:39:14 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: 'PRICE_DROP',
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:39:14 +05:30: ✅ Found 1 alerts
+2026-06-03 13:39:30 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: 'OUTLIER',
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:39:30 +05:30: ✅ Found 1 alerts
+2026-06-03 13:40:17 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:40:17 +05:30: ✅ Found 100 alerts
+2026-06-03 13:48:19 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:48:19 +05:30: ✅ Found 10 alerts
+2026-06-03 13:49:20 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:49:20 +05:30: ✅ Found 10 alerts
+2026-06-03 13:50:19 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:50:20 +05:30: ✅ Found 10 alerts
+2026-06-03 13:51:06 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:51:06 +05:30: ✅ Found 10 alerts
+2026-06-03 13:51:20 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:51:21 +05:30: ✅ Found 10 alerts
+2026-06-03 13:51:35 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:51:35 +05:30: ✅ Found 10 alerts
+2026-06-03 13:51:41 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:51:41 +05:30: ✅ Found 10 alerts
+2026-06-03 13:51:50 +05:30: 📈 GET /api/ai/anomalies/stats
+2026-06-03 13:51:50 +05:30: ✅ Stats calculated successfully
+2026-06-03 13:51:52 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:51:52 +05:30: ✅ Found 10 alerts
+2026-06-03 13:52:19 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:52:19 +05:30: ✅ Found 10 alerts
+2026-06-03 13:52:52 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:52:52 +05:30: ✅ Found 10 alerts
+2026-06-03 13:53:20 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:53:20 +05:30: ✅ Found 10 alerts
+2026-06-03 13:53:53 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:53:53 +05:30: ✅ Found 10 alerts
+2026-06-03 13:54:52 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:54:52 +05:30: ✅ Found 10 alerts
+2026-06-03 13:55:50 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:55:50 +05:30: ✅ Found 10 alerts
+2026-06-03 13:55:53 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:55:53 +05:30: ✅ Found 10 alerts
+2026-06-03 13:56:50 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:56:50 +05:30: ✅ Found 10 alerts
+2026-06-03 13:56:52 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:56:52 +05:30: ✅ Found 10 alerts
+2026-06-03 13:57:50 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:57:50 +05:30: ✅ Found 10 alerts
+2026-06-03 13:57:53 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:57:53 +05:30: ✅ Found 10 alerts
+2026-06-03 13:58:50 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:58:50 +05:30: ✅ Found 10 alerts
+2026-06-03 13:58:52 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:58:52 +05:30: ✅ Found 10 alerts
+2026-06-03 13:59:53 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 13:59:53 +05:30: ✅ Found 10 alerts
+2026-06-03 14:00:54 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 14:00:54 +05:30: ✅ Found 10 alerts
+2026-06-03 14:01:55 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 14:01:55 +05:30: ✅ Found 10 alerts
+2026-06-03 14:02:57 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 14:02:57 +05:30: ✅ Found 10 alerts
+2026-06-03 14:03:57 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 14:03:57 +05:30: ✅ Found 10 alerts
+2026-06-03 14:04:52 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 14:04:52 +05:30: ✅ Found 10 alerts
+2026-06-03 14:05:53 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 14:05:53 +05:30: ✅ Found 10 alerts
+2026-06-03 14:06:52 +05:30: 📊 GET /api/ai/anomalies - Filters: {
+  acknowledged: 'false',
+  severity: null,
+  alertType: null,
+  vendor: null,
+  days: 7,
+  limit: 100,
+  offset: 0
+}
+2026-06-03 14:06:52 +05:30: ✅ Found 10 alerts

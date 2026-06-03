@@ -1,0 +1,3 @@
+2026-06-03 13:24:38 +05:30: ⚠ Invalid next.config.mjs options detected: 
+2026-06-03 13:24:38 +05:30: ⚠     Unrecognized key(s) in object: 'outputFileTracing'
+2026-06-03 13:24:38 +05:30: ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config

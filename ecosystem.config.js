@@ -42,6 +42,23 @@ module.exports = {
       ignore_watch: ['node_modules', 'logs', 'public'],
       max_restarts: 10,
       min_uptime: '10s'
+    },
+    {
+      name: 'anomaly-detection-scheduler',
+      script: 'scripts/anomaly-scheduler.js',
+      cwd: '/var/www/vendorpro.beautystorellc.com',
+      instances: 1,
+      exec_mode: 'fork',
+      env: {
+        NODE_ENV: 'production'
+      },
+      error_file: '/var/www/vendorpro.beautystorellc.com/logs/anomaly-detection-error.log',
+      out_file: '/var/www/vendorpro.beautystorellc.com/logs/anomaly-detection-out.log',
+      log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+      autorestart: true,
+      watch: false,
+      max_restarts: 10,
+      min_uptime: '10s'
     }
   ],
   deploy: {

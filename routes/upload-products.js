@@ -40,9 +40,9 @@ function logUpload(message, data = null) {
 }
 
 // Parse Excel file and insert into Upload_Tbl_Products
-async function parseAndInsertToUploadTable(pool, fileId, vendorId, fileContent) {
+async function parseAndInsertToUploadTable(pool, fileId, vendorId, fileContent, vendorCurrency = 'USD') {
   try {
-    logUpload('Starting Excel parsing for Upload_Tbl_Products', { fileId, vendorId });
+    logUpload('Starting Excel parsing for Upload_Tbl_Products', { fileId, vendorId, vendorCurrency });
     
     const workbook = XLSX.read(fileContent, { type: 'buffer' });
     const worksheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -72,6 +72,7 @@ async function parseAndInsertToUploadTable(pool, fileId, vendorId, fileContent) 
         const itemCode = row['Item_Code'] || '';
         const qty = row['Qty'] || '';
         const price = row['Price'] || '';
+        const currency = row['Currency'] || vendorCurrency;
         
         if (!itemCode || itemCode.toString().trim() === '') {
           failureCount++;
@@ -85,12 +86,11 @@ async function parseAndInsertToUploadTable(pool, fileId, vendorId, fileContent) 
           .input('itemCode', sql.NVarChar, itemCode)
           .input('qty', sql.NVarChar, qty || null)
           .input('price', sql.NVarChar, price || null)
-          .input('vendorId', sql.Int, vendorId)
-          .input('fileId', sql.Int, fileId)
+          .input('currency', sql.NVarChar, currency)
           .query(`
             INSERT INTO [dbo].[Upload_Tbl_Products] 
-            (Date, [EAN/UPC], Name, Item_Code, Qty, Price, VendorId, FileUploadId)
-            VALUES (@date, @eanUpc, @name, @itemCode, @qty, @price, @vendorId, @fileId)
+            (Date, [EAN/UPC], Name, Item_Code, Qty, Price, Currency)
+            VALUES (@date, @eanUpc, @name, @itemCode, @qty, @price, @currency)
           `);
 
         successCount++;
@@ -128,15 +128,18 @@ router.post('/upload-products', verifyToken, async (req, res) => {
 
     const pool = req.pool;
 
-    // Verify vendor exists
+    // Verify vendor exists and get currency
     const vendorResult = await pool.request()
       .input('vendorId', sql.Int, vendorId)
-      .query('SELECT VendorId FROM [dbo].[Vendors] WHERE VendorId = @vendorId');
+      .query('SELECT VendorId, Currency FROM [dbo].[Vendors] WHERE VendorId = @vendorId');
 
     if (vendorResult.recordset.length === 0) {
       logUpload('Vendor not found', { vendorId });
       return res.status(404).json({ error: 'Vendor not found' });
     }
+
+    const vendorCurrency = vendorResult.recordset[0].Currency || 'USD';
+    logUpload('Vendor found with currency', { vendorId, vendorCurrency });
 
     // Create file upload record
     const fileBuffer = Buffer.from(fileContent.split(',')[1] || fileContent, 'base64');
@@ -159,9 +162,9 @@ router.post('/upload-products', verifyToken, async (req, res) => {
     const fileId = fileInsertResult.recordset[0].FileId;
     logUpload('File upload record created', { fileId });
 
-    // Parse and insert data
+    // Parse and insert data with vendor currency
     try {
-      const parseResult = await parseAndInsertToUploadTable(pool, fileId, vendorId, fileBuffer);
+      const parseResult = await parseAndInsertToUploadTable(pool, fileId, vendorId, fileBuffer, vendorCurrency);
 
       // Update file upload record with results
       await pool.request()

@@ -1,0 +1,17 @@
+🔄 Connecting to database...
+❌ Error: ConnectionError: Failed to connect to 172.30.36.124:1433 in 15000ms
+    at /var/www/vendorpro.beautystorellc.com/node_modules/mssql/lib/tedious/connection-pool.js:85:17
+    at Connection.onConnect (/var/www/vendorpro.beautystorellc.com/node_modules/tedious/lib/connection.js:874:9)
+    at Object.onceWrapper (node:events:639:26)
+    at Connection.emit (node:events:524:28)
+    at Connection.emit (/var/www/vendorpro.beautystorellc.com/node_modules/tedious/lib/connection.js:1013:18)
+    at /var/www/vendorpro.beautystorellc.com/node_modules/tedious/lib/connection.js:892:14
+    at process.processTicksAndRejections (node:internal/process/task_queues:77:11) {
+  code: 'ETIMEOUT',
+  originalError: ConnectionError: Failed to connect to 172.30.36.124:1433 in 15000ms
+      at Timeout.<anonymous> (/var/www/vendorpro.beautystorellc.com/node_modules/tedious/lib/connection.js:1041:31)
+      at listOnTimeout (node:internal/timers:581:17)
+      at process.processTimers (node:internal/timers:519:7) {
+    code: 'ETIMEOUT'
+  }
+}
