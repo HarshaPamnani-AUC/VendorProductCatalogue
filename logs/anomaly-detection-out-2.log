@@ -16,3 +16,274 @@
 2026-06-03 13:29:53 +05:30: ══════════════════════════════════════════════════
 2026-06-03 13:29:53 +05:30: 
 2026-06-03 13:54:38 +05:30: ⏰ [2026-06-03T08:24:38.160Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 16:10:55 +05:30: [dotenv@17.2.3] injecting env (16) from .env.production -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+2026-06-03 16:10:55 +05:30: 📊 Anomaly Detection Scheduler Started
+2026-06-03 16:10:55 +05:30: ⏰ Schedule: Every 6 hours
+2026-06-03 16:10:55 +05:30: 🔄 First run: In 5 minutes
+2026-06-03 16:10:55 +05:30: 
+2026-06-03 16:15:55 +05:30: 🚀 Initial run after startup delay
+2026-06-03 16:15:55 +05:30: 
+2026-06-03 16:15:55 +05:30: ══════════════════════════════════════════════════
+2026-06-03 16:15:55 +05:30: 🔄 Starting anomaly detection [2026-06-03T10:45:55.964Z]
+2026-06-03 16:15:55 +05:30: ══════════════════════════════════════════════════
+2026-06-03 16:15:55 +05:30: [dotenv@17.2.3] injecting env (0) from .env.production -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+2026-06-03 16:15:56 +05:30: 🔄 Connecting to database...
+2026-06-03 16:15:56 +05:30: ✅ Connected
+2026-06-03 16:15:56 +05:30: 
+2026-06-03 16:15:56 +05:30: 📊 Fetching product price history...
+2026-06-03 16:16:03 +05:30: ✅ Fetched 30000 price records
+2026-06-03 16:16:03 +05:30: 
+2026-06-03 16:16:03 +05:30: 🔍 Analyzing price patterns by product & vendor...
+2026-06-03 16:16:03 +05:30: 🎯 Detecting anomalies...
+2026-06-03 16:16:03 +05:30: 
+2026-06-03 16:16:03 +05:30: ✅ Detected 0 anomalies
+2026-06-03 16:16:03 +05:30: 
+2026-06-03 16:16:03 +05:30: 🧹 Clearing old anomaly data...
+2026-06-03 16:16:03 +05:30: ✅ Cleared
+2026-06-03 16:16:03 +05:30: 
+2026-06-03 16:16:03 +05:30: ℹ️  No anomalies detected
+2026-06-03 16:16:03 +05:30: 
+2026-06-03 16:16:03 +05:30: 📈 SUMMARY
+2026-06-03 16:16:03 +05:30: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-06-03 16:16:03 +05:30: Total Anomalies:      0
+2026-06-03 16:16:03 +05:30:   🔴 Critical:        0
+2026-06-03 16:16:03 +05:30:   🟠 High:            0
+2026-06-03 16:16:03 +05:30:   📈 Price Spikes:    0
+2026-06-03 16:16:03 +05:30:   📉 Price Drops:     0
+2026-06-03 16:16:03 +05:30: Total Impact:         $0.00
+2026-06-03 16:16:03 +05:30: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-06-03 16:16:03 +05:30: 
+2026-06-03 16:16:03 +05:30: ✅ Detection completed successfully [2026-06-03T10:46:03.169Z]
+2026-06-03 16:16:03 +05:30: ══════════════════════════════════════════════════
+2026-06-03 16:16:03 +05:30: 
+2026-06-03 16:28:20 +05:30: 
+2026-06-03 16:28:20 +05:30: 📍 SIGINT received, shutting down scheduler...
+2026-06-03 16:28:21 +05:30: [dotenv@17.2.3] injecting env (16) from .env.production -- tip: ⚙️  enable debug logging with { debug: true }
+2026-06-03 16:28:21 +05:30: 📊 Anomaly Detection Scheduler Started
+2026-06-03 16:28:21 +05:30: ⏰ Schedule: Every 6 hours
+2026-06-03 16:28:21 +05:30: 🔄 First run: In 5 minutes
+2026-06-03 16:28:21 +05:30: 
+2026-06-03 16:33:21 +05:30: 🚀 Initial run after startup delay
+2026-06-03 16:33:21 +05:30: 
+2026-06-03 16:33:21 +05:30: ══════════════════════════════════════════════════
+2026-06-03 16:33:21 +05:30: 🔄 Starting anomaly detection [2026-06-03T11:03:21.130Z]
+2026-06-03 16:33:21 +05:30: ══════════════════════════════════════════════════
+2026-06-03 16:33:21 +05:30: [dotenv@17.2.3] injecting env (0) from .env.production -- tip: ⚙️  suppress all logs with { quiet: true }
+2026-06-03 16:33:21 +05:30: 🔄 Connecting to database...
+2026-06-03 16:33:21 +05:30: ✅ Connected
+2026-06-03 16:33:21 +05:30: 
+2026-06-03 16:33:21 +05:30: 📊 Fetching product price history...
+2026-06-03 16:33:28 +05:30: ✅ Fetched 30000 price records
+2026-06-03 16:33:28 +05:30: 
+2026-06-03 16:33:28 +05:30: 🔍 Analyzing price patterns by product & vendor...
+2026-06-03 16:33:28 +05:30: 🎯 Detecting anomalies...
+2026-06-03 16:33:28 +05:30: 
+2026-06-03 16:33:28 +05:30: ✅ Detected 0 anomalies
+2026-06-03 16:33:28 +05:30: 
+2026-06-03 16:33:28 +05:30: 🧹 Clearing old anomaly data...
+2026-06-03 16:33:28 +05:30: ✅ Cleared
+2026-06-03 16:33:28 +05:30: 
+2026-06-03 16:33:28 +05:30: ℹ️  No anomalies detected
+2026-06-03 16:33:28 +05:30: 
+2026-06-03 16:33:28 +05:30: 📈 SUMMARY
+2026-06-03 16:33:28 +05:30: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-06-03 16:33:28 +05:30: Total Anomalies:      0
+2026-06-03 16:33:28 +05:30:   🔴 Critical:        0
+2026-06-03 16:33:28 +05:30:   🟠 High:            0
+2026-06-03 16:33:28 +05:30:   📈 Price Spikes:    0
+2026-06-03 16:33:28 +05:30:   📉 Price Drops:     0
+2026-06-03 16:33:28 +05:30: Total Impact:         $0.00
+2026-06-03 16:33:28 +05:30: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-06-03 16:33:28 +05:30: 
+2026-06-03 16:33:28 +05:30: ✅ Detection completed successfully [2026-06-03T11:03:28.501Z]
+2026-06-03 16:33:28 +05:30: ══════════════════════════════════════════════════
+2026-06-03 16:33:28 +05:30: 
+2026-06-03 16:58:21 +05:30: ⏰ [2026-06-03T11:28:21.130Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 17:28:21 +05:30: ⏰ [2026-06-03T11:58:21.130Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 17:34:56 +05:30: 
+2026-06-03 17:34:56 +05:30: 📍 SIGINT received, shutting down scheduler...
+2026-06-03 17:34:57 +05:30: [dotenv@17.2.3] injecting env (16) from .env.production -- tip: ⚙️  suppress all logs with { quiet: true }
+2026-06-03 17:34:57 +05:30: 📊 Anomaly Detection Scheduler Started
+2026-06-03 17:34:57 +05:30: ⏰ Schedule: Every 6 hours
+2026-06-03 17:34:57 +05:30: 🔄 First run: In 5 minutes
+2026-06-03 17:34:57 +05:30: 
+2026-06-03 17:39:57 +05:30: 🚀 Initial run after startup delay
+2026-06-03 17:39:57 +05:30: 
+2026-06-03 17:39:57 +05:30: ══════════════════════════════════════════════════
+2026-06-03 17:39:57 +05:30: 🔄 Starting anomaly detection [2026-06-03T12:09:57.005Z]
+2026-06-03 17:39:57 +05:30: ══════════════════════════════════════════════════
+2026-06-03 17:39:57 +05:30: [dotenv@17.2.3] injecting env (0) from .env.production -- tip: 🗂️ backup and recover secrets: https://dotenvx.com/ops
+2026-06-03 17:39:57 +05:30: 🔄 Connecting to database...
+2026-06-03 17:39:57 +05:30: ✅ Connected
+2026-06-03 17:39:57 +05:30: 
+2026-06-03 17:39:57 +05:30: 📊 Fetching product price history...
+2026-06-03 17:40:04 +05:30: ✅ Fetched 30000 price records
+2026-06-03 17:40:04 +05:30: 
+2026-06-03 17:40:04 +05:30: 🔍 Analyzing price patterns by product & vendor...
+2026-06-03 17:40:04 +05:30: 🎯 Detecting anomalies...
+2026-06-03 17:40:04 +05:30: 
+2026-06-03 17:40:04 +05:30: ✅ Detected 0 anomalies
+2026-06-03 17:40:04 +05:30: 
+2026-06-03 17:40:04 +05:30: 🧹 Clearing old anomaly data...
+2026-06-03 17:40:04 +05:30: ✅ Cleared
+2026-06-03 17:40:04 +05:30: 
+2026-06-03 17:40:04 +05:30: ℹ️  No anomalies detected
+2026-06-03 17:40:04 +05:30: 
+2026-06-03 17:40:04 +05:30: 📈 SUMMARY
+2026-06-03 17:40:04 +05:30: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-06-03 17:40:04 +05:30: Total Anomalies:      0
+2026-06-03 17:40:04 +05:30:   🔴 Critical:        0
+2026-06-03 17:40:04 +05:30:   🟠 High:            0
+2026-06-03 17:40:04 +05:30:   📈 Price Spikes:    0
+2026-06-03 17:40:04 +05:30:   📉 Price Drops:     0
+2026-06-03 17:40:04 +05:30: Total Impact:         $0.00
+2026-06-03 17:40:04 +05:30: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-06-03 17:40:04 +05:30: 
+2026-06-03 17:40:04 +05:30: ✅ Detection completed successfully [2026-06-03T12:10:04.882Z]
+2026-06-03 17:40:04 +05:30: ══════════════════════════════════════════════════
+2026-06-03 17:40:04 +05:30: 
+2026-06-03 18:04:57 +05:30: ⏰ [2026-06-03T12:34:57.004Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 18:34:57 +05:30: ⏰ [2026-06-03T13:04:57.004Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 19:04:57 +05:30: ⏰ [2026-06-03T13:34:57.004Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 19:34:57 +05:30: ⏰ [2026-06-03T14:04:57.005Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 20:04:57 +05:30: ⏰ [2026-06-03T14:34:57.005Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 20:34:57 +05:30: ⏰ [2026-06-03T15:04:57.005Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 21:04:57 +05:30: ⏰ [2026-06-03T15:34:57.005Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 21:34:57 +05:30: ⏰ [2026-06-03T16:04:57.005Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 22:04:57 +05:30: ⏰ [2026-06-03T16:34:57.005Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 22:34:57 +05:30: ⏰ [2026-06-03T17:04:57.006Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 23:04:57 +05:30: ⏰ [2026-06-03T17:34:57.006Z] Scheduler running, waiting for next cycle (idle)
+2026-06-03 23:34:57 +05:30: 
+2026-06-03 23:34:57 +05:30: ══════════════════════════════════════════════════
+2026-06-03 23:34:57 +05:30: 🔄 Starting anomaly detection [2026-06-03T18:04:57.005Z]
+2026-06-03 23:34:57 +05:30: ══════════════════════════════════════════════════
+2026-06-03 23:34:57 +05:30: ⏰ [2026-06-03T18:04:57.009Z] Scheduler running, waiting for next cycle (RUNNING)
+2026-06-03 23:34:57 +05:30: [dotenv@17.2.3] injecting env (0) from .env.production -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+2026-06-03 23:34:57 +05:30: 🔄 Connecting to database...
+2026-06-03 23:34:57 +05:30: ✅ Connected
+2026-06-03 23:34:57 +05:30: 
+2026-06-03 23:34:57 +05:30: 📊 Fetching product price history...
+2026-06-03 23:35:04 +05:30: ✅ Fetched 30000 price records
+2026-06-03 23:35:04 +05:30: 
+2026-06-03 23:35:04 +05:30: 🔍 Analyzing price patterns by product & vendor...
+2026-06-03 23:35:04 +05:30: 🎯 Detecting anomalies...
+2026-06-03 23:35:04 +05:30: 
+2026-06-03 23:35:04 +05:30: ✅ Detected 0 anomalies
+2026-06-03 23:35:04 +05:30: 
+2026-06-03 23:35:04 +05:30: 🧹 Clearing old anomaly data...
+2026-06-03 23:35:04 +05:30: ✅ Cleared
+2026-06-03 23:35:04 +05:30: 
+2026-06-03 23:35:04 +05:30: ℹ️  No anomalies detected
+2026-06-03 23:35:04 +05:30: 
+2026-06-03 23:35:04 +05:30: 📈 SUMMARY
+2026-06-03 23:35:04 +05:30: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-06-03 23:35:04 +05:30: Total Anomalies:      0
+2026-06-03 23:35:04 +05:30:   🔴 Critical:        0
+2026-06-03 23:35:04 +05:30:   🟠 High:            0
+2026-06-03 23:35:04 +05:30:   📈 Price Spikes:    0
+2026-06-03 23:35:04 +05:30:   📉 Price Drops:     0
+2026-06-03 23:35:04 +05:30: Total Impact:         $0.00
+2026-06-03 23:35:04 +05:30: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-06-03 23:35:04 +05:30: 
+2026-06-03 23:35:04 +05:30: ✅ Detection completed successfully [2026-06-03T18:05:04.943Z]
+2026-06-03 23:35:04 +05:30: ══════════════════════════════════════════════════
+2026-06-03 23:35:04 +05:30: 
+2026-06-04 00:04:57 +05:30: ⏰ [2026-06-03T18:34:57.009Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 00:34:57 +05:30: ⏰ [2026-06-03T19:04:57.009Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 01:04:57 +05:30: ⏰ [2026-06-03T19:34:57.009Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 01:34:57 +05:30: ⏰ [2026-06-03T20:04:57.009Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 02:04:57 +05:30: ⏰ [2026-06-03T20:34:57.009Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 02:34:57 +05:30: ⏰ [2026-06-03T21:04:57.009Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 03:04:57 +05:30: ⏰ [2026-06-03T21:34:57.009Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 03:34:57 +05:30: ⏰ [2026-06-03T22:04:57.009Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 04:04:57 +05:30: ⏰ [2026-06-03T22:34:57.009Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 04:34:57 +05:30: ⏰ [2026-06-03T23:04:57.009Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 05:04:57 +05:30: ⏰ [2026-06-03T23:34:57.009Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 05:34:57 +05:30: 
+2026-06-04 05:34:57 +05:30: ══════════════════════════════════════════════════
+2026-06-04 05:34:57 +05:30: 🔄 Starting anomaly detection [2026-06-04T00:04:57.005Z]
+2026-06-04 05:34:57 +05:30: ══════════════════════════════════════════════════
+2026-06-04 05:34:57 +05:30: ⏰ [2026-06-04T00:04:57.009Z] Scheduler running, waiting for next cycle (RUNNING)
+2026-06-04 05:34:57 +05:30: [dotenv@17.2.3] injecting env (0) from .env.production -- tip: 🔄 add secrets lifecycle management: https://dotenvx.com/ops
+2026-06-04 05:34:57 +05:30: 🔄 Connecting to database...
+2026-06-04 05:34:57 +05:30: ✅ Connected
+2026-06-04 05:34:57 +05:30: 
+2026-06-04 05:34:57 +05:30: 📊 Fetching product price history...
+2026-06-04 05:35:04 +05:30: ✅ Fetched 30000 price records
+2026-06-04 05:35:04 +05:30: 
+2026-06-04 05:35:04 +05:30: 🔍 Analyzing price patterns by product & vendor...
+2026-06-04 05:35:04 +05:30: 🎯 Detecting anomalies...
+2026-06-04 05:35:04 +05:30: 
+2026-06-04 05:35:04 +05:30: ✅ Detected 0 anomalies
+2026-06-04 05:35:04 +05:30: 
+2026-06-04 05:35:04 +05:30: 🧹 Clearing old anomaly data...
+2026-06-04 05:35:04 +05:30: ✅ Cleared
+2026-06-04 05:35:04 +05:30: 
+2026-06-04 05:35:04 +05:30: ℹ️  No anomalies detected
+2026-06-04 05:35:04 +05:30: 
+2026-06-04 05:35:04 +05:30: 📈 SUMMARY
+2026-06-04 05:35:04 +05:30: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-06-04 05:35:04 +05:30: Total Anomalies:      0
+2026-06-04 05:35:04 +05:30:   🔴 Critical:        0
+2026-06-04 05:35:04 +05:30:   🟠 High:            0
+2026-06-04 05:35:04 +05:30:   📈 Price Spikes:    0
+2026-06-04 05:35:04 +05:30:   📉 Price Drops:     0
+2026-06-04 05:35:04 +05:30: Total Impact:         $0.00
+2026-06-04 05:35:04 +05:30: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-06-04 05:35:04 +05:30: 
+2026-06-04 05:35:04 +05:30: ✅ Detection completed successfully [2026-06-04T00:05:04.427Z]
+2026-06-04 05:35:04 +05:30: ══════════════════════════════════════════════════
+2026-06-04 05:35:04 +05:30: 
+2026-06-04 06:04:57 +05:30: ⏰ [2026-06-04T00:34:57.010Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 06:34:57 +05:30: ⏰ [2026-06-04T01:04:57.010Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 07:04:57 +05:30: ⏰ [2026-06-04T01:34:57.012Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 07:34:57 +05:30: ⏰ [2026-06-04T02:04:57.012Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 08:04:57 +05:30: ⏰ [2026-06-04T02:34:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 08:34:57 +05:30: ⏰ [2026-06-04T03:04:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 09:04:57 +05:30: ⏰ [2026-06-04T03:34:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 09:34:57 +05:30: ⏰ [2026-06-04T04:04:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 10:04:57 +05:30: ⏰ [2026-06-04T04:34:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 10:34:57 +05:30: ⏰ [2026-06-04T05:04:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 11:04:57 +05:30: ⏰ [2026-06-04T05:34:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 11:34:57 +05:30: 
+2026-06-04 11:34:57 +05:30: ══════════════════════════════════════════════════
+2026-06-04 11:34:57 +05:30: 🔄 Starting anomaly detection [2026-06-04T06:04:57.005Z]
+2026-06-04 11:34:57 +05:30: ══════════════════════════════════════════════════
+2026-06-04 11:34:57 +05:30: ⏰ [2026-06-04T06:04:57.013Z] Scheduler running, waiting for next cycle (RUNNING)
+2026-06-04 11:34:57 +05:30: [dotenv@17.2.3] injecting env (0) from .env.production -- tip: ⚙️  enable debug logging with { debug: true }
+2026-06-04 11:34:57 +05:30: 🔄 Connecting to database...
+2026-06-04 11:34:57 +05:30: ✅ Connected
+2026-06-04 11:34:57 +05:30: 
+2026-06-04 11:34:57 +05:30: 📊 Fetching product price history...
+2026-06-04 11:35:04 +05:30: ✅ Fetched 30000 price records
+2026-06-04 11:35:04 +05:30: 
+2026-06-04 11:35:04 +05:30: 🔍 Analyzing price patterns by product & vendor...
+2026-06-04 11:35:04 +05:30: 🎯 Detecting anomalies...
+2026-06-04 11:35:04 +05:30: 
+2026-06-04 11:35:04 +05:30: ✅ Detected 0 anomalies
+2026-06-04 11:35:04 +05:30: 
+2026-06-04 11:35:04 +05:30: 🧹 Clearing old anomaly data...
+2026-06-04 11:35:04 +05:30: ✅ Cleared
+2026-06-04 11:35:04 +05:30: 
+2026-06-04 11:35:04 +05:30: ℹ️  No anomalies detected
+2026-06-04 11:35:04 +05:30: 
+2026-06-04 11:35:04 +05:30: 📈 SUMMARY
+2026-06-04 11:35:04 +05:30: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-06-04 11:35:04 +05:30: Total Anomalies:      0
+2026-06-04 11:35:04 +05:30:   🔴 Critical:        0
+2026-06-04 11:35:04 +05:30:   🟠 High:            0
+2026-06-04 11:35:04 +05:30:   📈 Price Spikes:    0
+2026-06-04 11:35:04 +05:30:   📉 Price Drops:     0
+2026-06-04 11:35:04 +05:30: Total Impact:         $0.00
+2026-06-04 11:35:04 +05:30: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2026-06-04 11:35:04 +05:30: 
+2026-06-04 11:35:04 +05:30: ✅ Detection completed successfully [2026-06-04T06:05:04.782Z]
+2026-06-04 11:35:04 +05:30: ══════════════════════════════════════════════════
+2026-06-04 11:35:04 +05:30: 
+2026-06-04 12:04:57 +05:30: ⏰ [2026-06-04T06:34:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 12:34:57 +05:30: ⏰ [2026-06-04T07:04:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 13:04:57 +05:30: ⏰ [2026-06-04T07:34:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 13:34:57 +05:30: ⏰ [2026-06-04T08:04:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 14:04:57 +05:30: ⏰ [2026-06-04T08:34:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 14:34:57 +05:30: ⏰ [2026-06-04T09:04:57.013Z] Scheduler running, waiting for next cycle (idle)
+2026-06-04 15:04:57 +05:30: ⏰ [2026-06-04T09:34:57.013Z] Scheduler running, waiting for next cycle (idle)

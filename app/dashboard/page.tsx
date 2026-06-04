@@ -46,6 +46,7 @@ interface Product {
   price: number;
   stockQuantity: number;
   vendorName: string;
+  currency: string;
   lowestPrice: number;
   highestPrice: number;
   vendors: any[];

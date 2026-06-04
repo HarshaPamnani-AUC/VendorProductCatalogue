@@ -1,3 +1,75 @@
 2026-06-03 13:24:38 +05:30: ⚠ Invalid next.config.mjs options detected: 
 2026-06-03 13:24:38 +05:30: ⚠     Unrecognized key(s) in object: 'outputFileTracing'
 2026-06-03 13:24:38 +05:30: ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+2026-06-03 16:10:56 +05:30: ⚠ Invalid next.config.mjs options detected: 
+2026-06-03 16:10:56 +05:30: ⚠     Unrecognized key(s) in object: 'outputFileTracing'
+2026-06-03 16:10:56 +05:30: ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+2026-06-03 16:28:21 +05:30: ⚠ Invalid next.config.mjs options detected: 
+2026-06-03 16:28:21 +05:30: ⚠     Unrecognized key(s) in object: 'outputFileTracing'
+2026-06-03 16:28:21 +05:30: ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+2026-06-03 16:29:23 +05:30: Vendors API error: Error [RequestError]: Timeout: Request failed to complete in 30000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 30000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-03 17:34:57 +05:30: ⚠ Invalid next.config.mjs options detected: 
+2026-06-03 17:34:57 +05:30: ⚠     Unrecognized key(s) in object: 'outputFileTracing'
+2026-06-03 17:34:57 +05:30: ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+2026-06-03 18:16:53 +05:30: Vendors API error: Error [RequestError]: Timeout: Request failed to complete in 30000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 30000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-03 18:17:13 +05:30: Product insights search error: Error [RequestError]: Timeout: Request failed to complete in 60000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 60000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-04 14:39:15 +05:30: ⚠ Invalid next.config.mjs options detected: 
+2026-06-04 14:39:15 +05:30: ⚠     Unrecognized key(s) in object: 'outputFileTracing'
+2026-06-04 14:39:15 +05:30: ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config

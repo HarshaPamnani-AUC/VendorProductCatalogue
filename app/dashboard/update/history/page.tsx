@@ -1,13 +1,38 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Download, ChevronDown, ChevronUp, Tag, TrendingDown, TrendingUp as TrendingUpIcon, BarChart2, CalendarCheck } from 'lucide-react';
+import { Download, ChevronDown, ChevronUp, Tag, TrendingDown, TrendingUp as TrendingUpIcon, BarChart2, CalendarCheck, RefreshCw } from 'lucide-react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, PieChart, Pie, Cell,
 } from 'recharts';
 
 const SESSION_KEY = 'product_insights_state';
+
+// ─── Currency helpers ─────────────────────────────────────────────────────────
+const CURRENCY_SYMBOLS: Record<string, string> = {
+  USD: '$', EUR: '€', GBP: '£', JPY: '¥', AUD: 'A$',
+  CAD: 'C$', CHF: 'Fr', CNY: '¥', INR: '₹',
+};
+const ALL_CURRENCIES = ['USD','EUR','GBP','JPY','AUD','CAD','CHF','CNY','INR'];
+
+function sym(currency = 'USD') {
+  return CURRENCY_SYMBOLS[currency.toUpperCase()] ?? (currency.toUpperCase() + ' ');
+}
+
+interface RateMap { [currency: string]: number; }
+
+function convertPrice(amount: number, from: string, to: string, rates: RateMap): number {
+  if (!amount || from === to || !rates || Object.keys(rates).length === 0) return amount;
+  const fromRate = rates[from] ?? 1;
+  const toRate   = rates[to]   ?? 1;
+  return (amount / fromRate) * toRate;
+}
+
+function fmtPrice(amount: number, from: string, to: string, rates: RateMap): string {
+  const converted = convertPrice(amount, from, to, rates);
+  return `${sym(to)}${converted.toFixed(2)}`;
+}
 
 interface Vendor {
   vendorId: number;
@@ -27,6 +52,7 @@ interface Product {
   price: number;
   stockQuantity: number;
   vendorName: string;
+  currency: string;
   lowestPrice: number;
   highestPrice: number;
   vendors: Vendor[];
@@ -48,6 +74,37 @@ export default function ProductHistoryPage() {
   // ── Date filter for pivot table ───────────────────────────────────────────
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
+
+  // ── Live exchange rates ───────────────────────────────────────────────────
+  const [displayCurrency, setDisplayCurrency] = useState('USD');
+  const [rates,           setRates]           = useState<RateMap>({ USD: 1 });
+  const [ratesDate,       setRatesDate]       = useState('');
+  const [ratesSource,     setRatesSource]     = useState('');
+  const [ratesLoading,    setRatesLoading]    = useState(false);
+
+  // Build a vendor-name → currency map from search results
+  const vendorCurrencyMap: Record<string, string> = {};
+  searchResults.forEach(p => {
+    const key = ((p.vendorName || '').trim().replace(/[-_]+/g, ' ').replace(/\s+/g, ' ')).toUpperCase();
+    if (!vendorCurrencyMap[key]) vendorCurrencyMap[key] = p.currency || 'USD';
+  });
+
+  const fetchRates = async (noCache = false) => {
+    setRatesLoading(true);
+    try {
+      const res  = await fetch('/api/exchange-rates', noCache ? { cache: 'no-store' } : {});
+      const data = await res.json();
+      if (data.rates) {
+        setRates(data.rates);
+        setRatesDate(data.date ?? '');
+        setRatesSource(data.source ?? '');
+      }
+    } catch { /* keep defaults */ } finally {
+      setRatesLoading(false);
+    }
+  };
+
+  useEffect(() => { fetchRates(); }, []);
 
   // ── Fetch vendor list on mount ────────────────────────────────────────────
   useEffect(() => {
@@ -186,18 +243,17 @@ export default function ProductHistoryPage() {
   };
 
   const transformDataForPivotTable = (data: Product[]) => {
-    const pivotData: { [vendor: string]: { [date: string]: number } } = {};
+    const pivotData: { [vendor: string]: { [date: string]: { raw: number; currency: string } } } = {};
     const allDates = new Set<string>();
     const allVendors = new Set<string>();
 
     data.forEach(item => {
-      // Normalise vendor name exactly as Price Intelligence does
-      const vendor = ((item.vendorName || 'Unknown').trim().replace(/[-_]+/g, ' ').replace(/\s+/g, ' ')).toUpperCase();
+      const vendorKey = ((item.vendorName || 'Unknown').trim().replace(/[-_]+/g, ' ').replace(/\s+/g, ' ')).toUpperCase();
       const date = item.productDate || 'Unknown';
-      allVendors.add(vendor);
+      allVendors.add(vendorKey);
       allDates.add(date);
-      if (!pivotData[vendor]) pivotData[vendor] = {};
-      pivotData[vendor][date] = item.price || 0;
+      if (!pivotData[vendorKey]) pivotData[vendorKey] = {};
+      pivotData[vendorKey][date] = { raw: item.price || 0, currency: item.currency || 'USD' };
     });
 
     // Sort all dates descending first (newest first)
@@ -227,7 +283,12 @@ export default function ProductHistoryPage() {
     const sortedDates = filteredDates;
 
     const getAvg = (vendor: string) => {
-      const prices = sortedDates.map(d => pivotData[vendor]?.[d] || 0).filter(p => p > 0);
+      const prices = sortedDates
+        .map(d => {
+          const entry = pivotData[vendor]?.[d];
+          return entry ? convertPrice(entry.raw, entry.currency, displayCurrency, rates) : 0;
+        })
+        .filter(p => p > 0);
       return prices.length ? prices.reduce((s, p) => s + p, 0) / prices.length : 0;
     };
 
@@ -238,13 +299,18 @@ export default function ProductHistoryPage() {
   const { pivotData, sortedDates, sortedVendors } = transformDataForPivotTable(searchResults);
 
   const calculateVendorAverage = (vendor: string) => {
-    const prices = Object.values(pivotData[vendor] || {}).filter(p => p > 0);
+    const prices = Object.values(pivotData[vendor] || {})
+      .map(e => convertPrice(e.raw, e.currency, displayCurrency, rates))
+      .filter(p => p > 0);
     return prices.length ? prices.reduce((s, p) => s + p, 0) / prices.length : 0;
   };
 
   const calculateDateAverage = (date: string) => {
     const prices = Object.values(pivotData)
-      .map(vd => vd[date] || 0)
+      .map(vd => {
+        const e = vd[date];
+        return e ? convertPrice(e.raw, e.currency, displayCurrency, rates) : 0;
+      })
       .filter(p => p > 0);
     return prices.length ? prices.reduce((s, p) => s + p, 0) / prices.length : 0;
   };
@@ -271,12 +337,15 @@ export default function ProductHistoryPage() {
 
   const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899', '#06b6d4', '#84cc16'];
 
-  // colour-code a price cell relative to the column (date) min/max
   const getPriceCellStyle = (vendor: string, date: string): string => {
-    const price = pivotData[vendor]?.[date];
-    if (!price) return '';
+    const entry = pivotData[vendor]?.[date];
+    if (!entry || !entry.raw) return '';
+    const price = convertPrice(entry.raw, entry.currency, displayCurrency, rates);
     const colPrices = sortedVendors
-      .map(v => pivotData[v]?.[date] || 0)
+      .map(v => {
+        const e = pivotData[v]?.[date];
+        return e ? convertPrice(e.raw, e.currency, displayCurrency, rates) : 0;
+      })
       .filter(p => p > 0);
     const min = Math.min(...colPrices);
     const max = Math.max(...colPrices);
@@ -303,6 +372,50 @@ export default function ProductHistoryPage() {
             <Download className="w-4 h-4" />
             Download ({searchResults.length} items)
           </button>
+        )}
+      </div>
+
+      {/* ── Currency bar ─────────────────────────────────────────────────────── */}
+      <div className="bg-card border border-border rounded-xl px-5 py-3 flex flex-wrap items-center gap-4">
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Display in</span>
+          <select
+            value={displayCurrency}
+            onChange={e => setDisplayCurrency(e.target.value)}
+            className="bg-background border border-border rounded-lg px-3 py-1.5 text-sm font-semibold text-foreground focus:outline-none focus:ring-2 focus:ring-primary">
+            {ALL_CURRENCIES.map(c => (
+              <option key={c} value={c}>{c} {CURRENCY_SYMBOLS[c] ?? ''}</option>
+            ))}
+          </select>
+        </div>
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          {ratesLoading ? (
+            <span className="flex items-center gap-1.5">
+              <span className="w-3 h-3 border-2 border-muted-foreground/30 border-t-primary rounded-full animate-spin" />
+              Fetching rates…
+            </span>
+          ) : ratesDate ? (
+            <span>
+              Rates: <span className="text-foreground font-medium">{ratesDate}</span>
+              {' · '}
+              <span className={ratesSource === 'fallback' ? 'text-amber-500' : 'text-emerald-500'}>
+                {ratesSource === 'live'      && '● live'}
+                {ratesSource === 'db_today'  && '● cached today'}
+                {ratesSource === 'db_cached' && '● cached (older)'}
+                {ratesSource === 'fallback'  && '⚠ static fallback'}
+              </span>
+            </span>
+          ) : null}
+          <button onClick={() => fetchRates(true)} disabled={ratesLoading}
+            title="Refresh exchange rates"
+            className="p-1 rounded hover:bg-muted disabled:opacity-40 transition-colors">
+            <RefreshCw className="w-3.5 h-3.5" />
+          </button>
+        </div>
+        {!ratesLoading && displayCurrency !== 'USD' && rates[displayCurrency] && (
+          <span className="text-xs text-muted-foreground ml-auto">
+            1 USD = <span className="font-semibold text-foreground">{rates[displayCurrency].toFixed(4)} {displayCurrency}</span>
+          </span>
         )}
       </div>
 
@@ -447,8 +560,16 @@ export default function ProductHistoryPage() {
         if (!mostRecentDate) return null;
 
         const todayEntries = sortedVendors
-          .map(vendor => ({ vendor, price: pivotData[vendor]?.[mostRecentDate] || 0 }))
-          .filter(e => e.price > 0)
+          .map(vendor => {
+            const entry = pivotData[vendor]?.[mostRecentDate];
+            if (!entry || !entry.raw) return null;
+            return {
+              vendor,
+              price: convertPrice(entry.raw, entry.currency, displayCurrency, rates),
+              nativeCurrency: entry.currency,
+            };
+          })
+          .filter((e): e is NonNullable<typeof e> => e !== null && e.price > 0)
           .sort((a, b) => a.price - b.price);
 
         if (todayEntries.length === 0) return null;
@@ -491,7 +612,12 @@ export default function ProductHistoryPage() {
                       {isCheapest && <span className="text-[10px]">🏆</span>}
                       <span className="truncate max-w-[90px]" title={entry.vendor}>{entry.vendor}</span>
                       <span className={`font-extrabold tabular-nums ${isCheapest ? 'text-emerald-700' : isMostExpensive ? 'text-rose-600' : 'text-slate-800'}`}>
-                        ${entry.price.toFixed(2)}
+                        {sym(displayCurrency)}{entry.price.toFixed(2)}
+                        {entry.nativeCurrency !== displayCurrency && (
+                          <span className="ml-1 font-normal text-[10px] opacity-60">
+                            ({entry.nativeCurrency})
+                          </span>
+                        )}
                       </span>
                     </div>
                   );
@@ -500,8 +626,8 @@ export default function ProductHistoryPage() {
               {/* Stats */}
               <div className="flex items-center gap-3 text-xs text-slate-500 shrink-0 ml-auto">
                 <span><span className="font-semibold text-slate-700">{todayEntries.length}</span> vendors</span>
-                <span>Spread: <span className="font-semibold text-slate-700">${spread.toFixed(2)}</span></span>
-                <span>Avg: <span className="font-semibold text-slate-700">${avgPrice.toFixed(2)}</span></span>
+                <span>Spread: <span className="font-semibold text-slate-700">{sym(displayCurrency)}{spread.toFixed(2)}</span></span>
+                <span>Avg: <span className="font-semibold text-slate-700">{sym(displayCurrency)}{avgPrice.toFixed(2)}</span></span>
               </div>
             </div>
           </div>
@@ -584,7 +710,7 @@ export default function ProductHistoryPage() {
                       </th>
                     ))}
                     <th className="px-3 py-3 text-center font-semibold text-xs uppercase tracking-wider bg-blue-700 min-w-[90px] whitespace-nowrap">
-                      Avg
+                      Avg ({displayCurrency})
                     </th>
                   </tr>
                 </thead>
@@ -600,19 +726,24 @@ export default function ProductHistoryPage() {
                         {vendor}
                       </td>
                       {sortedDates.map(date => {
-                        const price = pivotData[vendor]?.[date];
+                        const entry = pivotData[vendor]?.[date];
+                        const converted = entry ? convertPrice(entry.raw, entry.currency, displayCurrency, rates) : 0;
                         const colorClass = getPriceCellStyle(vendor, date);
                         return (
                           <td
                             key={date}
                             className={`px-3 py-2.5 text-right border-r border-gray-100 tabular-nums text-xs ${colorClass}`}
                           >
-                            {price ? `$${price.toFixed(2)}` : <span className="text-gray-300">—</span>}
+                            {converted ? (
+                              <span title={entry?.currency !== displayCurrency ? `Native: ${sym(entry!.currency)}${entry!.raw.toFixed(2)} ${entry!.currency}` : undefined}>
+                                {sym(displayCurrency)}{converted.toFixed(2)}
+                              </span>
+                            ) : <span className="text-gray-300">—</span>}
                           </td>
                         );
                       })}
                       <td className="px-3 py-2.5 text-right font-bold text-blue-700 bg-blue-50 tabular-nums text-xs">
-                        ${calculateVendorAverage(vendor).toFixed(2)}
+                        {sym(displayCurrency)}{calculateVendorAverage(vendor).toFixed(2)}
                       </td>
                     </tr>
                   ))}
@@ -627,11 +758,11 @@ export default function ProductHistoryPage() {
                         key={date}
                         className="px-3 py-2.5 text-right text-blue-700 border-r border-slate-300 bg-blue-50 tabular-nums text-xs"
                       >
-                        ${calculateDateAverage(date).toFixed(2)}
+                        {sym(displayCurrency)}{calculateDateAverage(date).toFixed(2)}
                       </td>
                     ))}
                     <td className="px-3 py-2.5 text-right text-emerald-700 bg-emerald-50 tabular-nums text-xs">
-                      ${(sortedDates.reduce((s, d) => s + calculateDateAverage(d), 0) / sortedDates.length).toFixed(2)}
+                      {sym(displayCurrency)}{(sortedDates.reduce((s, d) => s + calculateDateAverage(d), 0) / (sortedDates.length || 1)).toFixed(2)}
                     </td>
                   </tr>
                 </tbody>

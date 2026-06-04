@@ -954,6 +954,8 @@ function GoogleSheetSyncTab() {
   const [syncing, setSyncing]     = useState(false);
   const [result, setResult]       = useState<SyncResponse | null>(null);
   const [loadingConfig, setLoadingConfig] = useState(true);
+  const [deduping, setDeduping]   = useState(false);
+  const [dedupResult, setDedupResult] = useState<{ totalDeleted: number; byTable: Record<string, number> } | null>(null);
 
   // Load sheet configs on mount
   useEffect(() => {
@@ -1001,6 +1003,25 @@ function GoogleSheetSyncTab() {
       setResult({ success: false, error: err.message, totalInserted: 0, totalDuplicatesSkipped: 0, totalEmptyRowsSkipped: 0, sheetsProcessed: 0, sheetsWithErrors: 0, results: [] });
     } finally {
       setSyncing(false);
+    }
+  };
+
+  const handleDedup = async () => {
+    if (!confirm('This will permanently remove duplicate rows from all order tables, keeping only the first occurrence of each. Continue?')) return;
+    setDeduping(true); setDedupResult(null);
+    try {
+      const res  = await fetch('/api/orders/dedup', { method: 'POST' });
+      const data = await res.json();
+      if (data.success) {
+        setDedupResult({ totalDeleted: data.totalDeleted, byTable: data.byTable });
+        toast.success(`Removed ${data.totalDeleted} duplicate row${data.totalDeleted !== 1 ? 's' : ''}`);
+      } else {
+        toast.error('Dedup failed: ' + data.error);
+      }
+    } catch (err: any) {
+      toast.error('Dedup failed: ' + err.message);
+    } finally {
+      setDeduping(false);
     }
   };
 
@@ -1081,6 +1102,44 @@ function GoogleSheetSyncTab() {
               </>
             )}
           </button>
+
+          {/* Dedup button */}
+          <div className="border-t border-border pt-4">
+            <button
+              onClick={handleDedup}
+              disabled={deduping || syncing}
+              className="w-full py-2.5 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 font-semibold rounded-lg transition-colors disabled:opacity-50 text-sm flex items-center justify-center gap-2"
+            >
+              {deduping ? (
+                <>
+                  <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                  </svg>
+                  Removing duplicates…
+                </>
+              ) : (
+                <>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                  Remove Duplicate Rows
+                </>
+              )}
+            </button>
+            <p className="text-xs text-muted-foreground mt-1.5 text-center">
+              Keeps the first occurrence of each identical row across all 5 tables
+            </p>
+            {dedupResult && (
+              <div className="mt-3 p-3 rounded-lg bg-green-50 border border-green-200 text-xs space-y-1">
+                <p className="font-semibold text-green-800">✓ Removed {dedupResult.totalDeleted} duplicate row{dedupResult.totalDeleted !== 1 ? 's' : ''}</p>
+                {Object.entries(dedupResult.byTable).filter(([,n]) => n > 0).map(([t, n]) => (
+                  <p key={t} className="text-green-700">{t}: {n} removed</p>
+                ))}
+                {dedupResult.totalDeleted === 0 && <p className="text-green-700">No duplicates found — tables are clean</p>}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Results */}

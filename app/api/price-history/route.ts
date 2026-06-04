@@ -63,21 +63,23 @@ export async function GET(request: NextRequest) {
     // Prefix-match on indexed columns first; full LIKE only on Name.
     const result = await req.query(`
       SELECT TOP 5000
-        [Date]       AS UploadDate,
-        [EAN/UPC]    AS UPC,
-        [Name]       AS ProductName,
-        [Item_Code]  AS ProductCode,
-        [Qty]        AS Qty,
-        [Price]      AS Price,
-        [Vendor]     AS VendorCode
-      FROM [dbo].[Tbl_Products_Storage] WITH (NOLOCK)
+        tps.[Date]       AS UploadDate,
+        tps.[EAN/UPC]    AS UPC,
+        tps.[Name]       AS ProductName,
+        tps.[Item_Code]  AS ProductCode,
+        tps.[Qty]        AS Qty,
+        tps.[Price]      AS Price,
+        tps.[Vendor]     AS VendorCode,
+        ISNULL(v.[Currency], 'USD') AS Currency
+      FROM [dbo].[Tbl_Products_Storage] tps WITH (NOLOCK)
+      LEFT JOIN [dbo].[Vendors] v WITH (NOLOCK) ON v.[VendorName] = tps.[Vendor] AND v.[IsActive] = 1
       WHERE (
-        [EAN/UPC]    LIKE @prefix
-        OR [Item_Code] LIKE @prefix
-        OR [Name]    LIKE @query
+        tps.[EAN/UPC]    LIKE @prefix
+        OR tps.[Item_Code] LIKE @prefix
+        OR tps.[Name]    LIKE @query
       )
       ${dateFilter}
-      ORDER BY [EAN/UPC], [Vendor], [Date] ASC
+      ORDER BY tps.[EAN/UPC], tps.[Vendor], tps.[Date] ASC
     `);
 
     if (result.recordset.length === 0) {
@@ -103,6 +105,7 @@ export async function GET(request: NextRequest) {
       if (!upcMap[upcKey].vendors[vendorKey]) {
         upcMap[upcKey].vendors[vendorKey] = {
           vendorCode: vendorKey,
+          currency: row.Currency || 'USD',
           priceHistory: [],
         };
       }

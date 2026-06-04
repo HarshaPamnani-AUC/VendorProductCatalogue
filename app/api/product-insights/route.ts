@@ -145,8 +145,11 @@ export async function GET(request: NextRequest) {
           ELSE 0
         END AS StockQuantity,
         s.[EAN/UPC] AS UPC,
-        s.[Vendor] AS VendorName
+        s.[Vendor] AS VendorName,
+        ISNULL(v.[Currency], 'USD') AS Currency
       FROM [dbo].[Tbl_Products_Storage] s
+      LEFT JOIN [dbo].[Vendors] v WITH (NOLOCK)
+        ON v.[VendorName] = s.[Vendor] AND v.[IsActive] = 1
       ${productBrandLookup}
       WHERE ${filters.join(' AND ')}
       ORDER BY ${getSortClause(searchParams.get('sortBy'))}
@@ -165,6 +168,7 @@ export async function GET(request: NextRequest) {
         price: Number(row.Price || 0),
         stockQuantity: Number(row.StockQuantity || 0),
         vendorName: row.VendorName || '',
+        currency: row.Currency || 'USD',
         vendors: [],
       })),
     );

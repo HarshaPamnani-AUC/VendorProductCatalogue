@@ -236,7 +236,11 @@ function rowFingerprint(row: Record<string, any>): string {
       if (v instanceof Date) return v.toISOString().split('T')[0];
       return String(v).split('T')[0];
     }
-    if (NUMERIC_COLS.has(f)) return String(parseFloat(String(v)));
+    if (NUMERIC_COLS.has(f)) {
+      // Use parseFloat to strip trailing zeros — matches CAST(FLOAT) in SQL
+      const n = parseFloat(String(v));
+      return isNaN(n) ? '' : String(n);
+    }
     return String(v).trim().toLowerCase();
   }).join('|');
 }
@@ -281,10 +285,10 @@ async function loadExistingFingerprints(
       ISNULL(CONVERT(NVARCHAR(10), order_date, 23),''),
       ISNULL(CAST(upc_ean AS NVARCHAR(500)),''),
       ISNULL(CAST(nav AS NVARCHAR(500)),''),
-      ISNULL(CAST(order_qty AS NVARCHAR(100)),''),
-      ISNULL(CAST(order_price AS NVARCHAR(100)),''),
-      ISNULL(CAST(so_qty AS NVARCHAR(100)),''),
-      ISNULL(CAST(so_price AS NVARCHAR(100)),''),
+      ISNULL(CAST(CAST(order_qty   AS FLOAT) AS NVARCHAR(100)),''),
+      ISNULL(CAST(CAST(order_price AS FLOAT) AS NVARCHAR(100)),''),
+      ISNULL(CAST(CAST(so_qty      AS FLOAT) AS NVARCHAR(100)),''),
+      ISNULL(CAST(CAST(so_price    AS FLOAT) AS NVARCHAR(100)),''),
       ISNULL(CAST(invoice_so_proforma AS NVARCHAR(500)),''),
       ISNULL(CAST(brand AS NVARCHAR(500)),''),
       ISNULL(CAST(nav_name AS NVARCHAR(500)),'')
