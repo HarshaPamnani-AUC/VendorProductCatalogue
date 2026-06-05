@@ -73,3 +73,315 @@
 2026-06-04 14:39:15 +05:30: ⚠ Invalid next.config.mjs options detected: 
 2026-06-04 14:39:15 +05:30: ⚠     Unrecognized key(s) in object: 'outputFileTracing'
 2026-06-04 14:39:15 +05:30: ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+2026-06-04 18:59:11 +05:30: Vendors API error: Error [RequestError]: Timeout: Request failed to complete in 30000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 30000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-04 18:59:14 +05:30: Vendors API error: Error [RequestError]: Timeout: Request failed to complete in 30000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 30000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-04 18:59:41 +05:30: Vendors API error: Error [RequestError]: Timeout: Request failed to complete in 30000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 30000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-04 18:59:54 +05:30: Vendors API error: Error [RequestError]: Timeout: Request failed to complete in 30000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 30000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-04 19:00:02 +05:30: Vendors API error: Error [RequestError]: Timeout: Request failed to complete in 30000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 30000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-04 19:00:14 +05:30: Product insights search error: Error [RequestError]: Timeout: Request failed to complete in 60000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 60000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-04 19:00:24 +05:30: Vendors API error: Error [RequestError]: Timeout: Request failed to complete in 30000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 30000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-04 19:00:25 +05:30: Product insights search error: Error [RequestError]: Timeout: Request failed to complete in 60000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 60000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-04 19:00:32 +05:30: Vendors API error: Error [RequestError]: Timeout: Request failed to complete in 30000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 30000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-05 13:18:44 +05:30: Price history error: Error [RequestError]: Timeout: Request failed to complete in 60000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 60000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-05 13:19:07 +05:30: Price history error: Error [RequestError]: Timeout: Request failed to complete in 60000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 60000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-05 13:19:07 +05:30: Price history error: Error [RequestError]: Timeout: Request failed to complete in 60000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 60000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-05 13:19:08 +05:30: Price history error: Error [RequestError]: Timeout: Request failed to complete in 60000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 60000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-05 13:19:08 +05:30: Price history error: Error [RequestError]: Timeout: Request failed to complete in 60000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 60000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-05 13:19:08 +05:30: Price history error: Error [RequestError]: Timeout: Request failed to complete in 60000ms
+    at <unknown> (.next/server/chunks/4238.js:75:103096)
+    at Array.forEach (<anonymous>)
+    at g.userCallback (.next/server/chunks/4238.js:75:102990)
+    at g.callback (.next/server/chunks/4238.js:52:68288)
+    at <unknown> (.next/server/chunks/4238.js:62:72361) {
+  code: 'ETIMEOUT',
+  originalError: Error: Timeout: Request failed to complete in 60000ms
+      at Q.requestTimeout (.next/server/chunks/4238.js:62:48821)
+      at Timeout._onTimeout (.next/server/chunks/4238.js:62:48470) {
+    code: 'ETIMEOUT'
+  },
+  number: 'ETIMEOUT',
+  lineNumber: undefined,
+  state: undefined,
+  class: undefined,
+  serverName: undefined,
+  procName: undefined,
+  precedingErrors: []
+}
+2026-06-05 15:32:22 +05:30: ⚠ Invalid next.config.mjs options detected: 
+2026-06-05 15:32:22 +05:30: ⚠     Unrecognized key(s) in object: 'outputFileTracing'
+2026-06-05 15:32:22 +05:30: ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+2026-06-05 15:45:01 +05:30: ⚠ Invalid next.config.mjs options detected: 
+2026-06-05 15:45:01 +05:30: ⚠     Unrecognized key(s) in object: 'outputFileTracing'
+2026-06-05 15:45:01 +05:30: ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+2026-06-05 16:00:16 +05:30: ⚠ Invalid next.config.mjs options detected: 
+2026-06-05 16:00:16 +05:30: ⚠     Unrecognized key(s) in object: 'outputFileTracing'
+2026-06-05 16:00:16 +05:30: ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+2026-06-05 17:31:08 +05:30: ⚠ Invalid next.config.mjs options detected: 
+2026-06-05 17:31:08 +05:30: ⚠     Unrecognized key(s) in object: 'outputFileTracing'
+2026-06-05 17:31:08 +05:30: ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config

@@ -44,8 +44,9 @@ async function ensureExtraTablesExist(pool: sql.ConnectionPool) {
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const search   = searchParams.get('search') || '';
-    const company  = searchParams.get('company') || '';
+    const search    = searchParams.get('search') || '';
+    const company   = searchParams.get('company') || '';
+    const sheetType = searchParams.get('sheet_type') || '';
     const page     = parseInt(searchParams.get('page') || '1', 10);
     const pageSize = parseInt(searchParams.get('pageSize') || '100', 10);
     const offset   = (page - 1) * pageSize;
@@ -59,10 +60,14 @@ export async function GET(request: NextRequest) {
     req.input('offset',   sql.Int, offset);
     req.input('pageSize', sql.Int, pageSize);
 
-    let where = 'WHERE sheet_type != \'NOT BUY\'';
+    let where = 'WHERE source = \'gsheet\' AND sheet_type != \'NOT BUY\'';
     if (company) {
       req.input('company', sql.NVarChar, company);
       where += ' AND company = @company';
+    }
+    if (sheetType) {
+      req.input('sheetType', sql.NVarChar, sheetType);
+      where += ' AND sheet_type = @sheetType';
     }
     if (search) {
       req.input('search', sql.NVarChar, `%${search}%`);
@@ -72,27 +77,32 @@ export async function GET(request: NextRequest) {
     const unionSql = `
       SELECT id, sheet_type, 'LLP' AS company, supplier, invoice_date, currency,
              order_qty, order_price, so_qty, so_price, invoice_qty, inv_price,
-             order_demand_id, nav_name, upc_ean, order_date, nav
+             order_demand_id, nav_name, upc_ean, order_date, nav, port_info_date,
+             ISNULL(source, '') AS source
       FROM [dbo].[LLP_Orders]
       UNION ALL
       SELECT id, sheet_type, 'VW360' AS company, supplier, invoice_date, currency,
              order_qty, order_price, so_qty, so_price, invoice_qty, inv_price,
-             order_demand_id, nav_name, upc_ean, order_date, nav
+             order_demand_id, nav_name, upc_ean, order_date, nav, port_info_date,
+             ISNULL(source, '') AS source
       FROM [dbo].[VW360_Orders]
       UNION ALL
       SELECT id, sheet_type, 'BSLLC' AS company, supplier, invoice_date, currency,
              order_qty, order_price, so_qty, so_price, invoice_qty, inv_price,
-             order_demand_id, nav_name, upc_ean, order_date, nav
+             order_demand_id, nav_name, upc_ean, order_date, nav, port_info_date,
+             ISNULL(source, '') AS source
       FROM [dbo].[BSLLC_Orders]
       UNION ALL
       SELECT id, sheet_type, 'BM' AS company, supplier, invoice_date, currency,
              order_qty, order_price, so_qty, so_price, invoice_qty, inv_price,
-             order_demand_id, nav_name, upc_ean, order_date, nav
+             order_demand_id, nav_name, upc_ean, order_date, nav, port_info_date,
+             ISNULL(source, '') AS source
       FROM [dbo].[BM_Orders]
       UNION ALL
       SELECT id, sheet_type, 'BCGGB' AS company, supplier, invoice_date, currency,
              order_qty, order_price, so_qty, so_price, invoice_qty, inv_price,
-             order_demand_id, nav_name, upc_ean, order_date, nav
+             order_demand_id, nav_name, upc_ean, order_date, nav, port_info_date,
+             ISNULL(source, '') AS source
       FROM [dbo].[BCGGB_Orders]
     `;
 

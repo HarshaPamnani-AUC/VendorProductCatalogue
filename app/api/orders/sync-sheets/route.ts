@@ -5,45 +5,52 @@ import { google } from 'googleapis';
 import fs from 'fs';
 
 // ── Sheet → DB table mapping ──────────────────────────────────────────────────
-// Each entry: { spreadsheetId, label, table, company, sheetName }
-// sheetName: the tab inside the spreadsheet (null = first sheet)
+// Each entry defines one spreadsheet. All tabs are synced automatically.
+// Tab name → sheet_type mapping:
+//   "PENDING ORDERS" / "PENDING ORDER" → 'PENDING ORDERS'
+//   "DONE ORDERS"                      → 'DONE ORDERS'
+//   "NOT BUY"                          → 'NOT BUY'  (still inserted, just hidden from dashboard)
 const SHEET_CONFIGS = [
   {
     label: 'BSLLC PENDING ORDERS 2026-27',
     spreadsheetId: '1aA2WLWlzx4fgB8OSAUSTVH-rkvbhCd9VfiQtrIKuEI8',
-    sheetName: null,
     table: 'BSLLC_Orders',
     company: 'BSLLC',
   },
   {
     label: 'VW360 PENDING ORDERS 2026-27',
     spreadsheetId: '1U3NTuiDl4OLaZvjWt5NtS5EaSaRoH6YTofbq0SnJ1Lw',
-    sheetName: null,
     table: 'VW360_Orders',
     company: 'VW360',
   },
   {
     label: 'BCG GB PENDING ORDERS 2026-27',
     spreadsheetId: '1-V8GbUK5Wld2Zu2_k773P6-467GtjsuNGi3XYPV6FsY',
-    sheetName: null,
     table: 'BCGGB_Orders',
     company: 'BCGGB',
   },
   {
     label: 'LLP PENDING ORDERS 2026-27',
     spreadsheetId: '1EdjT2yR_l-0njWe6xoq0u1TZRVHRUnr9DCkfjeiKwXQ',
-    sheetName: null,
     table: 'LLP_Orders',
     company: 'LLP',
   },
   {
     label: 'BM PENDING ORDERS 2026-27',
     spreadsheetId: '1QAwhBRCVJhQwT6sbgrK_007AtoMWjTorXaN_c5AnYUU',
-    sheetName: null,
     table: 'BM_Orders',
     company: 'BM',
   },
 ];
+
+// Map a tab name to the correct sheet_type value
+function resolveSheetType(tabName: string): string | null {
+  const t = tabName.trim().toUpperCase();
+  if (t === 'PENDING ORDERS' || t === 'PENDING ORDER') return 'PENDING ORDERS';
+  if (t === 'DONE ORDERS'   || t === 'DONE ORDER')    return 'DONE ORDERS';
+  if (t === 'NOT BUY')                                 return 'NOT BUY';
+  return null; // unknown tab — skip
+}
 
 // ── Ensure BM_Orders and BCGGB_Orders tables exist ───────────────────────────
 // These are created on first use if not present — identical schema to LLP/VW360/BSLLC_Orders
@@ -77,12 +84,29 @@ async function ensureTablesExist(pool: sql.ConnectionPool): Promise<void> {
         [invoice_qty]         DECIMAL(15,4),
         [inv_price]           DECIMAL(15,4),
         [sheet_type]          NVARCHAR(100) NOT NULL DEFAULT 'PENDING ORDERS',
+        [source]              NVARCHAR(50)  NULL,
         [inserted_at]         DATETIME      DEFAULT GETUTCDATE()
       )
     END
   `;
+
+  // Also add source column to existing tables if missing
+  const addColSql = (tableName: string) => `
+    IF EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.TABLES
+               WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = '${tableName}')
+    AND NOT EXISTS (SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS
+                    WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = '${tableName}' AND COLUMN_NAME = 'source')
+    BEGIN
+      ALTER TABLE [dbo].[${tableName}] ADD [source] NVARCHAR(50) NULL
+    END
+  `;
+
+  const allTables = ['LLP_Orders', 'VW360_Orders', 'BSLLC_Orders', 'BM_Orders', 'BCGGB_Orders'];
   for (const t of EXTRA_TABLES) {
     await pool.request().query(createSql(t));
+  }
+  for (const t of allTables) {
+    await pool.request().query(addColSql(t));
   }
 }
 
@@ -318,102 +342,119 @@ async function processSheet(
   pool: sql.ConnectionPool,
   config: typeof SHEET_CONFIGS[number],
 ): Promise<SheetResult> {
-  const { label, spreadsheetId, sheetName, table, company } = config;
+  const { label, spreadsheetId, table } = config;
 
-  // Fetch raw sheet data
-  let raw: any[][];
+  // Get all tab names
+  let tabNames: string[];
   try {
-    raw = await readSheet(sheetsApi, spreadsheetId, sheetName);
+    const meta = await sheetsApi.spreadsheets.get({
+      spreadsheetId,
+      fields: 'sheets.properties.title',
+    });
+    tabNames = (meta.data.sheets || []).map((s: any) => s.properties.title as string);
   } catch (e: any) {
-    return { label, table, inserted: 0, skipped: 0, skippedDups: 0, error: e.message };
+    return { label, table, inserted: 0, skipped: 0, skippedDups: 0, error: `Failed to get tabs: ${e.message}` };
   }
 
-  if (raw.length < 2) {
-    return { label, table, inserted: 0, skipped: 0, skippedDups: 0, error: 'Sheet is empty or has no data rows' };
-  }
-
-  // Map headers → DB columns
-  const headers = (raw[0] as any[]).map(h => String(h ?? '').trim().toLowerCase().replace(/\s+/g, ' '));
-  const colMap: Record<number, string> = {};
-  headers.forEach((h, i) => {
-    const db = COLUMN_MAP[h];
-    if (db) colMap[i] = db;
-  });
-
-  if (Object.keys(colMap).length === 0) {
-    return { label, table, inserted: 0, skipped: 0, skippedDups: 0, error: `No recognisable columns found. Headers were: ${headers.join(', ')}` };
-  }
-
-  // Load existing DB fingerprints for this table
+  // Load existing DB fingerprints once for this table (covers all tabs)
   const existingFingerprints = await loadExistingFingerprints(pool, table);
 
-  // Track fingerprints seen within this file to avoid intra-file duplicates
-  const seenInFile = new Set<string>();
+  let totalInserted = 0;
+  let totalSkipped  = 0;
+  let totalDups     = 0;
 
-  let inserted = 0;
-  let skipped = 0;
-  let skippedDups = 0;
+  for (const tabName of tabNames) {
+    const sheetType = resolveSheetType(tabName);
+    if (!sheetType) continue; // skip unknown tabs
 
-  for (let ri = 1; ri < raw.length; ri++) {
-    const row = raw[ri] as any[];
-    if (!row || row.every(c => c == null || c === '')) { skipped++; continue; }
-
-    // Build parsed row object
-    const parsed: Record<string, any> = {};
-    for (const [idxStr, dbCol] of Object.entries(colMap)) {
-      const idx = parseInt(idxStr);
-      const val = row[idx] ?? null;
-      if (DATE_COLS.has(dbCol)) {
-        parsed[dbCol] = parseDate(val);
-      } else if (NUMERIC_COLS.has(dbCol)) {
-        parsed[dbCol] = parseNum(val);
-      } else {
-        parsed[dbCol] = val != null && val !== '' ? String(val).trim() : null;
-      }
-    }
-
-    // Build dedup fingerprint
-    const fp = rowFingerprint(parsed);
-
-    // Skip if duplicate (DB or within-file)
-    if (existingFingerprints.has(fp) || seenInFile.has(fp)) {
-      skippedDups++;
+    // Fetch tab data
+    let raw: any[][];
+    try {
+      const res = await sheetsApi.spreadsheets.values.get({
+        spreadsheetId,
+        range: tabName,
+        valueRenderOption: 'UNFORMATTED_VALUE',
+        dateTimeRenderOption: 'FORMATTED_STRING',
+      });
+      raw = res.data.values || [];
+    } catch (e: any) {
+      console.error(`Tab "${tabName}" in "${label}" failed: ${e.message}`);
       continue;
     }
-    seenInFile.add(fp);
 
-    // Insert into DB
-    try {
-      const req = pool.request();
-      const cols: string[] = ['sheet_type'];
-      req.input('sheet_type', sql.NVarChar, 'PENDING ORDERS');
+    if (raw.length < 2) continue; // empty tab
 
-      for (const [dbCol, val] of Object.entries(parsed)) {
+    // Map headers → DB columns
+    const headers = (raw[0] as any[]).map(h => String(h ?? '').trim().toLowerCase().replace(/\s+/g, ' '));
+    const colMap: Record<number, string> = {};
+    headers.forEach((h, i) => {
+      const db = COLUMN_MAP[h];
+      if (db) colMap[i] = db;
+    });
+
+    if (Object.keys(colMap).length === 0) continue; // no recognisable columns
+
+    // Track fingerprints seen within this tab
+    const seenInTab = new Set<string>();
+
+    for (let ri = 1; ri < raw.length; ri++) {
+      const row = raw[ri] as any[];
+      if (!row || row.every(c => c == null || c === '')) { totalSkipped++; continue; }
+
+      // Build parsed row object
+      const parsed: Record<string, any> = {};
+      for (const [idxStr, dbCol] of Object.entries(colMap)) {
+        const idx = parseInt(idxStr);
+        const val = row[idx] ?? null;
         if (DATE_COLS.has(dbCol)) {
-          req.input(dbCol, sql.Date, val as Date | null);
+          parsed[dbCol] = parseDate(val);
         } else if (NUMERIC_COLS.has(dbCol)) {
-          req.input(dbCol, sql.Decimal(15, 4), val as number | null);
+          parsed[dbCol] = parseNum(val);
         } else {
-          req.input(dbCol, sql.NVarChar, val as string | null);
+          parsed[dbCol] = val != null && val !== '' ? String(val).trim() : null;
         }
-        cols.push(dbCol);
       }
 
-      const colList   = cols.join(', ');
-      const paramList = cols.map(c => `@${c}`).join(', ');
+      // Build dedup fingerprint (includes sheetType so same row in different tabs = different record)
+      const fp = sheetType + '|' + rowFingerprint(parsed);
 
-      await req.query(`INSERT INTO [dbo].[${table}] (${colList}) VALUES (${paramList})`);
-      inserted++;
+      if (existingFingerprints.has(fp) || seenInTab.has(fp)) {
+        totalDups++;
+        continue;
+      }
+      seenInTab.add(fp);
 
-      // Add to seen set so subsequent rows in the same sheet are deduped
-      existingFingerprints.add(fp);
-    } catch (e: any) {
-      console.error(`Row ${ri} insert error in "${label}":`, e.message);
-      skipped++;
+      // Insert into DB
+      try {
+        const req = pool.request();
+        const cols: string[] = ['sheet_type', 'source'];
+        req.input('sheet_type', sql.NVarChar, sheetType);
+        req.input('source',     sql.NVarChar, 'gsheet');
+
+        for (const [dbCol, val] of Object.entries(parsed)) {
+          if (DATE_COLS.has(dbCol)) {
+            req.input(dbCol, sql.Date, val as Date | null);
+          } else if (NUMERIC_COLS.has(dbCol)) {
+            req.input(dbCol, sql.Decimal(15, 4), val as number | null);
+          } else {
+            req.input(dbCol, sql.NVarChar, val as string | null);
+          }
+          cols.push(dbCol);
+        }
+
+        const colList   = cols.join(', ');
+        const paramList = cols.map(c => `@${c}`).join(', ');
+        await req.query(`INSERT INTO [dbo].[${table}] (${colList}) VALUES (${paramList})`);
+        totalInserted++;
+        existingFingerprints.add(fp);
+      } catch (e: any) {
+        console.error(`Row ${ri} insert error in "${label}" tab "${tabName}":`, e.message);
+        totalSkipped++;
+      }
     }
   }
 
-  return { label, table, inserted, skipped, skippedDups };
+  return { label, table, inserted: totalInserted, skipped: totalSkipped, skippedDups: totalDups };
 }
 
 // ── API Route ─────────────────────────────────────────────────────────────────

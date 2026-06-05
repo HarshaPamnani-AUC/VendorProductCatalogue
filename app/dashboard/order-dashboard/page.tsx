@@ -100,7 +100,7 @@ export default function OrderDashboardPage() {
 
       const headers = [
         'Status','Company','Supplier','Order Date','Delivery Date',
-        'Invoice/SO/Proforma','Invoice Date',
+        'Invoice/SO/Proforma','Invoice Date','Posting Date',
         'NAV','UPC/EAN','Brand','NAV Name','Currency',
         'Order Qty','Order Price','SO Qty','SO Price','Invoice Qty','Invoice Price',
         'Sheet Type',
@@ -119,6 +119,7 @@ export default function OrderDashboardPage() {
           r.delivery_date ? new Date(r.delivery_date).toLocaleDateString('en-GB') : '',
           r.invoice_so_proforma,
           r.invoice_date  ? new Date(r.invoice_date).toLocaleDateString('en-GB')  : '',
+          r.port_info_date ? new Date(r.port_info_date).toLocaleDateString('en-GB') : '',
           r.nav, r.upc_ean, r.brand, r.nav_name, r.currency,
           r.order_qty, r.order_price, r.so_qty, r.so_price, r.invoice_qty, r.inv_price,
           r.sheet_type,
@@ -154,7 +155,6 @@ export default function OrderDashboardPage() {
             { label: 'Total Orders',  value: Number(stats.total).toLocaleString(),          cls: 'border-border' },
             { label: 'Pending',       value: Number(stats.pending).toLocaleString(),         cls: 'border-yellow-300 bg-yellow-50/50' },
             { label: 'Done',          value: Number(stats.done).toLocaleString(),            cls: 'border-green-300 bg-green-50/50' },
-            { label: 'Not Buy',       value: Number(stats.not_buy).toLocaleString(),         cls: 'border-red-300 bg-red-50/50' },
             { label: 'Order Value',   value: `$${Number(stats.total_order_value).toLocaleString(undefined,{maximumFractionDigits:0})}`,   cls: 'border-blue-300 bg-blue-50/50' },
             { label: 'Invoice Value', value: `$${Number(stats.total_invoice_value).toLocaleString(undefined,{maximumFractionDigits:0})}`, cls: 'border-purple-300 bg-purple-50/50' },
           ].map(c => (
@@ -187,7 +187,6 @@ export default function OrderDashboardPage() {
             <option value="">All</option>
             <option value="PENDING ORDERS">Pending</option>
             <option value="DONE ORDERS">Done</option>
-            <option value="NOT BUY">Not Buy</option>
           </select>
         </div>
         <div className="flex-1 min-w-[220px]">
@@ -229,73 +228,87 @@ export default function OrderDashboardPage() {
         <div className="bg-destructive/10 border border-destructive/30 text-destructive rounded-lg px-4 py-3 text-sm">{error}</div>
       )}
 
-      {/* Master Sheet Table */}
-      <div className="bg-card border border-border rounded-xl overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-xs">
-            <thead>
-              <tr className="bg-primary text-primary-foreground">
-                {[
-                  'Sheet Type', 'Company', 'Supplier', 'Status',
-                  'Order Date', 'Delivery Date', 'Invoice Date',
-                  'Invoice/SO/Proforma',
-                  'NAV', 'UPC/EAN', 'Brand', 'NAV Name', 'Currency',
-                  'Order Qty', 'Order Price',
-                  'SO Qty', 'SO Price',
-                  'Invoice Qty', 'Invoice Price',
-                ].map(h => (
-                  <th key={h} className="text-left px-3 py-3 font-semibold whitespace-nowrap border-r border-primary-foreground/20 last:border-r-0">
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {loading ? (
-                <tr><td colSpan={19} className="text-center py-16 text-muted-foreground">Loading…</td></tr>
-              ) : data.length === 0 ? (
-                <tr><td colSpan={19} className="text-center py-16 text-muted-foreground">No records found</td></tr>
-              ) : data.map((row, i) => {
-                const { label, cls } = sheetLabel(row.sheet_type);
-                return (
-                  <tr key={`${row.company}-${row.id}`}
-                    className={`border-t border-border/40 hover:bg-primary/5 transition-colors ${i % 2 === 0 ? 'bg-background' : 'bg-muted/20'}`}>
-                    <td className="px-3 py-2.5 whitespace-nowrap">
-                      <span className={`px-2 py-0.5 rounded text-xs font-medium ${cls}`}>{label}</span>
-                    </td>
-                    <td className="px-3 py-2.5">
-                      <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${companyBadge(row.company)}`}>
-                        {row.company}
-                      </span>
-                    </td>
-                    <td className="px-3 py-2.5 font-medium text-foreground whitespace-nowrap">{row.supplier || '—'}</td>
-                    <td className="px-3 py-2.5 whitespace-nowrap">
-                      {row.status
-                        ? <span className={`px-2 py-0.5 rounded text-xs font-medium ${statusBadge(row.status)}`}>{row.status}</span>
-                        : <span className="text-muted-foreground">—</span>}
-                    </td>
-                    <td className="px-3 py-2.5 text-muted-foreground whitespace-nowrap">{fmtDate(row.order_date)}</td>
-                    <td className="px-3 py-2.5 text-muted-foreground whitespace-nowrap">{fmtDate(row.delivery_date)}</td>
-                    <td className="px-3 py-2.5 text-muted-foreground whitespace-nowrap">{fmtDate(row.invoice_date)}</td>
-                    <td className="px-3 py-2.5 text-foreground whitespace-nowrap">{row.invoice_so_proforma || '—'}</td>
-                    <td className="px-3 py-2.5 text-foreground whitespace-nowrap">{row.nav || '—'}</td>
-                    <td className="px-3 py-2.5 font-mono text-foreground whitespace-nowrap">{row.upc_ean || '—'}</td>
-                    <td className="px-3 py-2.5 text-foreground whitespace-nowrap">{row.brand || '—'}</td>
-                    <td className="px-3 py-2.5 text-foreground max-w-[200px] truncate" title={row.nav_name}>{row.nav_name || '—'}</td>
-                    <td className="px-3 py-2.5 text-foreground">{row.currency || '—'}</td>
-                    <td className="px-3 py-2.5 text-right text-foreground">{fmtQty(row.order_qty)}</td>
-                    <td className="px-3 py-2.5 text-right text-foreground">{fmtNum(row.order_price)}</td>
-                    <td className="px-3 py-2.5 text-right text-foreground">{fmtQty(row.so_qty)}</td>
-                    <td className="px-3 py-2.5 text-right text-foreground">{fmtNum(row.so_price)}</td>
-                    <td className="px-3 py-2.5 text-right text-foreground">{fmtQty(row.invoice_qty)}</td>
-                    <td className="px-3 py-2.5 text-right text-foreground">{fmtNum(row.inv_price)}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
+  
+ {/* Master Sheet Table */}
+<div className="bg-card border border-border rounded-xl overflow-hidden">
+  <div className="overflow-x-auto overflow-y-auto max-h-[620px]">
+    <table className="w-full text-xs border-separate border-spacing-0" style={{ tableLayout: 'fixed', minWidth: '900px' }}>
+      <colgroup>
+        <col style={{ width: '72px' }} />
+        <col style={{ width: '60px' }} />
+        <col style={{ width: '110px' }} />
+        <col style={{ width: '76px' }} />
+        <col style={{ width: '76px' }} />
+        <col style={{ width: '90px' }} />
+        <col style={{ width: '70px' }} />
+        <col style={{ width: '100px' }} />
+        <col style={{ width: '80px' }} />
+        <col style={{ width: '140px' }} />
+        <col style={{ width: '46px' }} />
+        <col style={{ width: '56px' }} />
+        <col style={{ width: '66px' }} />
+        <col style={{ width: '50px' }} />
+        <col style={{ width: '62px' }} />
+        <col style={{ width: '56px' }} />
+        <col style={{ width: '66px' }} />
+      </colgroup>
+      <thead>
+        <tr>
+          {[
+            'Status', 'Co.', 'Supplier',
+            'Inv. Date', 'Post. Date', 'Invoice/SO/Proforma',
+            'NAV', 'UPC/EAN', 'Brand', 'NAV Name', 'Cur.',
+            'Ord.Qty', 'Ord.Price', 'SO Qty', 'SO Price', 'Inv.Qty', 'Inv.Price',
+          ].map(h => (
+            <th
+              key={h}
+              className="sticky top-0 z-10 bg-primary text-primary-foreground text-left px-2 py-2.5 font-semibold whitespace-nowrap border-r border-primary-foreground/20 last:border-r-0 text-[11px]"
+            >
+              {h}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {loading ? (
+          <tr><td colSpan={17} className="text-center py-16 text-muted-foreground">Loading…</td></tr>
+        ) : data.length === 0 ? (
+          <tr><td colSpan={17} className="text-center py-16 text-muted-foreground">No records found</td></tr>
+        ) : data.map((row, i) => {
+          const { label, cls } = sheetLabel(row.sheet_type);
+          return (
+            <tr key={`${row.company}-${row.id}`}
+              className={`border-t border-border/40 hover:bg-primary/5 transition-colors ${i % 2 === 0 ? 'bg-background' : 'bg-muted/20'}`}>
+              <td className="px-2 py-2 overflow-hidden">
+                <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${cls}`}>{label}</span>
+              </td>
+              <td className="px-2 py-2 overflow-hidden">
+                <span className={`px-1.5 py-0.5 rounded-full text-[10px] font-semibold ${companyBadge(row.company)}`}>
+                  {row.company}
+                </span>
+              </td>
+              <td className="px-2 py-2 font-medium text-foreground truncate overflow-hidden" title={row.supplier}>{row.supplier || '—'}</td>
+              <td className="px-2 py-2 text-muted-foreground overflow-hidden">{fmtDate(row.invoice_date)}</td>
+              <td className="px-2 py-2 text-muted-foreground overflow-hidden">{fmtDate(row.port_info_date)}</td>
+              <td className="px-2 py-2 text-foreground truncate overflow-hidden" title={row.invoice_so_proforma}>{row.invoice_so_proforma || '—'}</td>
+              <td className="px-2 py-2 text-foreground truncate overflow-hidden" title={row.nav}>{row.nav || '—'}</td>
+              <td className="px-2 py-2 font-mono text-foreground truncate overflow-hidden" title={String(row.upc_ean || '')}>{row.upc_ean || '—'}</td>
+              <td className="px-2 py-2 text-foreground truncate overflow-hidden" title={row.brand}>{row.brand || '—'}</td>
+              <td className="px-2 py-2 text-foreground truncate overflow-hidden" title={row.nav_name}>{row.nav_name || '—'}</td>
+              <td className="px-2 py-2 text-foreground overflow-hidden">{row.currency || '—'}</td>
+              <td className="px-2 py-2 text-right text-foreground">{fmtQty(row.order_qty)}</td>
+              <td className="px-2 py-2 text-right text-foreground">{fmtNum(row.order_price)}</td>
+              <td className="px-2 py-2 text-right text-foreground">{fmtQty(row.so_qty)}</td>
+              <td className="px-2 py-2 text-right text-foreground">{fmtNum(row.so_price)}</td>
+              <td className="px-2 py-2 text-right text-foreground">{fmtQty(row.invoice_qty)}</td>
+              <td className="px-2 py-2 text-right text-foreground">{fmtNum(row.inv_price)}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+</div>
 
       {/* Bottom pagination */}
       {totalPages > 1 && (
